@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ali's cps counter</title>
+    <meta name="theme-color" content="#36393F">
+        <meta name="description" content="Test how many times you click in a second!">
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        background-image: linear-gradient(150deg, rgb(100, 150, 150), rgb(0, 0, 0));
+      }
+      * {
+        font-family: Helvetica;
+      }
+      button {
+        height: 200px;
+        width: 200px;
+        border-radius: 100px;
+        background-color: rgb(255, 255, 0);
+        color: rgb(0, 0, 0);
+        border: none;
+        margin: 1px 0px 0px 2px;
+        padding: 5px 0px 0px 0px;
+      }
+      #gradient {
+        width: 204px;
+        height: 204px;
+        background-image: linear-gradient(rgb(255, 0, 255) rgb(255, 0, 255));
+        border-radius: 102px;
+      }
+      button:focus {
+        outline: none;
+      }
+      div#reset { 
+        position: absolute; 
+        top: 10; 
+        left: 475; 
+        background-color: #f7ff27; 
+        width: 25%; 
+      }
+      div#reset-content { 
+        width: 340px; 
+        margin: 0 auto; 
+        padding: 6px; 
+      }
+    </style>
+  </head>
+  <body>
+    <div id="gradient">
+      <button id="clicker" onclick="cl()"><b>Click to Begin</b></button>
+    </div>
+    <script>
+      document.getElementById("gradient").style.marginLeft = (window.innerWidth / 2 - 102) + "px";
+      document.getElementById("gradient").style.marginTop = (window.innerHeight / 2 - 102) + "px";
+      document.getElementById("gradient").style.marginBottom = (window.innerHeight / 2 - 102) + "px";
+      var clicks = 0;
+      var mil;
+      var lastClick;
+      document.body.onclick = function() {
+        mil = new Date().getTime();
+        document.body.onclick = function() {};
+      };
+      console.log("D");
+      function cl() {
+        clicks++;
+        lastClick = new Date().getTime();
+      }
+      setInterval(function() {
+        if (mil) {
+          document.getElementById("clicker").innerHTML = "<b>" + Math.floor(clicks / ((new Date().getTime() - mil) / 1000) * 100) / 100 + " CPS</b>";
+        }
+      }, 1);
+    </script>
+  </body>
+</html>

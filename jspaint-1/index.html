@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="PaintStyle.css">
+        <title>ali's jspaint</title>
+        <meta name="theme-color" content="#36393F">
+        <meta name="description" content="Use JSPaint online for free, unblocked!">
+
+    </head>
+    <body>
+        <style>
+          h1 {
+                 font-family: 'Roboto', sans-serif;
+             }
+            
+            p {
+                 font-family: 'Roboto', sans-serif;
+             }
+        </style>
+        <h1>JSPaint - By Nabil</h1>
+        <p>Set Width: <input type="text" onchange="setWidth(this.value)" placeholder="For example, 1000." />
+        Set Height: <input type="text" onchange="setHeight(this.value)" placeholder="For example, 600." /> </p>
+        
+        <hr>
+
+        <canvas id="canvas1" onmousedown="startPaint()" onmousemove="doPaint(event.offsetX, event.offsetY)" onmouseup="endPaint()"> </canvas>
+        
+        <hr>
+
+        <p>Brush Color: <input type="color" value="#000" onchange="changeColor(this.value)"/> </p>
+        <p>Brush Size: <input id="sizeInput" type="range" min="1" max="50" value="25" oninput="resizeBrush(this.value)" /> 
+        <output id="sizeOutput">25</output> </p>
+       
+        <hr>
+
+        <p><input id="clear" type="button" value="Clear Canvas" onclick="clearCanvas()"/>  </p>
+
+
+        <script src="PaintCode.js"> </script>
+
+
+    </body>
+    
+</html>

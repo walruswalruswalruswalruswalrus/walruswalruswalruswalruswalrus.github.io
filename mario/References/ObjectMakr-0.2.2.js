@@ -1,0 +1,19 @@
+var ObjectMakr;(function(ObjectMakr_1){"use strict";var ObjectMakr=(function(){function ObjectMakr(settings){if(typeof settings.inheritance==="undefined"){throw new Error("No inheritance mapping given to ObjectMakr.");}
+this.inheritance=settings.inheritance;this.properties=settings.properties||{};this.doPropertiesFull=settings.doPropertiesFull;this.indexMap=settings.indexMap;this.onMake=settings.onMake;this.functions={};if(this.doPropertiesFull){this.propertiesFull={};}
+if(this.indexMap){this.processProperties(this.properties);}
+this.processFunctions(this.inheritance,Object,"Object");}
+ObjectMakr.prototype.getInheritance=function(){return this.inheritance;};ObjectMakr.prototype.getProperties=function(){return this.properties;};ObjectMakr.prototype.getPropertiesOf=function(title){return this.properties[title];};ObjectMakr.prototype.getFullProperties=function(){return this.propertiesFull;};ObjectMakr.prototype.getFullPropertiesOf=function(title){return this.doPropertiesFull?this.propertiesFull[title]:undefined;};ObjectMakr.prototype.getFunctions=function(){return this.functions;};ObjectMakr.prototype.getFunction=function(name){return this.functions[name];};ObjectMakr.prototype.hasFunction=function(name){return this.functions.hasOwnProperty(name);};ObjectMakr.prototype.getIndexMap=function(){return this.indexMap;};ObjectMakr.prototype.make=function(name,settings){if(settings===void 0){settings=undefined;}
+var output;if(!this.functions.hasOwnProperty(name)){throw new Error("Unknown type given to ObjectMakr: "+name);}
+output=new this.functions[name]();if(settings){this.proliferate(output,settings);}
+if(this.onMake&&output[this.onMake]){if(this.doPropertiesFull){output[this.onMake](output,name,this.properties[name],this.propertiesFull[name]);}
+else{output[this.onMake](output,name,this.properties[name],this.functions[name].prototype);}}
+return output;};ObjectMakr.prototype.processProperties=function(properties){var name;for(name in properties){if(this.properties.hasOwnProperty(name)){if(this.properties[name]instanceof Array){this.properties[name]=this.processPropertyArray(this.properties[name]);}}}};ObjectMakr.prototype.processPropertyArray=function(properties){var output={},i;for(i=properties.length-1;i>=0;--i){output[this.indexMap[i]]=properties[i];}
+return output;};ObjectMakr.prototype.processFunctions=function(base,parent,parentName){var name,ref;for(name in base){if(base.hasOwnProperty(name)){this.functions[name]=(new Function());this.functions[name].prototype=new parent();this.functions[name].prototype.constructor=this.functions[name];for(ref in this.properties[name]){if(this.properties[name].hasOwnProperty(ref)){this.functions[name].prototype[ref]=this.properties[name][ref];}}
+if(this.doPropertiesFull){this.propertiesFull[name]={};if(parentName){for(ref in this.propertiesFull[parentName]){if(this.propertiesFull[parentName].hasOwnProperty(ref)){this.propertiesFull[name][ref]=this.propertiesFull[parentName][ref];}}}
+for(ref in this.properties[name]){if(this.properties[name].hasOwnProperty(ref)){this.propertiesFull[name][ref]=this.properties[name][ref];}}}
+this.processFunctions(base[name],this.functions[name],name);}}};ObjectMakr.prototype.proliferate=function(recipient,donor,noOverride){if(noOverride===void 0){noOverride=false;}
+var setting,i;for(i in donor){if(noOverride&&recipient.hasOwnProperty(i)){continue;}
+setting=donor[i];if(typeof setting==="object"){if(!recipient.hasOwnProperty(i)){recipient[i]=new setting.constructor();}
+this.proliferate(recipient[i],setting,noOverride);}
+else{recipient[i]=setting;}}
+return recipient;};return ObjectMakr;})();ObjectMakr_1.ObjectMakr=ObjectMakr;})(ObjectMakr||(ObjectMakr={}));

@@ -1,0 +1,83 @@
+﻿
+<!DOCTYPE html>
+
+
+<head>
+	 <title>
+   ali's tabs
+  </title>
+
+</head>
+
+  <body>
+  <button class="c-button">PLAY</button>
+<style>
+.c-button {
+  min-width: 100%;
+  font-family: inherit;
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #4682B4;
+  color: #fff;
+  padding: 0px 46px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.c-button:hover {
+  background: #B0C4DE;
+}
+
+.c-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #cbd6ee;
+}
+  
+ .c-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+</style>
+<script>
+        var urlObj = new window.URL(window.location.href);
+        var url = "https://images-docs-opensocial.googleusercontent.com/gadgets/ifr?url=https://sites.google.com/site/xml0259fegow/tabs.xml";
+
+        if (url) {
+            var win;
+
+            document.querySelector('button').onclick = function() {
+                if (win) {
+                    win.focus();
+                } else {
+                    win = window.open();
+                    win.document.body.style.margin = '0';
+                    win.document.body.style.height = '100vh';
+                    var iframe = win.document.createElement('iframe');
+                    iframe.style.border = 'none';
+                    iframe.style.width = '100%';
+                    iframe.style.height = '100%';
+                    iframe.style.margin = '0';
+                    iframe.src = url;
+                    win.document.body.appendChild(iframe);
+                    
+
+                    var interval = setInterval(function() {
+                        if (win.closed) {
+                            clearInterval(interval);
+                            win = undefined;
+
+                        }
+                    }, 500);
+
+
+                }
+            };
+        }
+    </script>
+
+</body>
+</html>

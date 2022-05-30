@@ -1,0 +1,6 @@
+var MapScreenr;(function(MapScreenr_1){"use strict";var MapScreenr=(function(){function MapScreenr(settings){var name;if(typeof settings.width==="undefined"){throw new Error("No width given to MapScreenr.");}
+if(typeof settings.height==="undefined"){throw new Error("No height given to MapScreenr.");}
+for(name in settings){if(settings.hasOwnProperty(name)){this[name]=settings[name];}}
+this.variables=settings.variables||{};this.variableArgs=settings.variableArgs||[];}
+MapScreenr.prototype.clearScreen=function(){this.left=0;this.top=0;this.right=this.width;this.bottom=this.height;this.setMiddleX();this.setMiddleY();this.setVariables();};MapScreenr.prototype.setMiddleX=function(){this.middleX=(this.left+this.right)/2;};MapScreenr.prototype.setMiddleY=function(){this.middleY=(this.top+this.bottom)/2;};MapScreenr.prototype.setVariables=function(){var i;for(i in this.variables){if(this.variables.hasOwnProperty(i)){this[i]=this.variables[i].apply(this,this.variableArgs);}}};MapScreenr.prototype.shift=function(dx,dy){if(dx){this.shiftX(dx);}
+if(dy){this.shiftY(dy);}};MapScreenr.prototype.shiftX=function(dx){this.left+=dx;this.right+=dx;};MapScreenr.prototype.shiftY=function(dy){this.top+=dy;this.bottom+=dy;};return MapScreenr;})();MapScreenr_1.MapScreenr=MapScreenr;})(MapScreenr||(MapScreenr={}));
