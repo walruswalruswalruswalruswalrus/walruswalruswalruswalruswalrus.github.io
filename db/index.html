@@ -1,0 +1,1344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script>
+      (function () {
+        const mode = localStorage.getItem("themeMode") || "auto";
+        const theme = localStorage.getItem("theme") || "dark";
+        const isLight =
+          mode === "auto"
+            ? !matchMedia("(prefers-color-scheme: dark)").matches
+            : theme === "light";
+
+        if (isLight) {
+          document.addEventListener("DOMContentLoaded", () => {
+            document.body?.classList.add("light-mode");
+          });
+        }
+      })();
+    </script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="Edit and balance towers for the Roblox game Tower Defense Simulator and export it to the wiki!"
+    />
+
+    <meta property="og:title" content="TDS Database Browser" />
+    <meta
+      property="og:description"
+      content="Browse and share your custom tower ideas for the Roblox game Tower Defense Simulator!"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tds-editor.com/db" />
+    <meta
+      property="og:image"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:site"
+      content="Tower Defense Simulator Database Browser"
+    />
+    <meta name="twitter:title" content="TDS Database Browser" />
+    <meta
+      name="twitter:description"
+      content="Browse and share your custom tower ideas for the Roblox game Tower Defense Simulator!"
+    />
+    <meta
+      name="twitter:image:src"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta name="theme-color" content="#035D7C" />
+    <meta name="apple-mobile-web-app-title" content="TDS:DB" />
+    <meta property="og:site_name" content="TDS Database Browser" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/htmlassets/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/htmlassets/favicon.svg" />
+    <link rel="shortcut icon" href="/htmlassets/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/htmlassets/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/htmlassets/site.webmanifest" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-D48H2PL948"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-D48H2PL948");
+    </script>
+
+
+    <title>TDS Database Browser</title>
+    <script type="module" crossorigin src="/assets/db-UOJ3rI0E.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/bootstrap.esm-Bs5VhlPx.js">
+    <link rel="modulepreload" crossorigin href="/assets/index-CYh-k0co.js">
+    <link rel="modulepreload" crossorigin href="/assets/UpdateLog-BrM8ZDec.js">
+    <link rel="stylesheet" crossorigin href="/assets/bootstrap-CelqrQH8.css">
+    <link rel="stylesheet" crossorigin href="/assets/db-B_N7GxO-.css">
+    <link rel="stylesheet" crossorigin href="/assets/torus-Clj6cBxF.css">
+  </head>
+
+  <body class="bg-dark">
+    <!-- header and nav -->
+    <header
+      class="navbar navbar-dark sticky-top bg-darker flex-md-nowrap p-0 shadow"
+    >
+      <a
+        class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-4"
+        style="cursor: default"
+      >
+        <img
+          src="https://static.wikia.nocookie.net/tower-defense-sim/images/4/4a/Site-favicon.ico"
+          alt="TDSW Logo"
+          width="30"
+          style="vertical-align: text-bottom"
+        />
+        TDS Database
+      </a>
+      <button
+        class="navbar-toggler d-md-none ms-auto me-2"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Search bar -->
+      <div class="col-md-5 col-lg-6 d-none d-md-block px-3">
+        <input
+          class="form-control form-control-dark w-100"
+          type="text"
+          placeholder="Search a Tower or Author"
+          aria-label="Search"
+          autocomplete="off"
+        />
+      </div>
+
+      <!-- Fixed navigation items -->
+      <div class="d-flex me-3">
+        <div class="btn-group me-2">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-secondary text-light"
+            id="grid-view-btn"
+          >
+            <i class="bi bi-grid me-2"></i>Grid
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-secondary text-light"
+            id="list-view-btn"
+          >
+            <i class="bi bi-view-list me-2"></i>List
+          </button>
+        </div>
+        <div class="btn-group me-2">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-secondary text-light"
+            id="refresh-towers-btn"
+          >
+            <i class="bi bi-arrow-clockwise me-1"></i>Refresh
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- main container -->
+    <div class="container-fluid">
+      <div class="row">
+        <!-- "sidebar" lmao -->
+        <nav
+          id="sidebarMenu"
+          class="col-md-3 col-lg-2 d-md-block bg-darker sidebar collapse"
+        >
+          <div class="position-sticky pt-3 pb-4">
+            <h6
+              class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 fw-bold"
+            >
+              <p class="fs-2">Filter By</p>
+            </h6>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <div class="form-check ms-3 my-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="filterNewTower"
+                    checked
+                  />
+                  <label
+                    class="form-check-label text-light"
+                    for="filterNewTower"
+                  >
+                    <span class="badge bg-success">New Tower</span>
+                  </label>
+                </div>
+
+                <div class="form-check ms-3 my-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="filterTowerRework"
+                    checked
+                  />
+                  <label
+                    class="form-check-label text-light"
+                    for="filterTowerRework"
+                  >
+                    <span class="badge bg-danger">Tower Rework</span>
+                  </label>
+                </div>
+
+                <div class="form-check ms-3 my-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="filterTowerRebalance"
+                    checked
+                  />
+                  <label
+                    class="form-check-label text-light"
+                    for="filterTowerRebalance"
+                  >
+                    <span class="badge bg-info">Tower Rebalance</span>
+                  </label>
+                </div>
+
+                <div class="form-check ms-3 my-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="filterFeatured"
+                    checked
+                  />
+                  <label
+                    class="form-check-label text-light"
+                    for="filterFeatured"
+                  >
+                    <span class="badge bg-gold">Featured</span>
+                  </label>
+                </div>
+
+                <div class="form-check ms-3 my-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="filterGrandfathered"
+                    checked
+                  />
+                  <label
+                    class="form-check-label text-light"
+                    for="filterGrandfathered"
+                  >
+                    <span class="badge bg-dark">Grandfathered</span>
+                  </label>
+                </div>
+
+                <div class="form-check ms-3 my-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="filterUnverified"
+                  />
+                  <label
+                    class="form-check-label text-light"
+                    for="filterUnverified"
+                  >
+                    <span class="badge bg-secondary">Unverified</span>
+                  </label>
+                </div>
+              </li>
+            </ul>
+
+            <h6
+              class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 fw-bold"
+            >
+              <p class="fs-2">Sort By</p>
+            </h6>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active text-light" href="#">Wiki Listing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" href="#"
+                  >Alphabet (Tower)</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#">Alphabet (User)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#">Upload Date</a>
+              </li>
+            </ul>
+
+            <h6
+              class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 fw-bold"
+            >
+              <p class="fs-2">Theme</p>
+            </h6>
+            <div class="px-3 mb-4 mt-2">
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="themeToggle"
+                />
+                <label class="form-check-label text-light" for="themeToggle">
+                  <i class="bi bi-moon-stars me-2"></i>Dark Mode
+                </label>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- main content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2"
+          >
+            <h1 class="h2 text-white">Custom Tower Browser</h1>
+            <div class="btn-toolbar mb-2 mb-md-0 d-flex align-items-center">
+              <div class="btn-group me-2">
+                <button
+                  title="Information about this website."
+                  class="btn btn-sm btn-outline-secondary text-light"
+                  data-bs-toggle="modal"
+                  data-bs-target="#help-modal"
+                >
+                  <i class="bi bi-question-circle me-2"></i>Help
+                </button>
+                <button
+                  title="Information about this website."
+                  class="btn btn-sm btn-outline-secondary text-light"
+                  data-bs-toggle="modal"
+                  data-bs-target="#guidelines-modal"
+                >
+                  <i class="bi bi-journal-text me-2"></i>Guidelines
+                </button>
+                <button
+                  title="Information about this website."
+                  class="btn btn-sm btn-outline-secondary text-light"
+                  data-bs-toggle="modal"
+                  data-bs-target="#updatelog-modal"
+                >
+                  <i class="bi bi-journal-code me-2"></i>Update Log
+                </button>
+              </div>
+              <div class="btn-group me-2">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary text-light"
+                  id="upload-tower-btn"
+                >
+                  <i class="bi bi-upload me-2"></i>Upload Tower
+                </button>
+                <a
+                  href="../"
+                  class="btn btn-sm btn-outline-secondary text-light"
+                  ><i class="bi bi-pencil-square me-2"></i>Editor</a
+                >
+              </div>
+            </div>
+          </div>
+          <hr class="mt-2" />
+
+          <!-- featured towers section -->
+          <div class="mb-4">
+            <h4 class="text-white">Highlights</h4>
+            <div
+              class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 featured-towers"
+              id="featured-towers"
+            >
+              <div class="col">
+                <div class="card h-100 bg-dark text-white border-info">
+                  <div class="position-absolute top-0 end-0 p-2">
+                    <span class="badge bg-info">Featured</span>
+                  </div>
+                  <img
+                    src="https://static.wikia.nocookie.net/tower-defense-sim/images/2/23/SlasherReworkUpgrade4.png"
+                    class="card-img-top p-3"
+                    alt="Frost Knight"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title">GAIA</h5>
+                    <p class="card-text">
+                      GAIA is an Earth Simulator developed by the GAI Computer
+                      Corporation.
+                    </p>
+                  </div>
+                  <div
+                    class="card-footer d-flex justify-content-between align-items-center"
+                  >
+                    <small class="fw-bold">By Nishijou</small>
+                    <div>
+                      <small
+                        ><i class="bi bi-clock text-info me-2"></i>2 days
+                        ago</small
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card h-100 bg-dark text-white border-info">
+                  <div class="position-absolute top-0 end-0 p-2">
+                    <span class="badge bg-info">Featured</span>
+                  </div>
+                  <img
+                    src="https://static.wikia.nocookie.net/tower-defense-sim/images/a/ab/MiniLevel4.png"
+                    class="card-img-top p-3"
+                    alt="Laser Gunner"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title">Noah II</h5>
+                    <p class="card-text">
+                      Noah II is a second-generation artificial Gigalomaniac
+                      device developed by N.O.Z.O.M.I.
+                    </p>
+                  </div>
+                  <div
+                    class="card-footer d-flex justify-content-between align-items-center"
+                  >
+                    <small class="fw-bold">By Takumi</small>
+                    <div>
+                      <span class="me-2"
+                        ><i class="bi bi-star-fill text-warning"></i> 4.6</span
+                      >
+                      <span><i class="bi bi-download text-info"></i> 983</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- all towers sec -->
+          <h4 class="text-white">All Towers</h4>
+          <div
+            class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-3 all-towers"
+            id="all-towers"
+          >
+            <div class="col">
+              <div class="card h-100 bg-dark text-white">
+                <img
+                  src="https://static.wikia.nocookie.net/tower-defense-sim/images/9/92/MinigunnerUpgradeLevel3.png"
+                  class="card-img-top p-3"
+                  alt="Pyro Mage"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Pyro Mage</h5>
+                  <p class="card-text">
+                    Deals fire damage over time to enemies in a wide area.
+                  </p>
+                </div>
+                <div
+                  class="card-footer d-flex justify-content-between align-items-center"
+                >
+                  <small class="fw-bold">By Takuru</small>
+                  <div>
+                    <span class="me-2"
+                      ><i class="bi bi-star-fill text-warning"></i> 4.2</span
+                    >
+                    <span><i class="bi bi-download text-info"></i> 756</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100 bg-dark text-white">
+                <img
+                  src="https://static.wikia.nocookie.net/tower-defense-sim/images/c/c4/MinigunnerUpgradeLevel2.png"
+                  class="card-img-top p-3"
+                  alt="Shadow Assassin"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Shadow Assassin</h5>
+                  <p class="card-text">
+                    Stealthy tower with high critical damage and hidden
+                    detection.
+                  </p>
+                </div>
+                <div
+                  class="card-footer d-flex justify-content-between align-items-center"
+                >
+                  <small class="fw-bold">By Miyashiro</small>
+                  <div>
+                    <span class="me-2"
+                      ><i class="bi bi-star-fill text-warning"></i> 4.1</span
+                    >
+                    <span><i class="bi bi-download text-info"></i> 612</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100 bg-dark text-white">
+                <img
+                  src="https://static.wikia.nocookie.net/tower-defense-sim/images/5/5e/SlasherReworkUpgrade2.png"
+                  class="card-img-top p-3"
+                  alt="Thunder Shaman"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Thunder Shaman</h5>
+                  <p class="card-text">
+                    Chain lightning attacks that can hit multiple enemies at
+                    once.
+                  </p>
+                </div>
+                <div
+                  class="card-footer d-flex justify-content-between align-items-center"
+                >
+                  <small class="fw-bold">By Okabe</small>
+                  <div>
+                    <span class="me-2"
+                      ><i class="bi bi-star-fill text-warning"></i> 3.9</span
+                    >
+                    <span><i class="bi bi-download text-info"></i> 527</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100 bg-dark text-white">
+                <img
+                  src="https://static.wikia.nocookie.net/tower-defense-sim/images/3/3c/SlasherReworkUpgrade3.png"
+                  class="card-img-top p-3"
+                  alt="Rocket Engineer"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Rocket Engineer</h5>
+                  <p class="card-text">
+                    Launches explosive rockets with area damage and lead
+                    detection.
+                  </p>
+                </div>
+                <div
+                  class="card-footer d-flex justify-content-between align-items-center"
+                >
+                  <small class="fw-bold">By Rintaro</small>
+                  <div>
+                    <span class="me-2"
+                      ><i class="bi bi-star-fill text-warning"></i> 4.0</span
+                    >
+                    <span><i class="bi bi-download text-info"></i> 489</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- page clicker
+                <nav class="my-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav> -->
+
+          <div class="text-center mt-4">
+            <p class="text-muted">
+              This tool is an unofficial creation and is not an official product
+              of Paradoxum Games
+            </p>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- tower upload modal -->
+    <div
+      class="modal fade"
+      id="uploadTowerModal"
+      tabindex="-1"
+      aria-labelledby="uploadTowerModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <h5 class="modal-title" id="uploadTowerModalLabel">
+              <i class="bi bi-upload me-2"></i>Upload Custom Tower
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <hr class="mx-3 my-0" />
+          <div class="modal-body">
+            <form id="uploadTowerForm">
+              <div class="mb-3">
+                <label for="fandomUsername" class="form-label">
+                  <img
+                    width="68px"
+                    class="theme-image"
+                    src="https://static.wikia.nocookie.net/6a181c72-e8bf-419b-b4db-18fd56a0eb60"
+                    data-light-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Fandom.svg"
+                    data-dark-src="https://static.wikia.nocookie.net/6a181c72-e8bf-419b-b4db-18fd56a0eb60"
+                    style="vertical-align: text-top"
+                    alt="Fandom"
+                  />
+                  Username (case-sensitive)
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fandomUsername"
+                  placeholder="Enter your Fandom username, create an account if you don't have one."
+                  required
+                />
+                <div class="invalid-feedback">
+                  Please enter your Fandom username.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="towerName" class="form-label">Tower Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="towerName"
+                  placeholder="Enter your desired tower name."
+                  required
+                />
+                <div class="invalid-feedback">Please enter a tower name.</div>
+              </div>
+              <div class="mb-3">
+                <label for="towerDescription" class="form-label"
+                  >Description</label
+                >
+                <textarea
+                  class="form-control"
+                  id="towerDescription"
+                  rows="3"
+                  placeholder="Describe what this tower is meant to be."
+                  required
+                ></textarea>
+                <div class="invalid-feedback">Please enter a description.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Tower Image (optional)</label>
+                <div class="btn-group w-100 mb-2" role="group">
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="imageInputType"
+                    id="imageUrlOption"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-primary" for="imageUrlOption"
+                    ><i class="bi bi-clipboard me-2"></i>Paste URL or Roblox
+                    ID</label
+                  >
+
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="imageInputType"
+                    id="imageUploadOption"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-primary" for="imageUploadOption"
+                    ><i class="bi bi-upload me-2"></i>Upload File</label
+                  >
+                </div>
+
+                <div id="imageUrlInput" class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="towerImageUrl"
+                    placeholder="https://example.com/image.png | 1234567890"
+                  />
+                </div>
+
+                <div id="imageUploadInput" class="mb-3 d-none">
+                  <div
+                    class="d-flex align-items-center justify-content-center my-3"
+                  >
+                    <a
+                      href="https://tds.fandom.com/wiki/Special:Upload"
+                      target="_blank"
+                      class="text-center p-2"
+                      style="flex: 1"
+                    >
+                      <img
+                        width="50%"
+                        class="theme-image mb-2 zoomup"
+                        src="https://static.wikia.nocookie.net/6a181c72-e8bf-419b-b4db-18fd56a0eb60"
+                        data-light-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Fandom.svg"
+                        data-dark-src="https://static.wikia.nocookie.net/6a181c72-e8bf-419b-b4db-18fd56a0eb60"
+                        alt="Fandom Upload"
+                      />
+                    </a>
+
+                    <div class="vr"></div>
+
+                    <a
+                      href="https://imgur.com/upload"
+                      target="_blank"
+                      class="text-center p-2"
+                      style="flex: 1"
+                    >
+                      <img
+                        width="40%"
+                        class="theme-image mb-2 zoomup"
+                        src="https://upload.wikimedia.org/wikipedia/commons/0/07/Imgur_Logo_Light.svg"
+                        data-light-src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Imgur_logo.svg"
+                        data-dark-src="https://upload.wikimedia.org/wikipedia/commons/0/07/Imgur_Logo_Light.svg"
+                        alt="Imgur Upload"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Tower Data</label>
+                <div class="btn-group w-100 mb-2" role="group">
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="jsonInputType"
+                    id="jsonPasteOption"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-primary" for="jsonPasteOption"
+                    ><i class="bi bi-clipboard me-2"></i>Paste JSON</label
+                  >
+
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="jsonInputType"
+                    id="jsonFileOption"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-primary" for="jsonFileOption"
+                    ><i class="bi bi-upload me-2"></i>Upload File</label
+                  >
+
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="jsonInputType"
+                    id="jsonLinkOption"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-primary" for="jsonLinkOption"
+                    ><i class="bi bi-link-45deg me-2"></i>Link Blog Post</label
+                  >
+                </div>
+
+                <div id="jsonPasteInput" class="mb-3">
+                  <textarea
+                    class="form-control"
+                    id="towerJSONText"
+                    rows="5"
+                    placeholder="Paste your tower JSON here."
+                  ></textarea>
+                  <div class="invalid-feedback">JSON data is required.</div>
+                </div>
+
+                <div id="jsonFileInput" class="mb-3 d-none">
+                  <div class="btn-group w-100">
+                    <label class="btn btn-outline-primary w-75" for="towerJSON">
+                      <i class="bi bi-upload me-2"></i>Select JSON File
+                    </label>
+                    <button
+                      type="button"
+                      class="btn btn-outline-danger"
+                      style="width: 1%"
+                      id="clearJSONFile"
+                      title="Clear file"
+                    >
+                      <i class="bi bi-x-lg"></i>
+                    </button>
+                  </div>
+                  <input
+                    class="form-control d-none"
+                    type="file"
+                    id="towerJSON"
+                    accept=".json"
+                  />
+                  <div class="form-text mt-2" id="selectedJSONName">
+                    No file selected
+                  </div>
+                  <div class="invalid-feedback">JSON data is required.</div>
+                </div>
+
+                <div id="jsonLinkInput" class="mb-3 d-none">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="towerJSONLink"
+                    placeholder="https://tds.fandom.com/wiki/User_blog:Username/Tower_Name"
+                  />
+                  <div class="invalid-feedback">
+                    This isn't a TDSW Fandom blog link.
+                  </div>
+                  <div class="form-text">
+                    Using this option will override Fandom Username with the
+                    user from the link
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Tag</label>
+                <div class="btn-group w-100" role="group">
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="towerType"
+                    id="typeNew"
+                    autocomplete="off"
+                    checked
+                  />
+                  <label class="btn btn-outline-primary" for="typeNew"
+                    >New Tower</label
+                  >
+
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="towerType"
+                    id="typeRework"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-primary" for="typeRework"
+                    >Tower Rework</label
+                  >
+
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="towerType"
+                    id="typeRebalance"
+                    autocomplete="off"
+                  />
+                  <label class="btn btn-outline-primary" for="typeRebalance"
+                    >Tower Rebalance</label
+                  >
+                </div>
+              </div>
+
+              <p class="fs-3 text-center">
+                After clicking upload, you will be redirected to a page, paste
+                your clipboard inside of it and then save.
+              </p>
+            </form>
+          </div>
+          <hr class="mx-3 my-0" />
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="uploadTowerButton"
+            >
+              Upload Tower
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div
+      class="modal fade"
+      id="help-modal"
+      tabindex="-1"
+      aria-labelledby="helpModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <h5 class="modal-title" id="helpModalLabel">
+              <i class="bi bi-question-circle me-2"></i>Help
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <hr class="mx-3 my-0" />
+          <div class="modal-body">
+            <!-- Radio button navigation -->
+            <div class="btn-group w-100 mb-4" role="group">
+              <input
+                type="radio"
+                class="btn-check"
+                name="helpSection"
+                id="helpBrowser"
+                checked
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="helpBrowser">
+                <i class="bi bi-display me-2"></i>Navigation Help
+              </label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="helpSection"
+                id="helpUpload"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="helpUpload">
+                <i class="bi bi-database me-2"></i>Database Help
+              </label>
+            </div>
+
+            <!-- Browser Help -->
+            <div id="browserHelpContent">
+              <h5><i class="bi bi-search me-2"></i>Searching</h5>
+              <p>
+                You can use the search bar at the top of the page to find towers
+                by its name, description, or author. Just start typing and the
+                results will appear automatically.
+              </p>
+
+              <h5 class="mt-4">
+                <i class="bi bi-grid-3x3-gap me-2"></i>View Options
+              </h5>
+              <p>
+                Toggle between <i class="bi bi-grid"></i> Grid and
+                <i class="bi bi-view-list"></i> List view using the buttons in
+                the top right corner.
+              </p>
+
+              <h5 class="mt-4"><i class="bi bi-filter me-2"></i>Filtering</h5>
+              <p>
+                There are filter checkboxes on the sidebar to show or hide
+                specific tower types:
+              </p>
+              <ul>
+                <li>
+                  <span class="badge bg-success">New</span> - Completely custom
+                  concepts that isn't in the game
+                </li>
+                <li>
+                  <span class="badge bg-danger">Rework</span> - Complete
+                  redesign of an existing tower already in the game
+                </li>
+                <li>
+                  <span class="badge bg-info">Rebalance</span> - Purely
+                  statistics adjustments to towers already in the game
+                </li>
+                <li>
+                  <span class="badge bg-gold">Featured</span> - Submissions that
+                  are considered to be very well made
+                </li>
+                <li>
+                  <span class="badge bg-dark">Grandfathered</span> - Concepts
+                  submitted during the early BETA phase which are exempt from
+                  the guidelines
+                </li>
+                <li>
+                  <span class="badge bg-secondary">Unverified</span> -
+                  Submissions that aren't verified or just not up to standard
+                </li>
+              </ul>
+
+              <h5 class="mt-4">
+                <i class="bi bi-sort-down-alt me-2"></i>Sorting
+              </h5>
+              <p>
+                On the same sidebar, there are sort options which you could use
+                to sort towers by:
+              </p>
+              <ul>
+                <li>
+                  <strong>Wiki Listing</strong> - Original order as listed on
+                  the wiki
+                </li>
+                <li>
+                  <strong>Alphabet (Tower)</strong> - Sort alphabetically by
+                  tower name
+                </li>
+                <li>
+                  <strong>Alphabet (User)</strong> - Sort alphabetically by
+                  author name
+                </li>
+                <li>
+                  <strong>Upload Date</strong> - Sort by the date uploaded
+                </li>
+              </ul>
+              <p class="text-info">
+                Pro Tip: Click a sort option again to reverse the sort order!
+              </p>
+
+              <h5 class="mt-4"><i class="bi bi-cloud-moon me-2"></i>Themes</h5>
+              <p>
+                Toggle between <i class="bi bi-moon-stars"></i> Dark and
+                <i class="bi bi-sun"></i> Light mode, this changes the theming
+                sitewide.
+              </p>
+            </div>
+
+            <!-- Upload Help -->
+            <div id="uploadHelpContent" class="d-none">
+              <h5>How do I upload a tower?</h5>
+              <ul>
+                <li>
+                  The process should be straightforward, however, you may watch
+                  the video below if you still can't figure it out:
+                </li>
+              </ul>
+              <div class="ratio ratio-16x9 ms-3 w-50">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/hhJBeD3-jZI"
+                  title="How to upload a tower to the Database"
+                  allowfullscreen
+                ></iframe>
+              </div>
+
+              <h5 class="mt-4">Why is my tower unverified?</h5>
+              <ul>
+                <li>
+                  The database utilize a verification system to help curb spam
+                  and inappropriate content
+                </li>
+                <li>
+                  If a submission isn't working properly (broken JSON, image,
+                  etc.), it won't be verified.
+                </li>
+                <li>
+                  Submissions are manually reviewed and will have its unverified
+                  tag removed once, well, verified
+                </li>
+              </ul>
+
+              <h5 class="mt-4">What are featured towers?</h5>
+              <ul>
+                <li>
+                  If a tower submission is considered to be of great quality,
+                  this tag will be added to it
+                </li>
+              </ul>
+
+              <h5 class="mt-4">Where do I get JSONs?</h5>
+              <ul>
+                <li>
+                  The TDS Statistics Edtior, our main site, has an option to
+                  export JSONs
+                </li>
+                <li>
+                  You could write JSONs yourself, though any bugs caused by that
+                  won't be fixed
+                </li>
+              </ul>
+
+              <h5 class="mt-4">How do I import JSONs?</h5>
+              <ul>
+                <li>
+                  You can view a tower uploaded here by either copying or
+                  downloading the JSON and then import it into the Statistics
+                  Editor
+                </li>
+                <li>
+                  Watch this brief tutorial video on how to import a JSON file:
+                </li>
+              </ul>
+              <div class="ratio ratio-16x9 ms-3 w-50">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/_RoioGSBhvw"
+                  title="How to Import JSON in the TDS Stats Editor"
+                  allowfullscreen
+                ></iframe>
+              </div>
+
+              <h5 class="mt-4">What are blog posts?</h5>
+              <ul>
+                <li>
+                  Because blog posts will inherently always be more detailed
+                  than the statistic editor, we have included an option to link
+                  your towers to a blog
+                </li>
+                <li>
+                  However, blog posts are expected to be of a much higher
+                  standard than the usual JSONs
+                </li>
+                <ul>
+                  <li>
+                    Blogs should be a complete article, detailing the tower's
+                    concept similarly to a standard wiki page
+                  </li>
+                  <li>
+                    This also means it is signifcantly more difficult to get a
+                    blog post verified
+                  </li>
+                </ul>
+              </ul>
+
+              <h5 class="mt-4">Why isn't my image showing up?</h5>
+              <ul>
+                <li>
+                  Make sure the image is displayed properly in the upload
+                  preview first before uploading
+                </li>
+                <li>
+                  Providers like Discord will automatically delete your image
+                  link after 24 hours
+                </li>
+                <li>
+                  You may upload your images to the TDS Wiki, however, the image
+                  quality will be worse
+                </li>
+                <ul>
+                  <li>
+                    We recommend using
+                    <img
+                      width="48px"
+                      class="theme-image"
+                      src="https://upload.wikimedia.org/wikipedia/commons/0/07/Imgur_Logo_Light.svg"
+                      data-light-src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Imgur_logo.svg"
+                      data-dark-src="https://upload.wikimedia.org/wikipedia/commons/0/07/Imgur_Logo_Light.svg"
+                      style="vertical-align: text-bottom"
+                      alt="Imgur"
+                    />
+                    for image hosting
+                  </li>
+                </ul>
+              </ul>
+
+              <div class="alert alert-info mt-4">
+                <i class="bi bi-info-circle me-2"></i>
+                <strong>Need more help?</strong> Visit the
+                <a
+                  href="https://discord.gg/fBgQzudY3h"
+                  target="_blank"
+                  class="alert-link"
+                  >TDS Wiki Discord</a
+                >
+                for more information and support!
+              </div>
+            </div>
+          </div>
+          <hr class="mx-3 my-0" />
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Guidelines Modal -->
+    <div
+      class="modal fade"
+      id="guidelines-modal"
+      tabindex="-1"
+      aria-labelledby="guidelinesModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <h5 class="modal-title" id="guidelinesModalLabel">
+              <i class="bi bi-journal-text me-2"></i>Guidelines
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <hr class="mx-3 my-0" />
+          <div class="modal-body">
+            <p class="text-warning">
+              Please follow these guidelines when uploading towers to keep the
+              database great and awesome.
+            </p>
+
+            <h5 class="mt-4">Account Requirements</h5>
+            <ul>
+              <li>
+                You must have a
+                <img
+                  width="68px"
+                  class="theme-image"
+                  src="https://static.wikia.nocookie.net/6a181c72-e8bf-419b-b4db-18fd56a0eb60"
+                  data-light-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Fandom.svg"
+                  data-dark-src="https://static.wikia.nocookie.net/6a181c72-e8bf-419b-b4db-18fd56a0eb60"
+                  style="vertical-align: text-top"
+                  alt="Fandom"
+                />
+                account with a verified email to upload towers
+              </li>
+              <ul>
+                <li>
+                  Because of this, you need to be at least 13 years old to
+                  upload towers
+                </li>
+                <li>
+                  16 and older if you're in California and the EEA (excluding
+                  the UK)
+                </li>
+                <li>
+                  Of course, you are free to browse the database without an
+                  account
+                </li>
+              </ul>
+              <li>Do not try and impersonate anyone, be yourself</li>
+            </ul>
+
+            <h5 class="mt-4">Content Guidelines</h5>
+            <ul>
+              <li>Tower names should be names, don't make them too long</li>
+              <li>
+                Descriptions are more laxed, describe the towers however you
+                want
+              </li>
+              <li>
+                Make sure to choose the appropriate tag (New, Rework, or
+                Rebalance)
+              </li>
+              <li>Provide an image if possible</li>
+            </ul>
+
+            <h5 class="mt-4">Content Restrictions</h5>
+            <ul class="text-danger">
+              <li>No inappropriate or offensive content</li>
+              <li>
+                Do not copy someone else's work verbatim and claim it as yours
+              </li>
+              <li>Do not flood or spam the database with uploads</li>
+            </ul>
+
+            <p class="text-info">
+              Grandfather Clause: Any submissions made before the creation of
+              the guidelines are exempt from them and thus verified. This means
+              that the first 7 towers submitted during the BETA phase should not
+              be used as a reference for standards.
+            </p>
+          </div>
+          <hr class="mx-3 my-0" />
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Log Modal -->
+    <div
+      class="modal fade"
+      id="updatelog-modal"
+      tabindex="-1"
+      aria-labelledby="updateLogModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updateLogModalLabel">
+              <i class="bi bi-journal-code me-2"></i>Update Log
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <hr class="mx-3 my-0" />
+          <div class="modal-body">
+            <div id="update-log-content">
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border text-secondary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="mx-3 my-0" />
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

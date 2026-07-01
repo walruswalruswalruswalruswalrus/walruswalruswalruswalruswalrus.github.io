@@ -1,0 +1,2423 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <script>
+      (function () {
+        const mode = localStorage.getItem("themeMode") || "auto";
+        const theme = localStorage.getItem("theme") || "dark";
+        const isLight =
+          mode === "auto"
+            ? !matchMedia("(prefers-color-scheme: dark)").matches
+            : theme === "light";
+
+        if (isLight) {
+          document.addEventListener("DOMContentLoaded", () => {
+            document.body?.classList.add("light-mode");
+          });
+        }
+      })();
+    </script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="Edit and balance towers for the Roblox game Tower Defense Simulator and export it to the wiki!"
+    />
+
+    <meta property="og:title" content="TDS Statistics Editor" />
+    <meta
+      property="og:description"
+      content="Edit and balance towers for the Roblox game Tower Defense Simulator and export it to the wiki!"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tds-editor.com/" />
+    <meta
+      property="og:image"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:site"
+      content="Tower Defense Simulator Statistics Editor"
+    />
+    <meta name="twitter:title" content="TDS Statistics Editor" />
+    <meta
+      name="twitter:description"
+      content="Edit and balance towers for the Roblox game Tower Defense Simulator and export it to the wiki!"
+    />
+    <meta
+      name="twitter:image:src"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta name="theme-color" content="#035D7C" />
+    <meta name="apple-mobile-web-app-title" content="TDS:SE" />
+    <meta property="og:site_name" content="TDS Statistics Editor" />
+
+    <link
+      id="animsCSS"
+      href="/assets/animations-1jxCdc-D.css"
+      rel="stylesheet"
+      disabled
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/htmlassets/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/htmlassets/favicon.svg" />
+    <link rel="shortcut icon" href="/htmlassets/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/htmlassets/apple-touch-icon.png"
+    />
+    //<link rel="manifest" href="/htmlassets/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="canonical" href="https://tds-editor.com/" />
+    <title>TDS Statistics Editor</title>
+    <script type="module" crossorigin src="/assets/main-Bn6xphdD.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/bootstrap.esm-Bs5VhlPx.js">
+    <link rel="modulepreload" crossorigin href="/assets/Slides-WEFy3Ak0.js">
+    <link rel="modulepreload" crossorigin href="/assets/SettingsManager-DuS8Vqte.js">
+    <link rel="modulepreload" crossorigin href="/assets/index-CYh-k0co.js">
+    <link rel="modulepreload" crossorigin href="/assets/ImageLoader-GxK_6xkw.js">
+    <link rel="modulepreload" crossorigin href="/assets/UpdateLog-BrM8ZDec.js">
+    <link rel="modulepreload" crossorigin href="/assets/AboutModal-dGgKW25g.js">
+    <link rel="stylesheet" crossorigin href="/assets/bootstrap-CelqrQH8.css">
+    <link rel="stylesheet" crossorigin href="/assets/Slides-CSE0Y0Ci.css">
+    <link rel="stylesheet" crossorigin href="/assets/SettingsManager-DEmGI_Hm.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-CArp_GOq.css">
+    <link rel="stylesheet" crossorigin href="/assets/torus-Clj6cBxF.css">
+    <link rel="stylesheet" crossorigin href="/assets/Dashboard-CNyDlc49.css">
+  </head>
+
+  <body class="bg-dark">
+    <div
+      id="alert-container"
+      class="position-absolute w-100 p-4 text-center d-flex flex-column"
+    ></div>
+
+    <!-- Document -->
+    <div class="container-main">
+      <!-- Side Panel -->
+      <div
+        class="aside d-flex flex-column flex-shrink-0 text-white"
+        style="min-width: 240px; width: 19%"
+      >
+
+          <div class="slide-nav slide-next">&#10095;</div>
+        </div>
+        <hr />
+
+        <!-- Selection -->
+        <div
+          id="side-selection-radio"
+          class="btn-group btn-group-toggle ps-2 pe-2 pb-2 w-100"
+          style="flex-wrap: wrap"
+        >
+          <div class="spinner-border text-secondary m-auto" role="status">
+            <span class="sr-only"></span>
+          </div>
+        </div>
+
+        <!-- Level Viewer -->
+        <div id="level-view" class="d-none overflow-auto">
+          <div class="d-flex flex-column">
+            <!-- Levels -->
+
+            <div
+              id="side-upgrade-levels"
+              class="flex-grow-1 btn-group btn-group-toggle m-2 mt-0"
+            >
+              <label class="btn btn-sm btn-outline-dark active">
+                <input
+                  class="d-none"
+                  type="radio"
+                  name="options"
+                  autocomplete="off"
+                  checked
+                />
+                1
+              </label>
+              <label class="btn btn-sm btn-outline-dark">
+                <input
+                  class="d-none"
+                  type="radio"
+                  name="options"
+                  autocomplete="off"
+                />
+                2
+              </label>
+              <label class="btn btn-sm btn-outline-dark">
+                <input
+                  class="d-none"
+                  type="radio"
+                  name="options"
+                  autocomplete="off"
+                />
+                3
+              </label>
+              <label class="btn btn-sm btn-outline-dark">
+                <input
+                  class="d-none"
+                  type="radio"
+                  name="options"
+                  autocomplete="off"
+                />
+                4
+              </label>
+              <label class="btn btn-sm btn-outline-dark">
+                <input
+                  class="d-none"
+                  type="radio"
+                  name="options"
+                  autocomplete="off"
+                />
+                5
+              </label>
+            </div>
+            <img
+              id="upgrade-image"
+              src=""
+              class="p-3 border-dark"
+              alt="No Upgrade Image"
+            />
+            <form class="m-2 overflow-auto">
+              <div
+                class="form-control form-control-sm text-white bg-dark text-wrap"
+                style="font-weight: 600; min-height: 94px"
+                id="side-upgrade-extras-output"
+              ></div>
+              <div class="form-group mb-2">
+                <label for="side-upgrade-image">Icon</label>
+                <input
+                  id="side-upgrade-image"
+                  type="text"
+                  class="form-control form-control-sm text-white"
+                  placeholder="Image URL / Roblox ID"
+                />
+              </div>
+
+              <div class="form-group mb-2">
+                <label for="side-upgrade-title">Title</label>
+                <input
+                  id="side-upgrade-title"
+                  type="text"
+                  class="form-control form-control-sm text-white"
+                  placeholder="Title"
+                />
+              </div>
+
+              <label>Extras</label>
+              <button
+                class="btn btn-sm btn-primary border25 w-100 mb-2"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#extras-collapse-section"
+                aria-expanded="false"
+              >
+                <span class="when-closed">▼ Show ▼</span>
+                <span class="when-open">▲ Close ▲</span>
+              </button>
+              <div class="collapse" id="extras-collapse-section">
+                <div class="mb-2">
+                  <div id="side-upgrade-extras">
+                    <div
+                      class="spinner-border text-secondary m-auto"
+                      role="status"
+                    >
+                      <span class="sr-only"></span>
+                    </div>
+                  </div>
+                  <div class="mt-2">
+                    <div
+                      id="side-upgrade-extras-add"
+                      class="btn btn-sm btn-outline-primary me-1"
+                    >
+                      Add Extra
+                    </div>
+                    <div
+                      id="side-upgrade-extras-add-group"
+                      class="btn btn-sm btn-outline-primary"
+                    >
+                      Add Group
+                    </div>
+                  </div>
+                  <span class="text-muted small"
+                    >Want text colors?
+                    <a
+                      href="https://tds.fandom.com/wiki/Help:Statistics_Editor/Advanced#How_to_Format_Your_Text_with_Colors"
+                      target="_blank"
+                      >Learn how to use advanced formatting</a
+                    >.</span
+                  >
+                </div>
+              </div>
+
+              <hr />
+              <label>Abilities</label>
+              <br />
+              <div id="side-ability-container"></div>
+              <div
+                id="side-ability-add"
+                class="btn btn-sm btn-outline-primary mb-2"
+              >
+                Add Ability
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Property Viewer -->
+        <div id="property-viewer-section" class="d-none">
+          <div class="btn-group w-100 p-2 pt-0">
+            <button id="property-all" class="btn btn-sm btn-dark">All</button>
+            <button id="property-base" class="btn btn-sm btn-dark">Base</button>
+            <button id="property-extra" class="btn btn-sm btn-dark">
+              Extra
+            </button>
+            <button id="property-calc" class="btn btn-sm btn-dark">
+              Calcs
+            </button>
+          </div>
+          <ul
+            id="property-viewer"
+            class="nav nav-pills flex-column mb-auto mx-2"
+          >
+            <div class="spinner-border text-secondary m-auto" role="status">
+              <span class="sr-only"></span>
+            </div>
+          </ul>
+        </div>
+
+        <!-- Boost View -->
+        <div id="boost-view" class="d-none">
+          <div class="d-flex flex-column p-2 pt-0">
+            <div id="side-boosts-target" class="btn-group w-100 pt-0">
+              <button class="btn btn-sm btn-dark">Tower</button>
+              <button class="btn btn-sm btn-dark">Unit</button>
+            </div>
+            <div id="side-boost-form" class="p-2">
+              <form class="d-flex mb-1">
+                <label class="col-sm-8 col-form-label fs-6"
+                  >Firerate Buff
+                </label>
+
+                <div class="col-sm-4" id="">
+                  <input type="text" class="form-control text-white" />
+                </div>
+              </form>
+              <form class="d-flex mb-1">
+                <label class="col-sm-8 col-form-label fs-6">Damage Buff </label>
+
+                <div class="col-sm-4" id="">
+                  <input type="text" class="form-control text-white" />
+                </div>
+              </form>
+              <form class="d-flex mb-1">
+                <label class="col-sm-8 col-form-label fs-6">Range Buff </label>
+
+                <div class="col-sm-4" id="">
+                  <input type="text" class="form-control text-white" />
+                </div>
+              </form>
+              <form class="d-flex mb-1">
+                <label class="col-sm-8 col-form-label fs-6">Discount</label>
+
+                <div class="col-sm-4" id="">
+                  <input type="text" class="form-control text-white" />
+                </div>
+              </form>
+              <form class="d-flex mb-1">
+                <label class="col-sm-8 col-form-label fs-6"
+                  >Extra Cooldown</label
+                >
+
+                <div class="col-sm-4" id="">
+                  <input type="text" class="form-control text-white" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculation System -->
+        <div
+          class="card mb-2 d-none bg-dark text-white border-secondary mx-2"
+          id="calc-system-section"
+        >
+          <div class="card-header border-secondary bg-dark bg-gradient">
+            <h6 class="mb-0 text-center unisans">Calculation System Changer</h6>
+          </div>
+          <div class="card-body">
+            <p class="text-muted small mb-2">
+              Choose which tower's calculation logic to use:
+            </p>
+            <select
+              class="form-select form-select-sm bg-dark text-white"
+              id="calculation-system-select"
+            >
+              <option value="default">Default</option>
+              <!-- Options will be populated 'dynamically' from js -->
+            </select>
+            <div class="form-text text-muted small mt-2">
+              Different towers use specialized formulas for DPS, Cost
+              Efficiency, etc.
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar toggle button -->
+        <div class="sidebar-toggle-container mt-auto">
+          <div class="d-flex justify-content-center flex-wrap gap-1">
+            <button
+              id="sidebar-toggle"
+              class="btn btn-sm btn-outline-secondary me-1 mt-1"
+              title="Toggle sidebar (Alt+L)"
+              data-bs-tooltip="true"
+            >
+              <i class="bi bi-layout-sidebar-inset"></i>
+            </button>
+
+            <button
+              id="poll-toggle"
+              class="btn btn-sm btn-outline-secondary me-1 mt-1"
+              title="View community poll"
+              data-bs-tooltip="true"
+            >
+              <i class="bi bi-broadcast"></i>
+            </button>
+
+            <button
+              id="keyboard-help"
+              class="btn btn-sm btn-outline-secondary me-1 mt-1"
+              title="Keyboard shortcuts (Alt+H)"
+              data-bs-tooltip="true"
+              data-bs-toggle="modal"
+              data-bs-target="#keyboard-shortcuts-modal"
+            >
+              <i class="bi bi-keyboard"></i>
+            </button>
+
+            <button
+              id="button-delta"
+              class="btn btn-sm btn-outline-secondary me-1 mt-1"
+              title="Visualize your statistic changes (Alt+D)"
+              data-bs-tooltip="true"
+            >
+              <i class="bi bi-triangle"></i>
+            </button>
+
+            <button
+              id="toggle-calc-system"
+              class="btn btn-sm btn-outline-secondary me-1 mt-1"
+              title="Choose a calculation formula (Alt+C)"
+              data-bs-tooltip="true"
+            >
+              <i class="bi bi-calculator"></i>
+            </button>
+
+            <button
+              id="button-clone"
+              class="btn btn-sm btn-outline-secondary me-1 mt-1"
+              title="Create a custom tower based on an existing one (Alt+V)"
+              data-bs-toggle="modal"
+              data-bs-tooltip="true"
+              data-bs-target="#clone-tower"
+            >
+              <i class="bi bi-pencil"></i>
+            </button>
+
+            <button
+              id="settings-toggle"
+              class="btn btn-sm btn-outline-secondary mt-1"
+              title="Configure your stuff (Alt+S)"
+              data-bs-toggle="modal"
+              data-bs-tooltip="true"
+              data-bs-target="#settings-modal"
+            >
+              <i class="bi bi-gear"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <main role="main" class="d-flex flex-column">
+        <!-- Body Header -->
+        <header class="p-3">
+          <div
+            class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center"
+            id="topnavheader"
+          >
+            <!-- Title -->
+            <h1
+              id="tower-name"
+              class="h2 text-white unisans"
+              style="text-wrap: balance"
+            >
+              <div class="spinner-border text-secondary m-auto" role="status">
+                <span class="sr-only"></span>
+              </div>
+            </h1>
+
+            <div
+              class="btn-toolbar mb-2 justify-content-center"
+              style="gap: 0.25rem; margin: 0 auto"
+            >
+              <!-- Search -->
+              <form
+                id="Tower-Selector"
+                class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+                role="search"
+              >
+                <input
+                  type="search"
+                  class="form-control form-control-dark text-bg-dark"
+                  placeholder="Search Tower (Ctrl+K)"
+                  aria-label="Search"
+                />
+                <div class="dropdown-menu bg-dark text-white">
+                  <!-- dropdown options here -->
+                </div>
+              </form>
+
+              <!-- Variants -->
+              <div id="tower-variants" class="btn-group me-2">
+                <div class="spinner-border text-secondary m-auto" role="status">
+                  <span class="sr-only"></span>
+                </div>
+              </div>
+
+              <!-- JSON/Table Toggle -->
+              <div
+                id="table-view"
+                class="btn-group me-2 d-none d-md-block"
+              ></div>
+
+              <!-- About button is hidden on mobile -->
+              <div id="button-discord" class="btn-group d-none d-md-block">
+                <button
+                  title="Information about this website"
+                  class="btn btn-sm btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                  data-bs-target="#discord-modal"
+                >
+                  About
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Body Table -->
+        <div class="d-none table-responsive p-2">
+          <table
+            id="tower-table"
+            class="table table-striped table-md table-dark mb-2"
+            style="margin-right: 2%"
+          >
+            <thead>
+              <tr>
+                <th>Level</th>
+                <th>Damage</th>
+                <th>Cooldown</th>
+                <th>Range</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- js bs here -->
+            </tbody>
+          </table>
+          <!-- Table Footer -->
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3"
+          >
+            <div class="btn-toolbar mb-2 mb-md-0 mt-0">
+              <!-- Data management buttons-->
+              <div class="btn-group me-2">
+                <button
+                  id="table-clear"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Removes all changes you've made to the master table"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Clear Changes
+                </button>
+                <button
+                  id="table-apply"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Current stats changes will be saved to the master table, which would also remove delta comparison as well"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Apply Changes
+                </button>
+                <button
+                  id="table-reset"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Reverts stats and references back to its original state—if this button lights up without any changes, it means the tower has receieved a new update"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Reset to Default
+                </button>
+                <button
+                  id="table-clear-data"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Wipe all towers, a factory reset to them—this is a quick way to receive the latest tower changes as well"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Clear All Towers
+                </button>
+              </div>
+
+              <!-- export img -->
+              <div class="btn-group me-2">
+                <button
+                  id="export-stats-image"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Export all of this tower's statistics as an image"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  <i class="bi bi-image me-2"></i>Export as Image
+                </button>
+                <button
+                  id="copy-stats-image"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Copy all of this tower's statistics as an image to clipboard"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  <i class="bi bi-clipboard me-2"></i>Copy as Image
+                </button>
+              </div>
+
+              <!-- Level buttons-->
+              <div class="btn-group me-2">
+                <button
+                  id="table-add-level"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="More levels"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Add Level
+                </button>
+
+                <button
+                  id="table-remove-level"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Please don't remove all the levels, you'll regret it"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Remove Level
+                </button>
+
+                <!-- Attribute buttons-->
+                <button
+                  id="table-add-level"
+                  class="btn btn-sm btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#tower-add-attribute"
+                  title="Self-explanatory"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Add Attribute
+                </button>
+
+                <button
+                  id="table-remove-level"
+                  class="btn btn-sm btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#tower-remove-attribute"
+                  title="Self-explanatory"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Remove Attribute
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <table
+            id="unit-table"
+            class="table table-striped table-md table-dark mb-2"
+            style="margin-right: 2%"
+          ></table>
+          <!-- Unit Table Footer -->
+          <div
+            id="unit-table-buttons"
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3"
+          >
+            <div class="btn-toolbar mb-2 mb-md-0 mt-0">
+              <!-- Data management buttons-->
+              <div class="btn-group me-2">
+                <button
+                  id="table-unit-clear"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Removes all changes you've made to the slave table"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Clear Changes
+                </button>
+                <button
+                  id="table-unit-apply"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Current stats changes will be saved to the slave table, which would also remove delta comparison as well"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Apply Changes
+                </button>
+                <button
+                  id="table-unit-reset"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Reverts stats and references back to its original state—if this button lights up without any changes, it means the tower has receieved a new update"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Reset to Default
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notes Section -->
+          <div id="notes-section" style="width: calc(100% - 1rem)">
+            <div
+              class="card bg-dark text-white border-secondary overflow-hidden"
+            >
+              <div class="card-header bg-dark bg-gradient">
+                <h6 class="mb-0"><i class="bi bi-sticky me-2"></i>Notes</h6>
+              </div>
+              <div class="card-body">
+                <textarea
+                  id="tower-notes-textarea"
+                  class="form-control form-control-sm bg-dark text-white"
+                  rows="6"
+                  placeholder="Add notes for this tower here. Stuff like its passive or maybe quirks are a few examples."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Landing Page/Tutorial -->
+        <div id="landing-page" class="d-flex flex-column p-4">
+          <div class="text-center mb-4">
+            <h1 class="text-white mt-3 unisans">
+              Welcome to the TDS Statistics Editor!
+            </h1>
+            <p class="text-light">
+              A community made tool for creating and editing Tower Defense
+              Simulator tower stats, duh.
+            </p>
+          </div>
+
+          <!-- First row -->
+          <div class="row">
+            <div class="col-md-6 mb-4 d-flex">
+              <div class="card bg-dark text-white border-secondary w-100">
+                <div class="modal-header bg-dark bg-gradient">
+                  <h4>
+                    <i class="bi bi-rocket-takeoff me-2"></i>Getting Started
+                  </h4>
+                </div>
+                <div class="card-body">
+                  <ol class="ps-3">
+                    <li class="mb-2">
+                      Select a tower from the search bar in the header
+                    </li>
+                    <li class="mb-2">Tinker with the statistic values!</li>
+                    <li class="mb-2">
+                      Export your changes as JSON or Wikitable
+                    </li>
+                    <li class="mb-2">
+                      Share it to everyone! On Discord, X, Reddit, or even our
+                      Database!
+                    </li>
+                    <p class="text-info text-center">
+                      Pro Tip: Seeing an outdated table? Try resetting to
+                      default or clear all towers! You might be on an older
+                      cache.
+                    </p>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-4 d-flex">
+              <div class="card bg-dark text-white border-secondary w-100">
+                <div class="modal-header bg-dark bg-gradient">
+                  <h4><i class="bi bi-star me-2"></i>Main Features</h4>
+                </div>
+                <div class="card-body">
+                  <ul class="ps-3">
+                    <li class="mb-2">Edit tower stats and attributes</li>
+                    <li class="mb-2">
+                      Create custom towers using the clone tool
+                    </li>
+                    <li class="mb-2">
+                      Generate wikitable code for the TDS Wiki
+                    </li>
+                    <li class="mb-2">Upload your stuff to the Database</li>
+                    <li class="mb-2">
+                      Unrelated, but there are other tools too!
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second row -->
+          <div class="row">
+            <div class="col-md-6 mb-4 d-flex">
+              <div class="card bg-dark text-white border-secondary w-100">
+                <div class="modal-header bg-dark bg-gradient">
+                  <h4><i class="bi bi-question-circle me-2"></i>Guide</h4>
+                </div>
+                <div class="card-body d-flex flex-column">
+                  <div>
+                    <p class="mb-3">
+                      Need help using the Statistics Editor? Check out our, uh,
+                      somewhat comprehensive
+                      <a
+                        href="https://tds.fandom.com/wiki/Help:Statistics_Editor"
+                        target="_blank"
+                        >help documentation</a
+                      >
+                      on the TDS Wiki!
+                    </p>
+
+                    <h5 class="mt-3 mb-2">Available Resources</h5>
+                    <ul class="ps-3">
+                      <li>Step by step tutorials for common tasks</li>
+                      <li>Detailed explanations of available features</li>
+                      <li>Troubleshooting common issues</li>
+                      <li>Advanced tips that could prove useful</li>
+                      <li>Even more miscellaneous info because why not!</li>
+                    </ul>
+                    The guide is always updating, so don't hesitate to check
+                    back for new content! If you're up for it, maybe you could
+                    even help us improve it. The wiki is always looking for new
+                    contributors!
+                    <br /><br />
+                    <p class="text-info text-center">
+                      Pro Tip: If you have any questions, feel free to ask in
+                      the
+                      <a href="https://discord.gg/fBgQzudY3h" target="_blank"
+                        >Discord server</a
+                      >!
+                    </p>
+                  </div>
+
+                  <a
+                    href="https://tds.fandom.com/wiki/Help:Statistics_Editor"
+                    class="btn btn-outline-info mt-auto w-100"
+                    target="_blank"
+                  >
+                    <i class="bi bi-book me-2"></i>View Guide
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-4 d-flex">
+              <div class="card bg-dark text-white border-secondary w-100">
+                <div class="modal-header bg-dark bg-gradient">
+                  <h4><i class="bi bi-journal-code me-2"></i>Update Summary</h4>
+                </div>
+                <div class="card-body d-flex flex-column">
+                  <div
+                    id="landing-update-log"
+                    class="overflow-auto mb-3"
+                    style="max-height: 22rem"
+                  >
+                    <div class="d-flex justify-content-center">
+                      <div class="spinner-border text-secondary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a
+                    href="#"
+                    class="btn btn-outline-info mt-auto w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#discord-modal"
+                    onclick="
+                      document.getElementById('aboutSectionUpdates').click()
+                    "
+                  >
+                    <i class="bi bi-list-ul me-2"></i>View More Updates
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Announcements section -->
+          <div class="row">
+            <div class="col-12 mb-4">
+              <div class="card bg-dark text-white border-secondary w-100">
+                <div class="modal-header bg-dark bg-gradient">
+                  <h4><i class="bi bi-megaphone me-2"></i>Announcements</h4>
+                </div>
+                <div class="card-body">
+                  <ul
+                    class="list-group list bg-transparent"
+                    id="announcements-list"
+                  >
+                    <!-- js -->
+                    <div class="d-flex justify-content-center">
+                      <div class="spinner-border text-secondary" role="status">
+                        <span class="visually-hidden"
+                          >Loading announcements...</span
+                        >
+                      </div>
+                    </div>
+                  </ul>
+                </div>
+
+                <div
+                  class="mx-3 mb-3 d-flex justify-content-center gap-2 flex-wrap"
+                >
+                  <a
+                    href="https://tds.fandom.com/f"
+                    target="_blank"
+                    class="btn btn-outline-info"
+                  >
+                    <i class="bi bi-chat-left-dots me-2"></i>Wiki Discussions
+                  </a>
+
+                  <a
+                    href="https://discord.gg/fBgQzudY3h"
+                    target="_blank"
+                    class="btn btn-outline-info"
+                  >
+                    <i class="bi bi-discord me-2"></i>Wiki Discord
+                  </a>
+
+                  <a
+                    href="https://discord.gg/tds"
+                    target="_blank"
+                    class="btn btn-outline-info"
+                  >
+                    <i class="bi bi-discord me-2"></i>TDS Discord
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-3">
+            <p class="text-muted">
+              This tool is an unofficial creation and is not an official product
+              of Paradoxum Games
+            </p>
+            <p class="text-muted small">
+              Last updated for TDS version <b class="tdsversion"></b>
+            </p>
+          </div>
+        </div>
+
+        <!-- Body JSON -->
+        <div id="json-panel" class="d-none d-flex flex-column p-3 pb-0">
+          <!-- JSON Header -->
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3"
+          >
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <!-- Copy Button -->
+              <div class="btn-group me-2">
+                <button id="json-copy" class="btn btn-sm btn-outline-secondary">
+                  Copy to Clipboard
+                </button>
+              </div>
+              <div class="btn-group me-2">
+                <!-- Import Button -->
+                <button
+                  id="json-import"
+                  class="btn btn-sm btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#json-import-modal"
+                  title="Imports tower data, obviously"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Import
+                </button>
+
+                <!-- Export Button -->
+                <button
+                  id="json-export"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Saves the current tower's JSON as a file."
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Export
+                </button>
+              </div>
+
+              <!-- JSON Type Toggle -->
+              <div class="btn-group me-2">
+                <button
+                  id="show-combined-json"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="The new format has support for towers with 2 tables. The legacy format is kept for backwards compatibility"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Use New Format
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- JSON Body -->
+          <div id="json" class="overflow-auto"></div>
+        </div>
+
+        <!-- Body Wikitable -->
+        <div id="wikitable-panel" class="d-none d-flex flex-column p-3 pb-0">
+          <!-- Wikitable Header -->
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3"
+          >
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <!-- Copy Button -->
+              <div class="btn-group me-2">
+                <button
+                  id="wikitable-copy"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                  Copy to Clipboard
+                </button>
+              </div>
+              <!-- Export Button -->
+              <div class="btn-group me-2">
+                <button
+                  id="wikitable-export"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Saves wikitable code as a file"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Export
+                </button>
+              </div>
+              <!-- Wikitable Format Toggle -->
+              <div class="btn-group me-2">
+                <button
+                  id="use-faithful-format"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Generates a wikitable that is more in line with the one found on wiki articles"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Use Faithful Format
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wikitable Body -->
+          <div id="wikitable" class="overflow-auto"></div>
+        </div>
+
+        <!-- Body Lua -->
+        <div id="lua-panel" class="d-none d-flex flex-column p-3 pb-0">
+          <!-- Lua Header -->
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3"
+          >
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <!-- Copy Button -->
+              <div class="btn-group me-2">
+                <button id="lua-copy" class="btn btn-sm btn-outline-secondary">
+                  Copy to Clipboard
+                </button>
+              </div>
+              <div class="btn-group me-2">
+                <!-- Import Button -->
+                <button
+                  id="json-import"
+                  class="btn btn-sm btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#json-import-modal"
+                  title="Imports tower data, again, very self-explanatory"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Import
+                </button>
+
+                <!-- Export Button -->
+                <button
+                  id="lua-export"
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Saves the Lua as a file"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Export
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- JSON Body -->
+          <div id="lua" class="overflow-auto">Sample text</div>
+        </div>
+      </main>
+    </div>
+    <!--- Models --->
+
+    <!-- Mobile Navigation Bar -->
+    <div class="mobile-nav d-md-none">
+      <a href="#" class="mobile-nav-btn" data-mobile-section="upgrades">
+        <i class="bi bi-stack"></i>
+        <span>Upgrades</span>
+      </a>
+      <a href="#" class="mobile-nav-btn" data-mobile-section="views">
+        <i class="bi bi-eye-fill"></i>
+        <span>Views</span>
+      </a>
+      <a href="#" class="mobile-nav-btn" data-mobile-section="boosts">
+        <i class="bi bi-lightning-fill"></i>
+        <span>Boosts</span>
+      </a>
+      <a href="#" class="mobile-nav-btn" data-mobile-section="tools">
+        <i class="bi bi-tools"></i>
+        <span>Tools</span>
+      </a>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-content"></div>
+    </div>
+
+    <!-- JSON Import Modal -->
+    <div
+      class="modal fade"
+      id="json-import-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="json-import-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content bg-dark text-white">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <div class="d-flex align-items-center">
+              <div class="toru-icon-container me-3">
+                <i class="bi bi-file-earmark-arrow-down-fill fs-3"></i>
+              </div>
+              <div>
+                <h5 class="modal-title unisans mb-0" id="json-import-label">
+                  Import Statistics
+                </h5>
+                <p class="text-muted small mb-0">
+                  Import tower data from JSON or Lua formats
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-body">
+            <div class="btn-group w-100 mb-3" role="group">
+              <input
+                type="radio"
+                class="btn-check"
+                name="importInputType"
+                id="importPasteOption"
+                autocomplete="off"
+                checked
+              />
+              <label class="btn btn-outline-primary" for="importPasteOption"
+                ><i class="bi bi-clipboard me-2"></i>Paste JSON/Lua</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="importInputType"
+                id="importFileOption"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="importFileOption"
+                ><i class="bi bi-upload me-2"></i>Upload File</label
+              >
+            </div>
+
+            <!-- Paste JSON section -->
+            <div id="importPasteInput">
+              <div class="form-group bg-dark text-white">
+                <textarea
+                  class="form-control form-control-sm"
+                  rows="22"
+                  id="json-import-text"
+                  placeholder="Paste your JSON/Lua here."
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- File upload section -->
+            <div id="importFileInput" class="d-none">
+              <div class="btn-group w-100 mb-3">
+                <label
+                  class="btn btn-outline-primary w-75"
+                  for="json-import-file"
+                >
+                  <i class="bi bi-upload me-2"></i>Select JSON/Lua File
+                </label>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  id="clearImportFile"
+                  title="Clear the file that was uploaded"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  <i class="bi bi-x-lg me-1"></i>Clear
+                </button>
+              </div>
+              <input
+                class="form-control d-none"
+                type="file"
+                id="json-import-file"
+                accept="application/json,.json,.lua"
+              />
+              <div class="form-text mt-2" id="selectedImportFileName">
+                No file selected
+              </div>
+              <div class="mt-4" id="json-file-preview"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              id="json-import-submit"
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Import
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Attribute Modal-->
+    <div
+      class="modal fade"
+      id="tower-add-attribute"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="add-attribute-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark text-white">
+          <!-- Modal Header-->
+          <div class="modal-header">
+            <div class="d-flex align-items-center">
+              <div class="toru-icon-container me-3">
+                <i class="bi bi-patch-plus-fill fs-3"></i>
+              </div>
+              <div>
+                <h5 class="modal-title unisans mb-0" id="add-attribute-label">
+                  Add Attribute
+                </h5>
+                <p class="text-muted small mb-0">
+                  Create a new attribute for this tower
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- Modal Body-->
+          <div class="modal-body">
+            <div class="toru-section">
+              <h6 class="toru-heading">
+                <i class="bi bi-input-cursor-text me-2"></i>Attribute Details
+              </h6>
+              <div class="toru-options">
+                <!-- Add Attribute Name -->
+                <div class="toru-item">
+                  <div class="toru-info">
+                    <label
+                      for="add-attribute-name"
+                      class="form-label mb-0 d-flex align-items-center"
+                    >
+                      <i class="bi bi-tag me-2 toru-icon"></i>
+                      <div>
+                        <span class="toru-title">Name</span>
+                        <span class="d-block small text-muted"
+                          >Attribute identifier</span
+                        >
+                      </div>
+                    </label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input
+                      type="text"
+                      class="form-control text-white"
+                      id="add-attribute-name"
+                      placeholder="Enter Name"
+                    />
+                    <div
+                      id="add-attribute-name-options"
+                      class="dropdown-menu bg-dark text-white"
+                    >
+                      <!-- Dropdown items will be populated dynamically -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Add Attribute Type -->
+                <div class="toru-item">
+                  <div class="toru-info">
+                    <label class="form-label mb-0 d-flex align-items-center">
+                      <i class="bi bi-code-slash me-2 toru-icon"></i>
+                      <div>
+                        <span class="toru-title">Type</span>
+                        <span class="d-block small text-muted"
+                          >Data type for this attribute</span
+                        >
+                      </div>
+                    </label>
+                  </div>
+                  <div class="d-flex col-sm-7">
+                    <div id="add-attribute-type-dropdown" class="w-100">
+                      <button
+                        type="button"
+                        class="btn btn-outline-secondary w-100 dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Select Type
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Number</a>
+                        <a class="dropdown-item" href="#">Boolean</a>
+                        <a class="dropdown-item" href="#">String</a>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control text-white mt-2"
+                        id="add-attribute-type"
+                        placeholder="Type"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Add Attribute Value -->
+                <div class="toru-item">
+                  <div class="toru-info">
+                    <label class="form-label mb-0 d-flex align-items-center">
+                      <i class="bi bi-123 me-2 toru-icon"></i>
+                      <div>
+                        <span class="toru-title">Default Value</span>
+                        <span class="d-block small text-muted"
+                          >Value that it starts with</span
+                        >
+                      </div>
+                    </label>
+                  </div>
+                  <div class="col-sm-7">
+                    <!-- Number -->
+                    <div id="add-attribute-number-form">
+                      <input
+                        id="add-attribute-number-value"
+                        type="text"
+                        class="form-control text-white"
+                        placeholder="Enter Number"
+                      />
+                    </div>
+
+                    <!-- Boolean -->
+                    <div class="d-none" id="add-attribute-boolean-form">
+                      <div class="form-check form-switch">
+                        <input
+                          id="add-attribute-boolean-value"
+                          type="checkbox"
+                          class="form-check-input"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- String -->
+                    <div class="d-none" id="add-attribute-string-form">
+                      <input
+                        type="text"
+                        class="form-control text-white"
+                        id="add-attribute-string-value"
+                        placeholder="Enter Text"
+                      />
+                      <div
+                        id="add-attribute-string-options"
+                        class="dropdown-menu bg-dark text-white"
+                      >
+                        <!-- javascript dynamically -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Footer-->
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              id="add-attribute-submit"
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Add Attribute
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Remove Attribute Modal-->
+    <div
+      class="modal fade"
+      id="tower-remove-attribute"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="remove-attribute-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark text-white">
+          <!-- Modal Header-->
+          <div class="modal-header">
+            <div class="d-flex align-items-center">
+              <div class="toru-icon-container me-3">
+                <i class="bi bi-patch-minus-fill fs-3"></i>
+              </div>
+              <div>
+                <h5
+                  class="modal-title unisans mb-0"
+                  id="remove-attribute-label"
+                >
+                  Remove Attribute
+                </h5>
+                <p class="text-muted small mb-0">
+                  Delete an attribute from this tower
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- Modal Body-->
+          <div class="modal-body">
+            <div class="toru-section">
+              <h6 class="toru-heading">
+                <i class="bi bi-eraser me-2"></i>"99.9% of science is boring."
+              </h6>
+              <div class="toru-options">
+                <!-- Remove Attribute Name -->
+                <div class="toru-item">
+                  <div class="toru-info">
+                    <label
+                      for="remove-attribute-name"
+                      class="form-label mb-0 d-flex align-items-center"
+                    >
+                      <i class="bi bi-tag me-2 toru-icon"></i>
+                      <div>
+                        <span class="toru-title">Attribute Name</span>
+                        <span class="d-block small text-muted"
+                          >Select the attribute to delete</span
+                        >
+                      </div>
+                    </label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input
+                      type="text"
+                      class="form-control text-white"
+                      id="remove-attribute-name"
+                      placeholder="Enter Name"
+                    />
+                    <div
+                      id="remove-attribute-name-options"
+                      class="dropdown-menu bg-dark text-white"
+                    >
+                      <!-- dropdown js go brr -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Footer-->
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              id="remove-attribute-submit"
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Remove Attribute
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Clone Tower Modal-->
+    <div
+      class="modal fade"
+      id="clone-tower"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="clone-tower-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark text-white">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <div class="d-flex align-items-center">
+              <div class="toru-icon-container me-3">
+                <i class="bi bi-pencil fs-3"></i>
+              </div>
+              <div>
+                <h5 class="modal-title unisans mb-0" id="clone-tower-label">
+                  Clone Tower
+                </h5>
+                <p class="text-muted small mb-0">Create your own abomination</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- Modal Body-->
+          <div class="modal-body">
+            <div class="toru-section">
+              <h6 class="toru-heading">
+                <i class="bi bi-copy me-2"></i>Tower Details
+              </h6>
+              <div class="toru-options">
+                <!-- New Tower Name -->
+                <div class="toru-item">
+                  <div class="toru-info">
+                    <label
+                      for="clone-tower-name"
+                      class="form-label mb-0 d-flex align-items-center"
+                    >
+                      <i class="bi bi-tag me-2 toru-icon"></i>
+                      <div>
+                        <span class="toru-title">New Tower Name</span>
+                        <span class="d-block small text-muted"
+                          >Enter a name for your lovely creation</span
+                        >
+                      </div>
+                    </label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input
+                      type="text"
+                      class="form-control text-white"
+                      id="clone-tower-name"
+                      placeholder="Enter Name"
+                    />
+                  </div>
+                </div>
+
+                <!-- Source Tower -->
+                <div class="toru-item">
+                  <div class="toru-info">
+                    <label
+                      for="clone-tower-reference"
+                      class="form-label mb-0 d-flex align-items-center"
+                    >
+                      <i class="bi bi-file-earmark-binary me-2 toru-icon"></i>
+                      <div>
+                        <span class="toru-title">Source Tower</span>
+                        <span class="d-block small text-muted"
+                          >Select the tower to use as a base</span
+                        >
+                      </div>
+                    </label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input
+                      type="text"
+                      class="form-control text-white"
+                      id="clone-tower-reference"
+                      placeholder="Enter Tower"
+                    />
+                    <div
+                      id="clone-tower-options"
+                      class="dropdown-menu bg-dark text-white"
+                    >
+                      <!-- js js js -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Footer-->
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              id="clone-submit"
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Create Clone
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Us Modal (js) -->
+    <!-- Settings Modal -->
+    <div
+      class="modal fade"
+      id="settings-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="settings-modal-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content bg-dark text-white">
+          <!-- Modal Header-->
+          <div class="modal-header">
+            <div class="d-flex align-items-center">
+              <div class="toru-icon-container me-3">
+                <i class="bi bi-gear-fill fs-3"></i>
+              </div>
+              <div>
+                <h5 class="modal-title unisans mb-0">Settings</h5>
+                <p class="text-muted small mb-0">
+                  Configure your preferences for the Statistics Editor
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- Modal Body -->
+          <div class="modal-body p-0">
+            <!-- Settings Nav Tabs -->
+            <ul
+              class="nav nav-tabs nav-fill bg-darker"
+              id="settingsTabs"
+              role="tablist"
+            >
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active text-white"
+                  id="interface-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#interface"
+                  type="button"
+                  role="tab"
+                  aria-controls="interface"
+                  aria-selected="true"
+                >
+                  <i class="bi bi-palette me-2"></i>Interface
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link text-white"
+                  id="editing-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#editing"
+                  type="button"
+                  role="tab"
+                  aria-controls="editing"
+                  aria-selected="false"
+                >
+                  <i class="bi bi-pencil-square me-2"></i>Editing
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link text-white"
+                  id="advanced-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#advanced"
+                  type="button"
+                  role="tab"
+                  aria-controls="advanced"
+                  aria-selected="false"
+                >
+                  <i class="bi bi-sliders me-2"></i>Advanced
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link text-white"
+                  id="data-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#data"
+                  type="button"
+                  role="tab"
+                  aria-controls="data"
+                  aria-selected="false"
+                >
+                  <i class="bi bi-database me-2"></i>Data
+                </button>
+              </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content p-3">
+              <!-- Interface Tab -->
+              <div
+                class="tab-pane fade show active"
+                id="interface"
+                role="tabpanel"
+                aria-labelledby="interface-tab"
+              >
+                <div class="toru-section">
+                  <h6 class="toru-heading">
+                    <i class="bi bi-brush me-2"></i>Appearance
+                  </h6>
+                  <div class="toru-options">
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="themeModeControl"
+                        >
+                          <i class="bi bi-circle-half me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Theme Mode</span>
+                            <span class="d-block small text-muted"
+                              >Decide how themes are chosen</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="col-sm-4">
+                        <select
+                          class="form-select form-select-sm bg-dark text-white"
+                          id="themeModeControl"
+                        >
+                          <option value="auto">Automatic</option>
+                          <option value="manual">Manual</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="themeToggle"
+                        >
+                          <i class="bi bi-moon-stars me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Dark Mode</span>
+                            <span class="d-block small text-muted"
+                              >Loading Javascript inserts</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="themeToggle"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="animationsToggle"
+                        >
+                          <i class="bi bi-activity me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Reduce Motion</span>
+                            <span class="d-block small text-muted"
+                              >Make animations less distracting</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="animationsToggle"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="toru-section">
+                  <h6 class="toru-heading">
+                    <i class="bi bi-layout-sidebar me-2"></i>Sidebar
+                  </h6>
+                  <div class="toru-options">
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="showCollapsibleCountsToggle"
+                        >
+                          <i class="bi bi-1-circle me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Group Counter</span>
+                            <span class="d-block small text-muted"
+                              >Show the item count for each collapsible
+                              group</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="showCollapsibleCountsToggle"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="autoSlideToggle"
+                        >
+                          <i class="bi bi-play-circle me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Auto Slideshow</span>
+                            <span class="d-block small text-muted"
+                              >Automatically cycle through the logo
+                              slideshow</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="autoSlideToggle"
+                          checked
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Editing Tab -->
+              <div
+                class="tab-pane fade"
+                id="editing"
+                role="tabpanel"
+                aria-labelledby="editing-tab"
+              >
+                <div class="toru-section">
+                  <h6 class="toru-heading">
+                    <i class="bi bi-table me-2"></i>Table
+                  </h6>
+                  <div class="toru-options">
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="showSecondsToggle"
+                        >
+                          <i class="bi bi-clock me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Show Seconds</span>
+                            <span class="d-block small text-muted"
+                              >Display cooldown values with seconds unit</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="showSecondsToggle"
+                          checked
+                        />
+                      </div>
+                    </div>
+
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="showStudsToggle"
+                        >
+                          <i class="bi bi-rulers me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Show Studs</span>
+                            <span class="d-block small text-muted"
+                              >Display range values with studs unit</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="showStudsToggle"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="forceUSNumbersToggle"
+                        >
+                          <i class="bi bi-123 me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">US Number Format</span>
+                            <span class="d-block small text-muted"
+                              >Loading Javascript inserts</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="forceUSNumbersToggle"
+                          checked
+                        />
+                      </div>
+                    </div>
+
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="classicTableSizeToggle"
+                        >
+                          <i class="bi bi-fonts me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Classic Table Size</span>
+                            <span class="d-block small text-muted"
+                              >Use a smaller font size in tables</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="classicTableSizeToggle"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="toru-section">
+                  <h6 class="toru-heading">
+                    <i class="bi bi-card-list me-2"></i>Dropdown
+                  </h6>
+                  <div class="toru-options">
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="keepDropdownOpenToggle"
+                        >
+                          <i class="bi bi-list-task me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Keep Dropdown Open</span>
+                            <span class="d-block small text-muted"
+                              >Prevent dropdowns from closing after selecting an
+                              item using the keyboard</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="keepDropdownOpenToggle"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Advanced Tab -->
+              <div
+                class="tab-pane fade"
+                id="advanced"
+                role="tabpanel"
+                aria-labelledby="advanced-tab"
+              >
+                <div class="toru-section">
+                  <h6 class="toru-heading">
+                    <i class="bi bi-code-square me-2"></i>Developer Options
+                  </h6>
+                  <div class="toru-options">
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="enableLuaViewerToggle"
+                        >
+                          <i class="bi bi-braces me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Lua Viewer</span>
+                            <span class="d-block small text-muted"
+                              >Enable the Lua viewer mode</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="enableLuaViewerToggle"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="imageCacheDebugToggle"
+                        >
+                          <i class="bi bi-image me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Cache API Debug</span>
+                            <span class="d-block small text-muted"
+                              >Display image cache operations in the
+                              console</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="imageCacheDebugToggle"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="towerRegistryDebugToggle"
+                        >
+                          <i class="bi bi-building-gear me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Tower Registry Debug</span>
+                            <span class="d-block small text-muted"
+                              >Display tower registry operations in the
+                              console</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="towerRegistryDebugToggle"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="wikitableDebugToggle"
+                        >
+                          <i class="bi bi-table me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Wikitable Debug</span>
+                            <span class="d-block small text-muted"
+                              >Display wikitable generation operations in the
+                              console</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="wikitableDebugToggle"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Data Management Tab -->
+              <div
+                class="tab-pane fade"
+                id="data"
+                role="tabpanel"
+                aria-labelledby="data-tab"
+              >
+                <div class="toru-section">
+                  <h6 class="toru-heading">
+                    <i class="bi bi-shield-lock me-2"></i>Privacy
+                  </h6>
+                  <div class="toru-options">
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <label
+                          class="form-check-label d-flex align-items-center mb-0"
+                          for="analyticsConsentToggle"
+                        >
+                          <i class="bi bi-graph-up me-2 toru-icon"></i>
+                          <div>
+                            <span class="toru-title">Analytics</span>
+                            <span class="d-block small text-muted"
+                              >Allow usage data collection to help us improve
+                              the site</span
+                            >
+                          </div>
+                        </label>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="analyticsConsentToggle"
+                        />
+                      </div>
+                    </div>
+                    <div class="alert alert-info mt-3 mb-3">
+                      <i class="bi bi-info-circle-fill me-2"></i>
+                      We use Google Analytics to collect anonymous usage data
+                      that helps us understand how people use this site. You can
+                      disable this at any time.
+                      <a href="./privacy">Privacy Policy</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="toru-section">
+                  <h6 class="toru-heading">
+                    <i class="bi bi-floppy2-fill me-2"></i>Storage
+                  </h6>
+                  <div class="toru-options">
+                    <div class="toru-item">
+                      <div class="toru-info">
+                        <div>
+                          <span class="toru-title">Reset All Data</span>
+                          <span class="d-block small text-muted"
+                            >Delete all locally stored data and reset to default
+                            settings</span
+                          >
+                        </div>
+                      </div>
+                      <button
+                        id="reset-localstorage"
+                        class="btn btn-sm btn-danger"
+                      >
+                        <i class="bi bi-trash me-2"></i>Reset
+                      </button>
+                    </div>
+                    <div class="alert alert-warning mt-3 mb-0">
+                      <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                      <strong>Warning:</strong> Resetting all data will delete
+                      all of your customized towers, settings, and preferences.
+                      This action cannot be undone at all.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <span class="text-muted small me-auto"
+              >TDS Statistics Editor
+              <span class="version-full">loading ver...</span></span
+            >
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Help Modal -->
+    <div
+      class="modal fade"
+      id="keyboard-shortcuts-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="keyboard-shortcuts-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark text-white">
+          <!-- Modal Header-->
+          <div class="modal-header">
+            <div class="d-flex align-items-center">
+              <div class="toru-icon-container me-3">
+                <i class="bi bi-keyboard fs-3"></i>
+              </div>
+              <div>
+                <h5
+                  class="modal-title unisans mb-0"
+                  id="keyboard-shortcuts-label"
+                >
+                  Keyboard Shortcuts
+                </h5>
+                <p class="text-muted small mb-0">
+                  Quick access commands for the cool kids
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- Modal Body-->
+          <div class="modal-body">
+            <div class="toru-section">
+              <h6 class="toru-heading">
+                <i class="bi bi-command me-2"></i>Available Shortcuts
+              </h6>
+              <div class="toru-options">
+                <div
+                  class="table-responsive justify-content-center"
+                  id="keyboard-help-table"
+                >
+                  <table
+                    class="table table-dark table-hover table-sm"
+                    style="width: 100%"
+                  >
+                    <!-- i don't wanna use w-100 because it gets overriden by table's width initial, using important might break something and i'm not risking it -->
+                    <thead>
+                      <tr>
+                        <th>Shortcut</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><kbd>Ctrl</kbd> + <kbd>K</kbd></td>
+                        <td>Focus search box</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>Alt</kbd> + <kbd>1</kbd> - <kbd>4</kbd></td>
+                        <td>Switch between view modes</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>Alt</kbd> + <kbd>D</kbd></td>
+                        <td>Toggle delta view</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>Alt</kbd> + <kbd>C</kbd></td>
+                        <td>Toggle calculation system</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>Alt</kbd> + <kbd>V</kbd></td>
+                        <td>Open clone modal</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>Alt</kbd> + <kbd>S</kbd></td>
+                        <td>Open settings</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>Alt</kbd> + <kbd>L</kbd></td>
+                        <td>Toggle sidebar</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>Alt</kbd> + <kbd>H</kbd> / <kbd>F1</kbd></td>
+                        <td>Show this help dialog</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>F2</kbd></td>
+                        <td>Open the TDS Wiki</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>F3</kbd></td>
+                        <td>Open the Database</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>Tab</kbd></td>
+                        <td>Navigate between UI elements</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>Enter</kbd> / <kbd>Space</kbd></td>
+                        <td>Activate focused element</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd>
+                        </td>
+                        <td>Navigate in table or dropdown</td>
+                      </tr>
+                      <tr>
+                        <td><kbd>Escape</kbd></td>
+                        <td>Close dropdown or dialog</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Footer-->
+          <div class="modal-footer">
+            <span class="text-muted small me-auto"
+              >Press <kbd>Cmd</kbd> instead of <kbd>Ctrl</kbd> for Mac</span
+            >
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MoMo Modal (js) -->
+  </body>
+
+  <script>
+    if (window.location.pathname === "/index.html") {
+      window.location.replace("/");
+    }
+  </script>
+</html>

@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script>
+      (function () {
+        const mode = localStorage.getItem("themeMode") || "auto";
+        const theme = localStorage.getItem("theme") || "dark";
+        const isLight =
+          mode === "auto"
+            ? !matchMedia("(prefers-color-scheme: dark)").matches
+            : theme === "light";
+
+        if (isLight) {
+          document.addEventListener("DOMContentLoaded", () => {
+            document.body?.classList.add("light-mode");
+          });
+        }
+      })();
+    </script>
+
+    <title>TDS Skill Tree Planner</title>
+    <meta
+      name="description"
+      content="Plan your skill builds for the Roblox game Tower Defense Simulator. This tool allows you to try out different skill combinations and optimize your builds before spending your hard-earned coins in-game."
+    />
+
+    <meta property="og:title" content="TDS Skill Tree Planner" />
+    <meta
+      property="og:description"
+      content="Plan and optimize your skill builds for Tower Defense Simulator!"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tds-editor.com/misc/skills" />
+    <meta
+      property="og:image"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:site"
+      content="Tower Defense Simulator Skill Tree Planner"
+    />
+    <meta name="twitter:title" content="TDS Skill Tree Planner" />
+    <meta
+      name="twitter:description"
+      content="Plan and optimize your skill builds for Tower Defense Simulator!"
+    />
+    <meta
+      name="twitter:image:src"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta name="theme-color" content="#035D7C" />
+    <meta property="og:site_name" content="TDS Skill Tree Planner" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/htmlassets/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/htmlassets/favicon.svg" />
+    <link rel="shortcut icon" href="/htmlassets/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/htmlassets/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="TDS Skills" />
+    <link rel="manifest" href="/htmlassets/site.webmanifest" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-D48H2PL948"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-D48H2PL948");
+    </script>
+
+    <script type="module" crossorigin src="/assets/skills-x121P0tB.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/bootstrap.esm-Bs5VhlPx.js">
+    <link rel="modulepreload" crossorigin href="/assets/SettingsManager-DuS8Vqte.js">
+    <link rel="modulepreload" crossorigin href="/assets/AboutModal-dGgKW25g.js">
+    <link rel="modulepreload" crossorigin href="/assets/MobileNavBase-Bcj8W7ZT.js">
+    <link rel="stylesheet" crossorigin href="/assets/bootstrap-CelqrQH8.css">
+    <link rel="stylesheet" crossorigin href="/assets/SettingsManager-DEmGI_Hm.css">
+    <link rel="stylesheet" crossorigin href="/assets/skills-CqBLHqVV.css">
+    <link rel="stylesheet" crossorigin href="/assets/animations-BDJDtPb1.css">
+    <link rel="stylesheet" crossorigin href="/assets/torus-Clj6cBxF.css">
+    <link rel="stylesheet" crossorigin href="/assets/Dashboard-CNyDlc49.css">
+  </head>
+
+  <body class="bg-dark">
+    <div
+      id="alert-container"
+      class="position-absolute w-100 p-4 text-center d-flex flex-column"
+    ></div>
+
+    <!-- Document -->
+    <div class="container-main">
+      <!-- Sidebar - Hidden on mobile -->
+      <div
+        class="aside d-flex flex-column flex-shrink-0 text-white p-2 d-none d-md-flex"
+        style="
+          min-width: 240px;
+          width: 19%;
+          height: 100vh;
+          overflow-y: auto;
+          position: sticky;
+          top: 0;
+        "
+      >
+        <!-- Title -->
+        <div class="text-center">
+          <a href="../">
+            <img
+              src="/htmlassets/misclogo.png"
+              alt="Miscellaneous Logo"
+              class="img-fluid my-2 zoomup"
+              style="max-width: 75%; height: auto"
+            />
+          </a>
+        </div>
+
+        <hr />
+
+        <!-- Total Points Section -->
+        <div class="p-2">
+          <h5 class="text-white mb-3">
+            <i class="bi bi-calculator me-2"></i>Management
+          </h5>
+
+          <div class="form-group mb-3">
+            <label for="total-credits" class="form-label text-credit fw-bold">
+              <img
+                src="/htmlassets/SkillCredit.png"
+                alt="Skill Credits"
+                class="cost-icon me-2"
+              />Skill Credits Available
+            </label>
+            <input
+              type="number"
+              id="total-credits"
+              class="form-control form-control-sm bg-dark text-white"
+              placeholder="Enter skill credits..."
+              min="0"
+              value="0"
+            />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="total-coins" class="form-label text-warning fw-bold">
+              <img
+                src="/htmlassets/Coin.png"
+                alt="Coins"
+                class="cost-icon me-2"
+              />Coins Available
+            </label>
+            <input
+              type="number"
+              id="total-coins"
+              class="form-control form-control-sm bg-dark text-white"
+              placeholder="Enter coins..."
+              min="0"
+              value="0"
+            />
+          </div>
+
+          <!-- Global Increment Control -->
+          <div class="form-group mb-3">
+            <label for="global-increment" class="form-label text-info fw-bold">
+              <i class="bi bi-plus-slash-minus me-2"></i>Global Increment
+            </label>
+            <input
+              type="number"
+              id="global-increment"
+              class="form-control form-control-sm bg-dark text-white"
+              placeholder="Set increment for all skills..."
+              min="1"
+              max="50"
+              value="1"
+              title="Changes the increment amount for all skills at once"
+            />
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="text-center">
+                <div class="h6 text-credit fw-bold mb-0" id="available-credits">
+                  0
+                </div>
+                <small class="text-light">Credits Left</small>
+              </div>
+              <div class="text-center mt-2">
+                <div class="h6 text-info fw-bold mb-0" id="used-credits">0</div>
+                <small class="text-light">Credits Used</small>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="text-center">
+                <div class="h6 text-warning fw-bold mb-0" id="available-coins">
+                  0
+                </div>
+                <small class="text-light">Coins Left</small>
+              </div>
+              <div class="text-center mt-2">
+                <div class="h6 text-primary fw-bold mb-0" id="used-coins">
+                  0
+                </div>
+                <small class="text-light">Coins Used</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button id="reset-skills" class="btn btn-outline-danger">
+              <i class="bi bi-arrow-clockwise me-2"></i>Reset Skills
+            </button>
+            <button id="share-build" class="btn btn-outline-primary">
+              <i class="bi bi-share me-2"></i>Share Build
+            </button>
+            <span class="text-muted small text-center mb-2">
+              Your URL is automatically updated every 10 seconds, click the
+              share button to force an update.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <main role="main" class="d-flex flex-column">
+        <!-- Body Header -->
+        <header class="p-3">
+          <div
+            class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center"
+            id="topnavheader"
+          >
+            <!-- Title -->
+            <h1 class="h2 text-white unisans" style="text-wrap: balance">
+              TDS Skills Planner
+            </h1>
+
+            <div
+              class="btn-toolbar mb-2 justify-content-center"
+              style="gap: 0.25rem; margin: 0 auto"
+            >
+              <!-- These buttons are hidden on mobile -->
+              <div id="button-discord" class="btn-group d-none d-md-block me-2">
+                <button
+                  title="Information about this website."
+                  class="btn btn-sm btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#about-modal"
+                >
+                  About
+                </button>
+              </div>
+
+              <div id="button-settings" class="btn-group d-none d-md-block">
+                <button
+                  title="The totally real settings."
+                  class="btn btn-sm btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#settings-modal"
+                >
+                  Settings
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Skills Grid -->
+        <div class="container-fluid p-3">
+          <div class="row">
+            <!-- Offensive Skills -->
+            <div class="col-lg-6 mb-4">
+              <div class="card bg-dark border-secondary h-100">
+                <div class="card-header bg-danger bg-gradient">
+                  <h4 class="mb-0 text-white d-flex align-items-center">
+                    <img
+                      src="/htmlassets/skills/OffensiveModifier.png"
+                      alt="Offensive"
+                      class="me-2"
+                      style="width: 24px; height: 24px"
+                    />
+                    Offensive Skills
+                  </h4>
+                </div>
+                <div class="card-body" id="offensive-skills">
+                  <!-- Skills will be populated by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Economy Skills -->
+            <div class="col-lg-6 mb-4">
+              <div class="card bg-dark border-secondary h-100">
+                <div class="card-header bg-success bg-gradient">
+                  <h4 class="mb-0 text-white d-flex align-items-center">
+                    <img
+                      src="/htmlassets/skills/EconomyModifier.png"
+                      alt="Economy"
+                      class="me-2"
+                      style="width: 24px; height: 24px"
+                    />
+                    Economy Skills
+                  </h4>
+                </div>
+                <div class="card-body" id="economy-skills">
+                  <!-- Skills will be populated by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Strategy Skills -->
+            <div class="col-lg-6 mb-4">
+              <div class="card bg-dark border-secondary h-100">
+                <div class="card-header bg-purple bg-gradient">
+                  <h4 class="mb-0 text-white d-flex align-items-center">
+                    <img
+                      src="/htmlassets/skills/StrategyModifier.png"
+                      alt="Strategy"
+                      class="me-2"
+                      style="width: 24px; height: 24px; object-fit: scale-down"
+                    />
+                    Strategy Skills
+                  </h4>
+                </div>
+                <div class="card-body" id="strategy-skills">
+                  <!-- Skills will be populated by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Defense Skills -->
+            <div class="col-lg-6 mb-4">
+              <div class="card bg-dark border-secondary h-100">
+                <div class="card-header bg-info bg-gradient">
+                  <h4 class="mb-0 text-white d-flex align-items-center">
+                    <img
+                      src="/htmlassets/skills/DefenseModifier.png"
+                      alt="Defense"
+                      class="me-2"
+                      style="width: 24px; height: 24px; object-fit: scale-down"
+                    />
+                    Defense Skills
+                  </h4>
+                </div>
+                <div class="card-body" id="defense-skills">
+                  <!-- Skills will be populated by JS -->
+                </div>
+              </div>
+            </div>
+            <!-- Footer -->
+            <div class="text-center mt-3">
+              <p class="text-muted px-3">
+                This tool is an unofficial creation and is not an official
+                product of Paradoxum Games
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Mobile Navigation Bar -->
+    <div class="mobile-nav d-md-none">
+      <a href="#" class="mobile-nav-btn" data-mobile-section="controls">
+        <i class="bi bi-sliders"></i>
+        <span>Controls</span>
+      </a>
+      <a href="#" class="mobile-nav-btn" data-mobile-section="about">
+        <i class="bi bi-info-circle-fill"></i>
+        <span>About</span>
+      </a>
+      <a href="#" class="mobile-nav-btn" data-mobile-section="settings">
+        <i class="bi bi-gear-fill"></i>
+        <span>Settings</span>
+      </a>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-content"></div>
+    </div>
+
+    <!-- About Modal (js) -->
+    <!-- Settings Modal -->
+    <div
+      class="modal fade"
+      id="settings-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="settings-modal-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <div class="d-flex align-items-center">
+              <div class="toru-icon-container me-3">
+                <i class="bi bi-gear-fill fs-3"></i>
+              </div>
+              <div>
+                <h5 class="modal-title unisans mb-0" id="settings-modal-label">
+                  Settings
+                </h5>
+                <p class="text-muted small mb-0">Totally available to change</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="alert alert-info mb-0 text-center">
+              Apologies, but settings for appearance currently can only be
+              changed in the <a href="../../">Statistics Editor</a>.<br />
+              Please head over there to adjust your preferences, sorry again!
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="w-100 btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

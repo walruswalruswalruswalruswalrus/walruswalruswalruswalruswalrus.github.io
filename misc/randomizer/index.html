@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <script>
+      (function () {
+        const mode = localStorage.getItem("themeMode") || "auto";
+        const theme = localStorage.getItem("theme") || "dark";
+        const isLight =
+          mode === "auto"
+            ? !matchMedia("(prefers-color-scheme: dark)").matches
+            : theme === "light";
+
+        if (isLight) {
+          document.addEventListener("DOMContentLoaded", () => {
+            document.body?.classList.add("light-mode");
+          });
+        }
+      })();
+    </script>
+
+    <title>TDS Randomizer</title>
+    <meta
+      name="description"
+      content="Randomize game maps, loadouts, and gamemodes for Tower Defense Simulator!"
+    />
+
+    <meta property="og:title" content="TDS Randomizer" />
+    <meta
+      property="og:description"
+      content="Randomize game maps, loadouts, and gamemodes for Tower Defense Simulator!"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tds-editor.com/misc/randomizer" />
+    <meta
+      property="og:image"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="Tower Defense Simulator Randomizer" />
+    <meta name="twitter:title" content="TDS Randomizer" />
+    <meta
+      name="twitter:description"
+      content="Randomize game maps, loadouts, and gamemodes for Tower Defense Simulator!"
+    />
+    <meta
+      name="twitter:image:src"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta name="theme-color" content="#035D7C" />
+    <meta property="og:site_name" content="TDS Randomizer" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/htmlassets/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/htmlassets/favicon.svg" />
+    <link rel="shortcut icon" href="/htmlassets/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/htmlassets/apple-touch-icon.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="apple-mobile-web-app-title" content="TDS Randomizer" />
+    <link rel="manifest" href="/htmlassets/site.webmanifest" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-D48H2PL948"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-D48H2PL948");
+    </script>
+
+    <script type="module" crossorigin src="/assets/randomizer-CKYxqlk1.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/bootstrap.esm-Bs5VhlPx.js">
+    <link rel="modulepreload" crossorigin href="/assets/SettingsManager-DuS8Vqte.js">
+    <link rel="modulepreload" crossorigin href="/assets/AboutModal-dGgKW25g.js">
+    <link rel="modulepreload" crossorigin href="/assets/index-CYh-k0co.js">
+    <link rel="modulepreload" crossorigin href="/assets/ImageLoader-GxK_6xkw.js">
+    <link rel="modulepreload" crossorigin href="/assets/MobileNavBase-Bcj8W7ZT.js">
+    <link rel="stylesheet" crossorigin href="/assets/bootstrap-CelqrQH8.css">
+    <link rel="stylesheet" crossorigin href="/assets/SettingsManager-DEmGI_Hm.css">
+    <link rel="stylesheet" crossorigin href="/assets/randomizer-DWLOXOGN.css">
+    <link rel="stylesheet" crossorigin href="/assets/animations-BDJDtPb1.css">
+    <link rel="stylesheet" crossorigin href="/assets/torus-Clj6cBxF.css">
+    <link rel="stylesheet" crossorigin href="/assets/Dashboard-CNyDlc49.css">
+  </head>
+
+  <body class="bg-dark">
+    <div
+      id="alert-container"
+      class="position-absolute w-100 p-4 text-center d-flex flex-column"
+    ></div>
+
+    <!-- Document -->
+    <div class="container-main">
+      <div
+        class="aside d-flex flex-column flex-shrink-0 text-white p-2 d-none d-md-flex"
+        style="
+          min-width: 240px;
+          width: 19%;
+          height: 100vh;
+          overflow-y: auto;
+          position: sticky;
+          top: 0;
+        "
+      >
+        <!-- Title -->
+        <div class="text-center">
+          <a href="../">
+            <img
+              src="/htmlassets/misclogo.png"
+              alt="Miscellaneous Logo"
+              class="img-fluid my-2 zoomup"
+              style="max-width: 75%; height: auto"
+            />
+          </a>
+        </div>
+
+        <hr />
+
+        <!-- Randomizer Options Section -->
+        <div class="p-2">
+          <h5 class="text-white mb-3">
+            <i class="bi bi-shuffle me-2"></i>Randomizer Options
+          </h5>
+
+          <div class="form-group mb-3">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="includeMapsToggle"
+                checked
+              />
+              <label
+                class="form-check-label text-light"
+                for="includeMapsToggle"
+              >
+                Include Maps
+              </label>
+            </div>
+          </div>
+
+          <!-- Map Preselect -->
+          <div class="form-group mb-3">
+            <label for="preselectMap" class="form-label text-info fw-bold">
+              <i class="bi bi-map me-2"></i>Pre-select Map
+            </label>
+            <select
+              id="preselectMap"
+              class="form-select form-select-sm bg-dark text-white"
+            >
+              <option value="random">Random Map</option>
+              <!-- js -->
+            </select>
+          </div>
+
+          <div class="form-group mb-3">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="includeGamemodesToggle"
+                checked
+              />
+              <label
+                class="form-check-label text-light"
+                for="includeGamemodesToggle"
+              >
+                Include Gamemodes
+              </label>
+            </div>
+          </div>
+
+          <!-- Gamemode preselect -->
+          <div class="form-group mb-3">
+            <label for="preselectMode" class="form-label text-info fw-bold">
+              <i class="bi bi-controller me-2"></i>Pre-select Gamemode
+            </label>
+            <select
+              id="preselectMode"
+              class="form-select form-select-sm bg-dark text-white"
+            >
+              <option value="random">Random Gamemode</option>
+              <!-- js -->
+            </select>
+          </div>
+
+          <div class="form-group mb-3">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="includeLoadoutsToggle"
+                checked
+              />
+              <label
+                class="form-check-label text-light"
+                for="includeLoadoutsToggle"
+              >
+                Include Loadouts
+              </label>
+            </div>
+          </div>
+
+          <!-- Tower Preselect -->
+          <div class="form-group mb-3">
+            <label
+              for="preselectTowerInput"
+              class="form-label text-info fw-bold"
+            >
+              <i class="bi bi-people me-2"></i>Pre-select Towers
+            </label>
+            <div class="input-group mb-2">
+              <input
+                type="text"
+                id="preselectTowerInput"
+                class="form-control form-control-sm bg-dark text-white"
+                placeholder="Type tower name..."
+                list="tower-datalist"
+              />
+              <datalist id="tower-datalist"></datalist>
+              <button
+                id="addPreselectTowerBtn"
+                class="btn btn-outline-secondary btn-sm"
+              >
+                Add
+              </button>
+            </div>
+            <div
+              id="preselectedTowersContainer"
+              class="d-flex flex-wrap gap-2 mb-2"
+            >
+              <!-- js -->
+            </div>
+            <small class="text-muted" id="preselectedTowerCount"
+              >0/5 towers selected</small
+            >
+          </div>
+
+          <hr class="my-3 border-secondary" />
+
+          <!-- Exclude Maps Section -->
+          <div class="form-group mb-3">
+            <label for="excludeMapInput" class="form-label text-danger fw-bold">
+              <i class="bi bi-x-circle me-2"></i>Exclude Maps
+            </label>
+            <div class="input-group mb-2">
+              <input
+                type="text"
+                id="excludeMapInput"
+                class="form-control form-control-sm bg-dark text-white"
+                placeholder="Type map name to exclude..."
+                list="map-datalist"
+              />
+              <datalist id="map-datalist"></datalist>
+              <button
+                id="addExcludeMapBtn"
+                class="btn btn-outline-danger btn-sm"
+              >
+                Exclude
+              </button>
+            </div>
+            <div id="excludedMapsContainer" class="d-flex flex-wrap gap-2 mb-2">
+              <!-- js -->
+            </div>
+            <small class="text-muted" id="excludedMapCount"
+              >0 maps excluded</small
+            >
+          </div>
+
+          <!-- Exclude Towers Section -->
+          <div class="form-group mb-3">
+            <label
+              for="excludeTowerInput"
+              class="form-label text-danger fw-bold"
+            >
+              <i class="bi bi-x-circle-fill me-2"></i>Exclude Towers
+            </label>
+            <div class="input-group mb-2">
+              <input
+                type="text"
+                id="excludeTowerInput"
+                class="form-control form-control-sm bg-dark text-white"
+                placeholder="Type tower name to exclude..."
+                list="tower-datalist"
+              />
+              <datalist id="tower-datalist"></datalist>
+              <button
+                id="addExcludeTowerBtn"
+                class="btn btn-outline-danger btn-sm"
+              >
+                Exclude
+              </button>
+            </div>
+            <div
+              id="excludedTowersContainer"
+              class="d-flex flex-wrap gap-2 mb-2"
+            >
+              <!-- js -->
+            </div>
+            <small class="text-muted" id="excludedTowerCount"
+              >0 towers excluded</small
+            >
+          </div>
+
+          <!-- Exclude Exclusive Towers -->
+          <div class="form-group mb-3">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="excludeExclusiveTowersToggle"
+              />
+              <label
+                class="form-check-label text-light"
+                for="excludeExclusiveTowersToggle"
+              >
+                Exclude Exclusive Towers
+              </label>
+            </div>
+          </div>
+
+          <!-- Exclude Golden Towers -->
+          <div class="form-group mb-3">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="excludeGoldenTowersToggle"
+              />
+              <label
+                class="form-check-label text-light"
+                for="excludeGoldenTowersToggle"
+              >
+                Exclude Golden Towers
+              </label>
+            </div>
+          </div>
+
+          <!-- Exclude Removed Towers -->
+          <div class="form-group mb-3">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="excludeRemovedTowersToggle"
+                checked
+              />
+              <label
+                class="form-check-label text-light"
+                for="excludeRemovedTowersToggle"
+              >
+                Exclude Removed Towers
+              </label>
+            </div>
+          </div>
+
+          <hr class="my-3 border-secondary" />
+
+          <div class="d-grid gap-2">
+            <button id="clear-filters-btn" class="btn btn-outline-warning">
+              <i class="bi bi-funnel-fill me-2"></i>Clear All Filters
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <main role="main" class="d-flex flex-column">
+        <!-- Body Header -->
+        <header class="p-3">
+          <div
+            class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center"
+            id="topnavheader"
+          >
+            <!-- Title -->
+            <h1 class="h2 text-white unisans" style="text-wrap: balance">
+              TDS Randomizer
+            </h1>
+
+            <div
+              class="btn-toolbar mb-2 justify-content-center"
+              style="gap: 0.25rem; margin: 0 auto"
+            >
+              <!-- These buttons are hidden on mobile -->
+              <div id="button-about" class="btn-group d-none d-md-block me-2">
+                <button
+                  title="Information about this website."
+                  class="btn btn-sm btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#about-modal"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  About
+                </button>
+              </div>
+
+              <div id="button-settings" class="btn-group d-none d-md-block">
+                <button
+                  title="The totally real settings."
+                  class="btn btn-sm btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#settings-modal"
+                  data-bs-tooltip="true"
+                  data-bs-placement="bottom"
+                >
+                  Settings
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Randomizer Results -->
+        <div class="container-fluid p-3">
+          <div class="row">
+            <div class="col-lg-12 mb-4">
+              <h2 class="text-white unisans mb-3 text-center">
+                <i
+                  class="bi bi-shuffle me-2"
+                  style="width: 24px; height: 24px"
+                ></i>
+                Your Challenge
+              </h2>
+              <div
+                class="bg-dark border border-secondary rounded p-3"
+                id="randomized-results-container"
+              >
+                <p class="text-muted text-center mb-0">
+                  "Randomize!" to generate your hopefully fun challenge!
+                </p>
+              </div>
+            </div>
+
+            <!-- Randomize and Copy Buttons -->
+            <div
+              class="col-lg-12 mb-4 d-grid gap-2 d-md-flex justify-content-md-center"
+            >
+              <button id="randomize-btn" class="btn btn-outline-primary">
+                <i class="bi bi-shuffle me-2"></i>Randomize!
+              </button>
+              <button id="copy-result-btn" class="btn btn-outline-secondary">
+                <i class="bi bi-clipboard me-2"></i>Copy Result URL
+              </button>
+            </div>
+
+            <!-- Available Maps Gallery -->
+            <div class="col-lg-12 mb-4">
+              <h3 class="text-white unisans mb-3 text-center">
+                <i class="bi bi-collection me-2"></i>Available Maps
+              </h3>
+              <div
+                class="bg-dark border border-secondary rounded p-3"
+                style="max-height: 400px; overflow-y: auto"
+              >
+                <div class="row g-2" id="map-gallery">
+                  <!-- js -->
+                  <p class="text-muted text-center mb-0">Loading maps...</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Available Towers Gallery -->
+            <div class="col-lg-12 mb-4">
+              <h3 class="text-white unisans mb-3 text-center">
+                <i class="bi bi-collection-fill me-2"></i>Available Towers
+              </h3>
+              <div
+                class="bg-dark border border-secondary rounded p-3"
+                style="max-height: 400px; overflow-y: auto"
+              >
+                <div class="row g-2" id="tower-gallery">
+                  <!-- js -->
+                  <p class="text-muted text-center mb-0">Loading towers...</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- SEO farm -->
+            <div class="container-fluid p-3 mb-4">
+              <div class="bg-dark border border-secondary rounded p-3">
+                <p class="text-muted text-center mb-2">
+                  The TDS Randomizer is an unofficial tool designed to generate
+                  exciting and unique challenges for your Tower Defense
+                  Simulator gameplay on Roblox. Whether you're looking to spice
+                  up your runs or discover new strategies, this tool provides
+                  random suggestions for:
+                </p>
+                <ul class="list-unstyled text-center text-muted mb-3">
+                  <li>
+                    <i class="bi bi-map me-2"></i>Maps: Get a random map to test
+                    your skills on.
+                  </li>
+                  <li>
+                    <i class="bi bi-controller me-2"></i>Gamemodes: Play the
+                    gamemodes you were never planning to play.
+                  </li>
+                  <li>
+                    <i class="bi bi-people me-2"></i>Loadouts: Receive a unique
+                    set of 5 towers for your next defense.
+                  </li>
+                </ul>
+                <p class="text-muted text-center mb-0">
+                  Simply select your randomization preferences using the
+                  controls on the left (or via the "Controls" button on mobile),
+                  then click "Randomize!" to generate your next challenge! You
+                  can also share your results using the "Copy Result URL"
+                  button.
+                </p>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center mt-3">
+              <p class="text-muted px-3">
+                This tool is an unofficial creation and is not an official
+                product of Paradoxum Games
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Mobile Nav Bar -->
+    <div class="mobile-nav d-md-none">
+      <a href="#" class="mobile-nav-btn" data-mobile-section="controls">
+        <i class="bi bi-sliders"></i>
+        <span>Controls</span>
+      </a>
+      <a href="#" class="mobile-nav-btn" data-mobile-section="about">
+        <i class="bi bi-info-circle-fill"></i>
+        <span>About</span>
+      </a>
+      <a href="#" class="mobile-nav-btn" data-mobile-section="settings">
+        <i class="bi bi-gear-fill"></i>
+        <span>Settings</span>
+      </a>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-content"></div>
+    </div>
+
+    <!-- About Modal (js) -->
+    <!-- Settings Modal -->
+    <div
+      class="modal fade"
+      id="settings-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="settings-modal-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <div class="d-flex align-items-center">
+              <div class="toru-icon-container me-3">
+                <i class="bi bi-gear-fill fs-3"></i>
+              </div>
+              <div>
+                <h5 class="modal-title unisans mb-0" id="settings-modal-label">
+                  Settings
+                </h5>
+                <p class="text-muted small mb-0">Totally available to change</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="alert alert-info mb-0 text-center">
+              Apologies, but settings for appearance currently can only be
+              changed in the <a href="../../">Statistics Editor</a>.<br />
+              Please head over there to adjust your preferences, sorry again!
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="w-100 btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

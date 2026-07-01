@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/htmlassets/favicon-96x96.png"
+      sizes="96x96"
+    />
+
+    <title>Importing Data...</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" crossorigin href="/assets/torus-Clj6cBxF.css">
+  </head>
+  <body
+    class="bg-dark text-light d-flex flex-column align-items-center justify-content-center vh-100"
+  >
+    <div class="text-center">
+      <img
+        src="../htmlassets/landinglogo.webp"
+        alt="TDS Statistics Editor Logo"
+        class="img-fluid mb-4"
+        style="width: 500px; height: auto; object-fit: cover"
+      />
+      <h1 class="unisans">Importing Your Data...</h1>
+      <p class="text-muted">Please wait while we process your data orz</p>
+    </div>
+
+    <script>
+      console.log("Ello there...");
+      const hash = location.hash;
+      console.log("Hash:", hash);
+
+      if (hash.startsWith("#data=")) {
+        try {
+          const json = decodeURIComponent(hash.substring(6));
+          console.log("Decoded JSON:", json);
+
+          const data = JSON.parse(json);
+          console.log("Parsed Data:", data);
+
+          if (Object.keys(data).length === 0) {
+            alert(
+              "⚠️ The data is empty. Your data might have been lost (sorry), that or there was no data to begin with.",
+            );
+          } else {
+            const hasExistingData = Object.keys(localStorage).length > 0;
+
+            const shouldImport =
+              !hasExistingData ||
+              confirm(
+                "⚠️ Importing your old data will replace your current data on the new site. Do you wish to continue?",
+              );
+
+            if (shouldImport) {
+              for (const [key, value] of Object.entries(data)) {
+                console.log(`Storing: ${key} = ${value}`);
+                localStorage.setItem(key, value);
+              }
+              alert("✅ Your data has been successfully imported!");
+            } else {
+              alert(
+                "🥶 Import canceled. Your current data has been preserved.",
+              );
+            }
+          }
+        } catch (e) {
+          alert("❌ Failed to import data. Please try again.");
+          console.error("Error during import:", e);
+        } finally {
+          location.hash = "";
+          setTimeout(() => (location.href = "./"), 2000);
+        }
+      } else {
+        alert("⚠️ No data found to import.");
+        setTimeout(() => (location.href = "./"), 2000);
+      }
+    </script>
+  </body>
+</html>

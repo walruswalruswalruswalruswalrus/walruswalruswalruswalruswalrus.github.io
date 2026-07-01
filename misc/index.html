@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script>
+      (function () {
+        const mode = localStorage.getItem("themeMode") || "auto";
+        const theme = localStorage.getItem("theme") || "dark";
+        const isLight =
+          mode === "auto"
+            ? !matchMedia("(prefers-color-scheme: dark)").matches
+            : theme === "light";
+
+        if (isLight) {
+          document.addEventListener("DOMContentLoaded", () => {
+            document.body?.classList.add("light-mode");
+          });
+        }
+      })();
+    </script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="Miscellaneous tools and utilities for Tower Defense Simulator"
+    />
+
+    <meta property="og:title" content="TDS Miscellaneous Tools" />
+    <meta
+      property="og:description"
+      content="Additional tools and utilities for Tower Defense Simulator players and wiki contributors!"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tds-editor.com/misc/" />
+    <meta
+      property="og:image"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:site"
+      content="Tower Defense Simulator Miscellaneous Tools"
+    />
+    <meta name="twitter:title" content="TDS Miscellaneous Tools" />
+    <meta
+      name="twitter:description"
+      content="Additional tools and utilities for Tower Defense Simulator players and wiki contributors!"
+    />
+    <meta
+      name="twitter:image:src"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta name="theme-color" content="#035D7C" />
+    <meta name="apple-mobile-web-app-title" content="TDS:Misc" />
+    <meta property="og:site_name" content="TDS Miscellaneous Tools" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/htmlassets/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/htmlassets/favicon.svg" />
+    <link rel="shortcut icon" href="/htmlassets/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/htmlassets/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/htmlassets/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-D48H2PL948"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-D48H2PL948");
+    </script>
+
+    <link rel="canonical" href="https://tds-editor.com/misc/" />
+    <title>TDS Miscellaneous Tools</title>
+    <script type="module" crossorigin src="/assets/misc-CPBmkfud.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/bootstrap.esm-Bs5VhlPx.js">
+    <link rel="modulepreload" crossorigin href="/assets/SettingsManager-DuS8Vqte.js">
+    <link rel="stylesheet" crossorigin href="/assets/bootstrap-CelqrQH8.css">
+    <link rel="stylesheet" crossorigin href="/assets/SettingsManager-DEmGI_Hm.css">
+    <link rel="stylesheet" crossorigin href="/assets/misc-BPVQ-IXZ.css">
+    <link rel="stylesheet" crossorigin href="/assets/animations-BDJDtPb1.css">
+    <link rel="stylesheet" crossorigin href="/assets/torus-Clj6cBxF.css">
+    <link rel="stylesheet" crossorigin href="/assets/Dashboard-CNyDlc49.css">
+  </head>
+
+  <body class="bg-dark">
+    <!-- Main Content -->
+    <main role="main">
+      <!-- Content -->
+      <div class="container-fluid px-4 py-3">
+        <!-- Hero Section -->
+        <div class="text-center mb-5">
+          <img
+            src="/htmlassets/misclogo.png"
+            alt="TDS Miscellaneous Tools Logo"
+            class="img-fluid landingimg"
+          />
+          <h1 class="text-white mt-3 unisans">Miscellaneous Stuff</h1>
+          <p class="text-light">
+            Additional utilities and tools to for you to mess around with!
+          </p>
+        </div>
+
+        <!-- Miscellaneous Tools Section -->
+        <div class="row mb-5 justify-content-center">
+          <div class="col-12 text-center mb-4">
+            <h2 class="text-white">
+              <i class="bi bi-tools me-2"></i>Miscellaneous Tools
+            </h2>
+          </div>
+
+          <!-- Skills Planner -->
+          <div class="col-md-6 col-lg-4 mb-4 d-flex">
+            <div
+              class="card bg-dark text-white border-secondary w-100 tool-card"
+            >
+              <div class="card-body text-center p-4">
+                <img
+                  src="https://pbs.twimg.com/media/Fba0rk0XEAEn8Ix.jpg"
+                  alt="Skills Planner"
+                />
+                <h5 class="card-title">Skills Planner</h5>
+                <p class="card-text">
+                  Plan and optimize your skill builds before spending coins
+                  in-game.
+                </p>
+                <a href="./skills/" class="btn btn-primary">
+                  <i class="bi bi-arrow-right me-2"></i>Open Planner
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Randomizer -->
+          <div class="col-md-6 col-lg-4 mb-4 d-flex">
+            <div
+              class="card bg-dark text-white border-secondary w-100 tool-card"
+            >
+              <div class="card-body text-center p-4">
+                <img
+                  src="https://pbs.twimg.com/media/Fba0rk0XEAEn8Ix.jpg"
+                  alt="Randomizer"
+                />
+                <h5 class="card-title">Randomizer</h5>
+                <p class="card-text">
+                  Randomize game maps, loadouts, and gamemodes.
+                </p>
+                <a href="./randomizer/" class="btn btn-primary">
+                  <i class="bi bi-arrow-right me-2"></i>Open Randomizer
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Placeholder for future tools -->
+          <div class="col-md-6 col-lg-4 mb-4 d-flex">
+            <div
+              class="card bg-dark text-white border-secondary w-100 tool-card opacity-50"
+            >
+              <div class="card-body text-center p-4">
+                <img
+                  src="https://static.wikia.nocookie.net/tower-defense-sim/images/f/f7/Place.png"
+                  alt="Placeholder"
+                />
+                <h5 class="card-title text-muted">Coming Soon</h5>
+                <p class="card-text text-muted">
+                  More tools are in development. Stay tuned!
+                </p>
+                <button class="btn btn-secondary" disabled>
+                  <i class="bi bi-clock me-2"></i>Coming Soon
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Tools Section -->
+        <div class="row mb-5 justify-content-center">
+          <div class="col-12 text-center mb-4">
+            <h2 class="text-white">
+              <i class="bi bi-gear-fill me-2"></i>Main Tools
+            </h2>
+          </div>
+
+          <!-- Statistics Editor -->
+          <div class="col-md-6 col-lg-3 mb-4 d-flex">
+            <div
+              class="card bg-dark text-white border-secondary w-100 tool-card"
+            >
+              <div class="card-body text-center p-4">
+                <img
+                  src="/htmlassets/landinglogo.webp"
+                  alt="Statistics Editor"
+                />
+                <h5 class="card-title">Statistics Editor</h5>
+                <p class="card-text">
+                  Create and edit tower statistics for TDS.
+                </p>
+                <a href="../" class="btn btn-primary">
+                  <i class="bi bi-arrow-right me-2"></i>Open Editor
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- AE Companion -->
+          <div class="col-md-6 col-lg-3 mb-4 d-flex">
+            <div
+              class="card bg-dark text-white border-secondary w-100 tool-card"
+            >
+              <div class="card-body text-center p-4">
+                <img
+                  src="https://ae.tds-editor.com/wikilogo.png"
+                  alt="ALTER EGO Companion"
+                />
+                <h5 class="card-title">ALTER EGO Companion</h5>
+                <p class="card-text">
+                  The companion site for the ALTER EGO wiki, providing
+                  additional tools and resources.
+                </p>
+                <a href="https://ae.tds-editor.com/" class="btn btn-primary">
+                  <i class="bi bi-arrow-right me-2"></i>Open Companion
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Database -->
+          <div class="col-md-6 col-lg-3 mb-4 d-flex">
+            <div
+              class="card bg-dark text-white border-secondary w-100 tool-card"
+            >
+              <div class="card-body text-center p-4">
+                <img
+                  src="/htmlassets/databaselogo.png"
+                  alt="Database Browser"
+                />
+                <h5 class="card-title">Database Browser</h5>
+                <p class="card-text">
+                  Browse community-created tower concepts.
+                </p>
+                <a href="../db/" class="btn btn-primary">
+                  <i class="bi bi-arrow-right me-2"></i>Browse Database
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tier List Maker -->
+          <div class="col-md-6 col-lg-3 mb-4 d-flex">
+            <div
+              class="card bg-dark text-white border-secondary w-100 tool-card"
+            >
+              <div class="card-body text-center p-4">
+                <img
+                  src="/htmlassets/tdsrankerlogo.png"
+                  alt="Tier List Maker"
+                />
+                <h5 class="card-title">Tier List Maker</h5>
+                <p class="card-text">Create and share TDS tower tier lists.</p>
+                <a href="../ranker/" class="btn btn-primary">
+                  <i class="bi bi-arrow-right me-2"></i>Create Tier List
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resources -->
+          <div class="col-md-6 col-lg-3 mb-4 d-flex">
+            <div
+              class="card bg-dark text-white border-secondary w-100 tool-card"
+            >
+              <div class="card-body text-center p-4">
+                <img
+                  src="https://resources.tds-editor.com/logo.png"
+                  alt="Skills Planner"
+                />
+                <h5 class="card-title">Game Resources</h5>
+                <p class="card-text">Access Roblox page assets and data.</p>
+                <a
+                  href="https://resources.tds-editor.com/"
+                  target="_blank"
+                  class="btn btn-primary"
+                >
+                  <i class="bi bi-box-arrow-up-right me-2"></i>View Resources
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-5">
+          <p class="text-muted">
+            This tool is an unofficial creation and is not an official product
+            of Paradoxum Games
+          </p>
+          <div class="mt-3">
+            <a
+              href="https://discord.gg/fBgQzudY3h"
+              target="_blank"
+              class="text-decoration-none me-3"
+            >
+              <i class="bi bi-discord text-white me-2"></i>Wiki Discord
+            </a>
+            <a
+              href="https://github.com/Paradoxum-Wikis/TDS-Stats-Editor"
+              target="_blank"
+              class="text-decoration-none me-3"
+            >
+              <i class="bi bi-github text-light me-2"></i>GitHub
+            </a>
+            <a
+              href="https://tds.fandom.com/wiki/"
+              target="_blank"
+              class="text-decoration-none"
+            >
+              <i class="bi bi-book text-white me-2"></i>TDS Wiki
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

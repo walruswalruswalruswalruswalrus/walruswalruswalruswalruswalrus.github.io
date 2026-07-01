@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <script>
+      (function () {
+        const mode = localStorage.getItem("themeMode") || "auto";
+        const theme = localStorage.getItem("theme") || "dark";
+        const isLight =
+          mode === "auto"
+            ? !matchMedia("(prefers-color-scheme: dark)").matches
+            : theme === "light";
+
+        if (isLight) {
+          document.addEventListener("DOMContentLoaded", () => {
+            document.body?.classList.add("light-mode");
+          });
+        }
+      })();
+    </script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="Create tier lists for the Roblox game Tower Defense Simulator"
+    />
+
+    <meta property="og:title" content="Adachi's TDS Ranker" />
+    <meta
+      property="og:description"
+      content="Create and share tier lists for the Roblox game Tower Defense Simulator!"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tds-editor.com/ranker" />
+    <meta
+      property="og:image"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="Tower Defense Simulator Tower Ranker" />
+    <meta name="twitter:title" content="Adachi's TDS Ranker" />
+    <meta
+      name="twitter:description"
+      content="Create and share tier lists for the Roblox game Tower Defense Simulator!"
+    />
+    <meta
+      name="twitter:image:src"
+      content="https://tds-editor.com/htmlassets/thumbnail.png?v=3"
+    />
+    <meta name="theme-color" content="#035D7C" />
+    <meta name="apple-mobile-web-app-title" content="TDS:TLM" />
+    <meta property="og:site_name" content="Adachi's TDS Ranker" />
+
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/htmlassets/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/htmlassets/favicon.svg" />
+    <link rel="shortcut icon" href="/htmlassets/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/htmlassets/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/htmlassets/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-D48H2PL948"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-D48H2PL948");
+    </script>
+
+    <title>Adachi's TDS Ranker</title>
+    <script type="module" crossorigin src="/assets/ranker-B59fyAQq.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/bootstrap.esm-Bs5VhlPx.js">
+    <link rel="modulepreload" crossorigin href="/assets/Slides-WEFy3Ak0.js">
+    <link rel="modulepreload" crossorigin href="/assets/SettingsManager-DuS8Vqte.js">
+    <link rel="modulepreload" crossorigin href="/assets/index-CYh-k0co.js">
+    <link rel="modulepreload" crossorigin href="/assets/ImageLoader-GxK_6xkw.js">
+    <link rel="modulepreload" crossorigin href="/assets/MobileNavBase-Bcj8W7ZT.js">
+    <link rel="modulepreload" crossorigin href="/assets/UpdateLog-BrM8ZDec.js">
+    <link rel="modulepreload" crossorigin href="/assets/AboutModal-dGgKW25g.js">
+    <link rel="stylesheet" crossorigin href="/assets/bootstrap-CelqrQH8.css">
+    <link rel="stylesheet" crossorigin href="/assets/Slides-CSE0Y0Ci.css">
+    <link rel="stylesheet" crossorigin href="/assets/SettingsManager-DEmGI_Hm.css">
+    <link rel="stylesheet" crossorigin href="/assets/ranker-DSZltMIv.css">
+    <link rel="stylesheet" crossorigin href="/assets/animations-BDJDtPb1.css">
+    <link rel="stylesheet" crossorigin href="/assets/torus-Clj6cBxF.css">
+    <link rel="stylesheet" crossorigin href="/assets/Dashboard-CNyDlc49.css">
+  </head>
+
+  <body class="bg-dark">
+    <div
+      id="alert-container"
+      class="position-absolute w-100 p-4 text-center d-flex flex-column"
+    ></div>
+
+    <div class="container-main">
+      <!-- Side Panel -->
+      <div
+        class="aside d-flex flex-column flex-shrink-0 text-white p-2"
+        style="min-width: 240px; width: 19%; height: 100vh; overflow-y: auto"
+      >
+        <!-- Title -->
+        <div class="logo-slideshow">
+          <div class="slide-nav slide-prev">&#10094;</div>
+
+          <div class="slides-container">
+            <div class="slide active">
+              <a href="https://tds.fandom.com/wiki/">
+                <br /><img
+                  class="zoomup"
+                  src="/htmlassets/wikilogo.png"
+                  style="width: 200px"
+                  alt="Tower Defense Simulator Wiki"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+            <div class="slide">
+              <a href="https://ae.tds-editor.com/">
+                <br /><img
+                  class="zoomup"
+                  src="https://ae.tds-editor.com/wikilogo.png"
+                  style="width: 200px; height: 62.1167px; object-fit: contain"
+                  alt="ALTER EGO Wiki"
+                />
+              </a>
+            </div>
+            <div class="slide">
+              <a href="../">
+                <br /><img
+                  class="zoomup"
+                  src="/htmlassets/landinglogo.webp"
+                  style="width: 200px; height: 62.1167px; object-fit: cover"
+                  alt="TDS Statistics Editor"
+                />
+              </a>
+            </div>
+            <div class="slide">
+              <a href="../db/">
+                <br /><img
+                  class="zoomup"
+                  src="/htmlassets/databaselogo.png"
+                  style="width: 200px"
+                  alt="Tower Defense Simulator Database"
+                />
+              </a>
+            </div>
+            <div class="slide">
+              <a href="https://resources.tds-editor.com/">
+                <br /><img
+                  class="zoomup"
+                  src="https://resources.tds-editor.com/logo.png"
+                  style="width: 200px"
+                  alt="Game Page Resources"
+                />
+              </a>
+            </div>
+            <div class="slide">
+              <a href="../misc/">
+                <br /><img
+                  class="zoomup"
+                  src="/htmlassets/misclogo.png"
+                  style="width: 200px"
+                  alt="Miscellaneous Tools"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div class="slide-nav slide-next">&#10095;</div>
+        </div>
+        <hr />
+
+        <!-- Controls -->
+        <div id="tier-list-controls" class="p-2">
+          <h5 class="text-white mb-3">Controls</h5>
+
+          <div class="mb-3">
+            <label for="tier-select" class="form-label text-white"
+              >Select Tier</label
+            >
+            <select
+              id="tier-select"
+              class="form-select bg-dark text-white border-secondary"
+            >
+              <option value="S">S Tier</option>
+              <option value="A">A Tier</option>
+              <option value="B">B Tier</option>
+              <option value="C">C Tier</option>
+              <option value="D">D Tier</option>
+              <option value="E">E Tier</option>
+              <option value="F">F Tier</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="tower-input" class="form-label text-white"
+              >Enter Tower Names</label
+            >
+            <div class="input-group mb-2">
+              <input
+                type="text"
+                id="tower-input"
+                class="form-control bg-dark text-white border-secondary"
+                placeholder="Tower name..."
+              />
+              <button id="add-tower-btn" class="btn btn-outline-primary">
+                Add
+              </button>
+            </div>
+            <small class="text-muted"
+              >Separate multiple towers with commas.<br />You can also use
+              shorthands for tower names.</small
+            >
+          </div>
+
+          <div class="d-grid gap-2">
+            <button id="reset-tierlist" class="btn btn-outline-danger">
+              <i class="bi bi-trash me-2"></i>Clear Tier List
+            </button>
+            <button id="export-image" class="btn btn-outline-secondary">
+              <i class="bi bi-download me-2"></i>Export Image
+            </button>
+            <button id="copy-tierlist" class="btn btn-outline-success">
+              <i class="bi bi-share me-2"></i>Copy Tier List Wikitext
+            </button>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- Tower Categories Filter -->
+        <div id="tower-filters" class="p-2">
+          <h5 class="text-white mb-3">Filter by Category</h5>
+          <div class="form-check mb-2">
+            <input
+              class="form-check-input filter-category"
+              type="checkbox"
+              id="show-starter"
+              value="starter"
+              checked
+            />
+            <label class="form-check-label text-light" for="show-starter">
+              Starter Towers
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input
+              class="form-check-input filter-category"
+              type="checkbox"
+              id="show-intermediate"
+              value="intermediate"
+              checked
+            />
+            <label class="form-check-label text-light" for="show-intermediate">
+              Intermediate Towers
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input
+              class="form-check-input filter-category"
+              type="checkbox"
+              id="show-advanced"
+              value="advanced"
+              checked
+            />
+            <label class="form-check-label text-light" for="show-advanced">
+              Advanced Towers
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input
+              class="form-check-input filter-category"
+              type="checkbox"
+              id="show-golden"
+              value="golden"
+              checked
+            />
+            <label class="form-check-label text-light" for="show-golden">
+              Golden Variants
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input
+              class="form-check-input filter-category"
+              type="checkbox"
+              id="show-hardcore"
+              value="hardcore"
+              checked
+            />
+            <label class="form-check-label text-light" for="show-hardcore">
+              Hardcore Towers
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input
+              class="form-check-input filter-category"
+              type="checkbox"
+              id="show-exclusive"
+              value="exclusive"
+              checked
+            />
+            <label class="form-check-label text-light" for="show-exclusive">
+              Exclusive Towers
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input
+              class="form-check-input filter-category"
+              type="checkbox"
+              id="show-TEST"
+              value="TEST"
+            />
+            <label class="form-check-label text-light" for="show-TEST">
+              Placeholders
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <main role="main" class="d-flex flex-column">
+        <!-- Body Header -->
+        <header class="p-3 stickme">
+          <div
+            class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center"
+            id="topnavheader"
+          >
+            <!-- Title -->
+            <h1 class="h2 text-white unisans" style="text-wrap: balance">
+              Adachi's Tier List Maker
+            </h1>
+
+            <div
+              class="btn-toolbar mb-2 justify-content-center"
+              style="gap: 0.25rem; margin: 0 auto"
+            >
+              <!-- Search -->
+              <form
+                id="Tower-Search"
+                class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+                role="search"
+              >
+                <input
+                  type="search"
+                  class="form-control form-control-dark text-bg-dark"
+                  placeholder="Search Gallery"
+                  aria-label="Search"
+                />
+              </form>
+
+              <!-- These buttons are hidden on mobile -->
+              <div id="button-discord" class="btn-group d-none d-md-block me-2">
+                <button
+                  title="Information about this website."
+                  class="btn btn-sm btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#discord-modal"
+                >
+                  About
+                </button>
+              </div>
+
+              <div id="button-settings" class="btn-group d-none d-md-block">
+                <button
+                  title="The totally real settings."
+                  class="btn btn-sm btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#settings-modal"
+                >
+                  Settings
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Tier List Container -->
+        <div class="d-flex flex-column p-3">
+          <!-- Tier List Preview -->
+          <div id="tierlist-preview" class="mb-3">
+            <div class="tier-list">
+              <div class="tier-row s-tier">
+                <div class="tier-label">S</div>
+                <div class="tier-content" data-tier="S">
+                  <!-- towers will be added here dynamically -->
+                </div>
+              </div>
+              <div class="tier-row a-tier">
+                <div class="tier-label">A</div>
+                <div class="tier-content" data-tier="A">
+                  <!-- ditto -->
+                </div>
+              </div>
+              <div class="tier-row b-tier">
+                <div class="tier-label">B</div>
+                <div class="tier-content" data-tier="B">
+                  <!-- ditto -->
+                </div>
+              </div>
+              <div class="tier-row c-tier">
+                <div class="tier-label">C</div>
+                <div class="tier-content" data-tier="C">
+                  <!-- ditto -->
+                </div>
+              </div>
+              <div class="tier-row d-tier">
+                <div class="tier-label">D</div>
+                <div class="tier-content" data-tier="D">
+                  <!-- ditto -->
+                </div>
+              </div>
+              <div class="tier-row e-tier">
+                <div class="tier-label">E</div>
+                <div class="tier-content" data-tier="E">
+                  <!-- ditto -->
+                </div>
+              </div>
+              <div class="tier-row f-tier">
+                <div class="tier-label">F</div>
+                <div class="tier-content" data-tier="F">
+                  <!-- ditto -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery -->
+          <div class="available-towers mb-3">
+            <h4 class="text-white mb-3">Gallery</h4>
+            <div class="bg-darker p-3 border border-secondary border25">
+              <div
+                class="d-flex flex-wrap justify-content-center"
+                id="tower-gallery"
+              >
+                <!-- js js js js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Shorthands list -->
+          <div class="mb-3">
+            <h4 class="text-white mb-3">Tower Shorthands</h4>
+            <div class="bg-darker p-3 border border-secondary border25">
+              <div
+                id="tower-shorthands-list"
+                class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2"
+              >
+                <!-- JS will populate this -->
+              </div>
+              <small class="text-muted text-center d-block"
+                >You can use these shorthands when adding towers (e.g., "tg" for
+                Toxic Gunner).</small
+              >
+            </div>
+          </div>
+
+          <!-- Import Tierlist -->
+          <div class="mb-3">
+            <h4 class="text-white mb-3">Import Tier List</h4>
+            <div class="bg-darker p-3 border border-secondary border25">
+              <div class="mb-3">
+                <label for="import-code" class="form-label text-white"
+                  >Paste Tier List Code</label
+                >
+                <textarea
+                  id="import-code"
+                  class="form-control bg-dark text-white border-secondary"
+                  rows="3"
+                  placeholder="{{Tierlist | S = ... | A = ... | B = ...}}"
+                ></textarea>
+              </div>
+              <button id="import-btn" class="btn btn-outline-primary">
+                Import
+              </button>
+            </div>
+          </div>
+
+          <!-- seo boost section lmaooo -->
+          <div class="mb-3">
+            <h4 class="text-white mb-3">What is Adachi's TDS Ranker?</h4>
+            <div class="bg-darker p-3 border border-secondary border25">
+              <p class="text-white">
+                Adachi's TDS Ranker, also known as the TDS Tier List Maker, is
+                the best free tool for creating, sharing, and exporting custom
+                tower tier lists for the Roblox game Tower Defense Simulator.
+                Easily rank all towers, filter by category, and export your tier
+                list as an image or wiki code for the TDS Wiki. Whether you're a
+                new player or a TDS veteran, our tier list editor helps you
+                organize and showcase your favorite towers.
+              </p>
+              <p class="text-white">
+                This tier list creator supports all current towers, including
+                starter, intermediate, advanced, golden, hardcore, and exclusive
+                towers. Use the gallery to browse every tower, put them into
+                your preferred tier, and share your rankings with friends or the
+                TDS community. Stay up to date with the latest meta and balance
+                changes by revisiting and updating your tier lists anytime.
+              </p>
+              <p class="text-white">
+                Looking for the most accurate and up-to-date TDS tier list? Our
+                tool is trusted by thousands of players and is regularly updated
+                with new towers and features. Bookmark this page and join the
+                Tower Defense Simulator Wiki community for more guides,
+                strategies, and resources!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center w-100">
+          <p class="text-muted">
+            This tool is an unofficial creation and is not an official product
+            of Paradoxum Games
+          </p>
+        </div>
+      </main>
+    </div>
+
+    <!-- Mobile Navigation Bar -->
+    <div class="mobile-nav d-md-none">
+      <a href="#" class="mobile-nav-btn" data-mobile-section="controls">
+        <i class="bi bi-sliders"></i>
+        <span>Controls</span>
+      </a>
+      <a href="#" class="mobile-nav-btn" data-mobile-section="filters">
+        <i class="bi bi-funnel-fill"></i>
+        <span>Filters</span>
+      </a>
+      <a href="#" class="mobile-nav-btn" data-mobile-section="navigation">
+        <i class="bi bi-compass-fill"></i>
+        <span>Navigation</span>
+      </a>
+      <a href="#" class="mobile-nav-btn" data-mobile-section="about">
+        <i class="bi bi-info-circle-fill"></i>
+        <span>About</span>
+      </a>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-content"></div>
+    </div>
+
+    <!-- About Modal (js) -->
+    <!-- Settings Modal -->
+    <div
+      class="modal fade"
+      id="settings-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="settings-modal-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <div class="d-flex align-items-center">
+              <div class="toru-icon-container me-3">
+                <i class="bi bi-gear-fill fs-3"></i>
+              </div>
+              <div>
+                <h5 class="modal-title unisans mb-0" id="settings-modal-label">
+                  Settings
+                </h5>
+                <p class="text-muted small mb-0">Totally available to change</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="alert alert-info mb-0 text-center">
+              Apologies, but settings for appearance currently can only be
+              changed in the <a href="../">Statistics Editor</a>.<br />
+              Please head over there to adjust your preferences, sorry again!
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="w-100 btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
