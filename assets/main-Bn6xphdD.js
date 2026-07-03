@@ -12933,7 +12933,7 @@ class TA {
         Exclude: [],
         Value: (A) => {
           const g = A.Damage / A.Cooldown;
-          return g === 0 ? NaN : g;
+          return g;
         },
       },
       Thorns: {
@@ -13230,7 +13230,7 @@ class TA {
       Default: {
         Requires: ["ExplosionDamage", "Cooldown"],
         Value: (A) =>
-          A.Cooldown === 0 ? NaN : A.ExplosionDamage / A.TimeBetweenMissiles,
+          A.Cooldown === 0 ? 0 : A.ExplosionDamage / A.TimeBetweenMissiles,
       },
       Elfs: {
         For: ["Gift Bomber", "Ripped Elf"],
