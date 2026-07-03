@@ -542,36 +542,36 @@ const cA = {
       TickRate: 0.1,
     },
     "Pistol Goon": {
-      Health: 15,
+      Health: 30,
       Damage: 3,
-      Range: 20,
+      Range: 17,
       Detections: { Hidden: !0, Flying: !0, Lead: !1 },
-      Cooldown: 1,
-      Lifetime: 150,
+      Cooldown: 0.6,
+      Lifetime: 200,
       Limit: 10,
-      Spawnrate: 50,
+      Spawnrate: 45,
       Speed: 4,
     },
     "Tommy Goon 1": {
-      Health: 100,
-      Damage: 4,
-      Range: 17,
+      Health: 175,
+      Damage: 5,
+      Range: 18.5,
       Detections: { Hidden: !0, Flying: !1, Lead: !1 },
       Cooldown: 0.2,
-      Lifetime: 200,
-      Limit: 4,
-      Spawnrate: 50,
+      Lifetime: 150,
+      Limit: 3,
+      Spawnrate: 32.5,
       Speed: 4,
     },
     "Tommy Goon 2": {
-      Health: 175,
-      Damage: 10,
-      Range: 18,
+      Health: 275,
+      Damage: 5,
+      Range: 20,
       Detections: { Hidden: !0, Flying: !1, Lead: !1 },
       Cooldown: 0.12,
-      Lifetime: 200,
-      Limit: 4,
-      Spawnrate: 50,
+      Lifetime: 150,
+      Limit: 3,
+      Spawnrate: 32.5,
       Speed: 4,
     },
     "Pistol Goon ": {
@@ -608,36 +608,36 @@ const cA = {
       Speed: 4,
     },
     "Golden Pistol Goon": {
-      Health: 25,
-      Damage: 3,
-      Range: 20,
+      Health: 40,
+      Damage: 4,
+      Range: 17,
       Detections: { Hidden: !0, Flying: !0, Lead: !1 },
       Cooldown: 0.6,
-      Lifetime: 150,
+      Lifetime: 200,
       Limit: 10,
-      Spawnrate: 50,
+      Spawnrate: 45,
       Speed: 4,
     },
     "Golden Tommy Goon 1": {
-      Health: 125,
+      Health: 175,
       Damage: 5,
-      Range: 17.5,
+      Range: 22.5,
       Detections: { Hidden: !0, Flying: !1, Lead: !1 },
       Cooldown: 0.18,
-      Lifetime: 200,
-      Limit: 4,
-      Spawnrate: 50,
+      Lifetime: 150,
+      Limit: 3,
+      Spawnrate: 31,
       Speed: 4,
     },
     "Golden Tommy Goon 2": {
-      Health: 225,
-      Damage: 12,
-      Range: 20,
+      Health: 300,
+      Damage: 6,
+      Range: 24,
       Detections: { Hidden: !0, Flying: !1, Lead: !1 },
-      Cooldown: 0.1,
-      Lifetime: 200,
-      Limit: 4,
-      Spawnrate: 50,
+      Cooldown: 0.12,
+      Lifetime: 150,
+      Limit: 3,
+      Spawnrate: 31,
       Speed: 4,
     },
     "Rifleman 0": {
@@ -2881,7 +2881,7 @@ const cA = {
               MaxAmmo: 11250,
               Attributes: { LaserTime: 4 },
             },
-            Image: 11821094308,
+            Image: 'https://static.wikia.nocookie.net/tower-defense-sim/images/a/a1/AccelLevel1Icon.png/revision/latest/scale-to-width-down/200?cb=20221222100848',
             Title: "Extra Juice",
             Cost: 2000,
           },
@@ -2893,7 +2893,7 @@ const cA = {
               MaxAmmo: 18750,
               Attributes: { ChargeTime: 5.5, LaserTime: 8 },
             },
-            Image: 11821094198,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/d/d4/AccelLevel2Icon.png/revision/latest/scale-to-width-down/200?cb=20221222100909",
             Title: "Second Energy Canister",
             Cost: 6000,
           },
@@ -2904,7 +2904,7 @@ const cA = {
               Damage: 40,
               Attributes: { ChargeTime: 4, LaserCooldown: 1, LaserTime: 3 },
             },
-            Image: 11821093989,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/d/da/AccelLevel3Icon.png/revision/latest/scale-to-width-down/200?cb=20221222100940",
             Title: "Powerhouse Armor",
             Cost: 4750,
           },
@@ -2917,7 +2917,7 @@ const cA = {
               Damage: 50,
               Range: 22.5,
             },
-            Image: 11821093828,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/b/b4/AccelLevel4Icon.png/revision/latest/scale-to-width-down/200?cb=20221222101008",
             Title: "Supercharger",
             Cost: 11250,
           },
@@ -2930,7 +2930,7 @@ const cA = {
               Damage: 60,
               Attributes: { ChargeTime: 1.5, LaserTime: 2 },
             },
-            Image: 11821093672,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/1/12/AccelLevel5Icon.png/revision/latest/scale-to-width-down/200?cb=20221222101047",
             Title: "Vessel Of Infinite Destruction",
             Cost: 36e3,
           },
@@ -3027,7 +3027,7 @@ const cA = {
       Default: {
         Upgrades: [
           {
-            Image: 17847640091,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/a/ad/AcePilotLevel1.png/revision/latest/scale-to-width-down/200?cb=20240827162643",
             Stats: {
               Damage: 3,
             },
@@ -3035,7 +3035,7 @@ const cA = {
             Cost: 225,
           },
           {
-            Image: 17847639896,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/2/27/AcePilotLevel2.png/revision/latest/scale-to-width-down/200?cb=20240827164048",
             Stats: {
               Extras: [
                 "Figure 8",
@@ -3056,7 +3056,7 @@ const cA = {
             Cost: 625,
           },
           {
-            Image: 17847640366,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/5/52/AcePilotLevel3.png/revision/latest/scale-to-width-down/200?cb=20240827162628",
             Stats: {
               Extras: ["[Collapsible:Upgraded Bombs]Explosion Damage: 10 → 20"],
               Attributes: {
@@ -3071,7 +3071,7 @@ const cA = {
             Cost: 1500,
           },
           {
-            Image: 17847640366,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/5/52/AcePilotLevel3.png/revision/latest/scale-to-width-down/200?cb=20240827162628",
             Stats: {
               Extras: [
                 "Grants Hidden Detection to nearby towers",
@@ -3089,7 +3089,7 @@ const cA = {
             Cost: 3000,
           },
           {
-            Image: 17847640211,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/b/bb/AcePilotLevel5.png/revision/latest/scale-to-width-down/200?cb=20240827162702",
             Stats: {
               Extras: [
                 "Speed: 100% → 135%",
@@ -3120,7 +3120,7 @@ const cA = {
             {
               Name: "Toggle Reverse",
               Level: 0,
-              Icon: 17846960799,
+              Icon: "https://static.wikia.nocookie.net/tower-defense-sim/images/b/b4/ToggleReverseAbility.png/revision/latest/scale-to-width-down/150?cb=20240621192919",
               Cooldown: 8,
               Price: 0,
               Description: "Flies the opposite direction.",
@@ -3147,7 +3147,7 @@ const cA = {
       Default: {
         Upgrades: [
           {
-            Image: 78487255054043,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/6/69/ArcherUpgrade1.png/revision/latest/scale-to-width-down/200?cb=20250806200308",
             Stats: {
               Cooldown: 1.4,
               Range: 20,
@@ -3156,7 +3156,7 @@ const cA = {
             Cost: 100,
           },
           {
-            Image: 0x6b7b3dcfc706,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/7/74/ArcherUpgrade2.png/revision/latest/scale-to-width-down/200?cb=20250806200309",
             Stats: {
               Damage: 8,
             },
@@ -3164,7 +3164,7 @@ const cA = {
             Cost: 400,
           },
           {
-            Image: 83003777730604,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/0/09/ArcherUpgrade3.png/revision/latest/scale-to-width-down/200?cb=20250806200310",
             Stats: {
               Extras: [
                 "[Collapsible:Unlocks Flame Arrow] Burn Damage: 3",
@@ -3180,7 +3180,7 @@ const cA = {
             Cost: 1e3,
           },
           {
-            Image: 0x68afde9e7603,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/3/39/ArcherUpgrade4.png/revision/latest/scale-to-width-down/200?cb=20250806200311",
             Stats: {
               Extras: [
                 "[Collapsible1:Upgraded Flame Arrow]Burn Damage: 3 → 5",
@@ -3198,7 +3198,7 @@ const cA = {
             Cost: 3000,
           },
           {
-            Image: 73857609172576,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/f/f6/ArcherUpgrade5.png/revision/latest/scale-to-width-down/200?cb=20250806200312",
             Stats: {
               Extras: [
                 "[Collapsible3:Upgraded Flame Arrow]Burn Damage: 4 → 8",
@@ -3236,7 +3236,7 @@ const cA = {
       Default: {
         Upgrades: [
           {
-            Image: "17522564142",
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/b/bb/BrawlerUpgrade2.png/revision/latest/scale-to-width-down/200?cb=20240518064009",
             Stats: {
               Detections: { Flying: !1, Lead: !0 },
               Cooldown: 0.6,
@@ -3246,7 +3246,7 @@ const cA = {
             Cost: 200,
           },
           {
-            Image: 17522564142,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/b/bb/BrawlerUpgrade2.png/revision/latest/scale-to-width-down/200?cb=20240518064009",
             Stats: {
               Extras: [
                 "[Collapsible:Attack Combo]Final Hit Damage: 21",
@@ -3268,7 +3268,7 @@ const cA = {
             Cost: 1200,
           },
           {
-            Image: 17522564023,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/2/25/BrawlerUpgrade3.png/revision/latest/scale-to-width-down/200?cb=20240518064013",
             Stats: {
               Extras: [
                 "Final Hit Damage: 21 → 48",
@@ -3288,7 +3288,7 @@ const cA = {
             Cost: 2500,
           },
           {
-            Image: 17522564307,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/4/48/BrawlerUpgrade4.png/revision/latest/scale-to-width-down/200?cb=20240518064018",
             Stats: {
               Extras: [
                 "Final Hit Damage: 48 → 70",
@@ -3311,7 +3311,7 @@ const cA = {
             Cost: 3500,
           },
           {
-            Image: 17522563932,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/5/57/BrawlerUpgrade5.png/revision/latest/scale-to-width-down/200?cb=20240518064023",
             Stats: {
               Extras: [
                 "Final Hit Damage: 70 → 100",
@@ -3351,7 +3351,7 @@ const cA = {
             {
               Name: "Reposition",
               Level: 4,
-              Icon: 17408583420,
+              Icon: "https://static.wikia.nocookie.net/tower-defense-sim/images/7/78/RepositionIcon.png/revision/latest/scale-to-width-down/150?cb=20240518064125",
               Cooldown: 30,
               Cost: 0,
               Description:
@@ -3539,7 +3539,7 @@ const cA = {
       Default: {
         Abilities: [
           {
-            Icon: 4594880289,
+            Icon: "https://static.wikia.nocookie.net/tower-defense-sim/images/e/e5/Commander_Upgrade_3.png/revision/latest/scale-to-width-down/150?cb=20240704134001",
             Level: 2,
             Name: "Call to Arms",
             Cooldown: 30,
@@ -3548,7 +3548,7 @@ const cA = {
               "Boosts all towers' firerate in its range by a variable amount for 10 seconds. Additionally, the Commander will be able to attack enemies with its own weapon for 10 seconds.",
           },
           {
-            Icon: 17512145719,
+            Icon: "https://static.wikia.nocookie.net/tower-defense-sim/images/a/a7/SupportCaravanIcon.png/revision/latest/scale-to-width-down/150?cb=20240517142905",
             Level: 4,
             Name: "Support Caravan",
             Cooldown: 60,
@@ -3559,7 +3559,7 @@ const cA = {
         ],
         Upgrades: [
           {
-            Image: 5525000768,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/8/81/Commander_Upgrade_1_New.png/revision/latest/scale-to-width-down/200?cb=20240704134838",
             Stats: {
               Extras: ["Firerate Buff: 10% → 15%"],
               Attributes: { FirerateBuff: 15 },
@@ -3568,7 +3568,7 @@ const cA = {
             Cost: 400,
           },
           {
-            Image: 4594880289,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/e/e5/Commander_Upgrade_3.png/revision/latest/scale-to-width-down/200?cb=20240704134001",
             Stats: {
               Extras: ["Call to Arms Buff: 10%"],
               Attributes: { CallToArmsBuff: 10 },
@@ -3581,7 +3581,7 @@ const cA = {
             Cost: 2450,
           },
           {
-            Image: 5525002879,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/8/8c/Commander_Upgrade_4_New.png/revision/latest/scale-to-width-down/200?cb=20240704134009",
             Stats: {
               Extras: [
                 "Firerate Buff: 15% → 17.5%",
@@ -3595,7 +3595,7 @@ const cA = {
             Cost: 4500,
           },
           {
-            Image: 17512145719,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/a/a7/SupportCaravanIcon.png/revision/latest/scale-to-width-down/200?cb=20240517142905",
             Stats: {
               Extras: [
                 "Firerate Buff: 17.5% → 20%",
@@ -3624,7 +3624,7 @@ const cA = {
       Default: {
         Upgrades: [
           {
-            Image: 0x6ca32b673bc0,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/d/dd/CommandoLevel1.png/revision/latest/scale-to-width-down/200?cb=20241120214457",
             Stats: {
               Extras: ["Reload Time: 2.25s → 2s"],
               Attributes: { ReloadTime: 2},
@@ -3634,7 +3634,7 @@ const cA = {
             Cost: 935,
           },
           {
-            Image: 72540829223100,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/d/d5/CommandoLevel2.png/revision/latest/scale-to-width-down/200?cb=20241120214502",
             Stats: {
               Extras: [
                 "[Collapsible:Upgraded Ammo]Ammo: 30 → 45",
@@ -3649,7 +3649,7 @@ const cA = {
             Cost: 2850,
           },
           {
-            Image: 0x656eddec2c83,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/4/4b/CommandoLevel3.png/revision/latest/scale-to-width-down/200?cb=20241120214459",
             Stats: {
               Extras: [
                 "[Collapsible:Upgraded Ammo]Ammo: 45 → 60",
@@ -3668,7 +3668,7 @@ const cA = {
             Cost: 8115,
           },
           {
-            Image: 0x6739020f0635,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/6/68/CommandoLevel4.png/revision/latest/scale-to-width-down/200?cb=20241120214458",
             Stats: {
               Extras: [
                 "[Collapsible:Upgraded Ammo]Ammo: 60 → 80",
@@ -3693,7 +3693,7 @@ const cA = {
           Attributes: { ReloadTime: 2.25, Ammo: 30, MaxHits: 2 },
           Abilities: [
             {
-              Icon: 80456675021529,
+              Icon: "https://static.wikia.nocookie.net/tower-defense-sim/images/9/9d/MissileAbility.png/revision/latest/scale-to-width-down/150?cb=20241121110046",
               Level: 3,
               Name: "Missile",
               Cooldown: 20,
@@ -3702,7 +3702,7 @@ const cA = {
                 "Fires out two missiles at selected area. Missile range is double of regular range. Reloads one missile per cooldown.",
             },
             {
-              Icon: 80456675021529,
+              Icon: "https://static.wikia.nocookie.net/tower-defense-sim/images/9/9d/MissileAbility.png/revision/latest/scale-to-width-down/150?cb=20241121110046",
               Level: 4,
               Name: "Missile",
               Cooldown: 10,
@@ -3724,7 +3724,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
       Default: {
         Upgrades: [
           {
-            Image: 4999425200,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/b/ba/NewCowboyLevel2.png/revision/latest/scale-to-width-down/200?cb=20200902101004",
             Stats: {
               Attributes: { SpinDuration: 1.25 },
               Extras: ["Spin Time: 2s → 1.25s"],
@@ -3735,7 +3735,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
             Cost: 200,
           },
           {
-            Image: 5523233366,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/8/83/Cowboy_Upgrade_3_New.png/revision/latest/scale-to-width-down/200?cb=20240704135217",
             Stats: {
               Income: 50,
               Damage: 5,
@@ -3744,7 +3744,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
             Cost: 600,
           },
           {
-            Image: 5523231844,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/d/d5/Cowboy_Upgrade_1_New.png/revision/latest/scale-to-width-down/200?cb=20240704135222",
             Stats: {
               Attributes: { SpinDuration: 1 },
               Extras: ["Spin Time: 1.25s → 1s"],
@@ -3758,7 +3758,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
             Cost: 2000,
           },
           {
-            Image: 5523234030,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/4/4a/Cowboy_Upgrade_4_New.png/revision/latest/scale-to-width-down/200?cb=20240704135227",
             Stats: {
               Attributes: { MaxAmmo: 12 },
               Extras: ["Max Ammo: 6 → 12"],
@@ -3770,7 +3770,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
             Cost: 3000,
           },
           {
-            Image: 5523234990,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/0/0e/Cowboy_Upgrade_5_New.png/revision/latest/scale-to-width-down/200?cb=20240704135949",
             Stats: {
               Income: 185,
               Damage: 24,
@@ -3793,7 +3793,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
       Golden: {
         Upgrades: [
           {
-            Image: 5523231844,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/d/d5/Cowboy_Upgrade_1_New.png/revision/latest/scale-to-width-down/200?cb=20240704135222",
             Stats: {
               Attributes: { MaxAmmo: 6, SpinDuration: 1.5 },
               Extras: ["Spin Time: 2s → 1.5s"],
@@ -3804,7 +3804,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
             Cost: 200,
           },
           {
-            Image: 4999425200,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/b/ba/NewCowboyLevel2.png/revision/latest/scale-to-width-down/200?cb=20200902101004",
             Stats: {
               Income: 60,
               Damage: 5,
@@ -3813,7 +3813,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
             Cost: 650,
           },
           {
-            Image: 5523233366,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/8/83/Cowboy_Upgrade_3_New.png/revision/latest/scale-to-width-down/200?cb=20240704135217",
             Stats: {
               Attributes: { SpinDuration: 1.25 },
               Extras: ["Spin Time: 1.5s → 1.25s"],
@@ -3826,7 +3826,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
             Cost: 2400,
           },
           {
-            Image: 5523234030,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/4/4a/Cowboy_Upgrade_4_New.png/revision/latest/scale-to-width-down/200?cb=20240704135227",
             Stats: {
               Attributes: { MaxAmmo: 12 },
               Extras: ["Max Ammo: 6 → 12"],
@@ -3838,7 +3838,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
             Cost: 4250,
           },
           {
-            Image: 5523234990,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/0/0e/Cowboy_Upgrade_5_New.png/revision/latest/scale-to-width-down/200?cb=20240704135949",
             Stats: {
               Attributes: { SpinDuration: 1 },
               Extras: ["Spin Time: 1.25s → 1s"],
@@ -3955,124 +3955,112 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
         Upgrades: [
           {
             Stats: {
-              Attributes: {},
-              Range: 12.5,
-              Cooldown: 0.75,
-              Extras: ["Pistol Goon (50s Spawn Time)"],
-              Damage: 4,
+              Cooldown: 0.6,
+              Damage: 12,
             },
-            Image: 3032133716,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/a/a7/Stronger_Bullets.png/revision/latest/scale-to-width-down/200?cb=20240704140045",
             Title: "Quick Getaway",
-            Cost: 300,
+            Cost: 1150,
           },
           {
             Stats: {
               Attributes: { DoublePistolGoons: !0 },
-              Range: 14,
+              Range: 19,
               Detections: { Hidden: !0 },
-              Cooldown: 0.75,
-              Extras: ["Pistol Goon: 1 → 2"],
-              Damage: 6,
+              Extras: ["Pistol Goons: 1 → 2"],
+              Damage: 24,
             },
-            Image: 3444643559,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/9/92/CrookBoss2.png/revision/latest/scale-to-width-down/200?cb=20240704140051",
             Title: "Double Trouble",
-            Cost: 900,
+            Cost: 3400,
           },
           {
             Stats: {
               Attributes: {},
-              Range: 15,
+              Range: 22,
               Extras: ["Tommy Goon (50s Spawn Time)"],
               Cooldown: 0.2,
-              Damage: 6,
             },
-            Image: 3838914605,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/d/d4/Crook_Boss_3_New.png/revision/latest/scale-to-width-down/200?cb=20240704140057",
             Title: "Tommy Goons",
-            Cost: 4250,
+            Cost: 13500,
           },
           {
             Stats: {
               Attributes: {},
-              Range: 16.5,
               Extras: ["Upgraded Tommy Goon"],
               Cooldown: 0.12,
-              Damage: 18,
+              Damage: 36,
             },
-            Image: 3444644903,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/6/61/CrookBoss5.png/revision/latest/scale-to-width-down/200?cb=20240704140112",
             Title: "The Godfather",
-            Cost: 2e4,
+            Cost: 47500,
           },
         ],
         Defaults: {
-          Range: 12.5,
+          Range: 16.5,
           Attributes: { DoublePistolGoons: !1 },
           Limit: 5,
-          Price: 600,
-          Detections: { Flying: !1, Hidden: !1, Lead: !1 },
+          Price: 1600,
+          Detections: { Flying: !0, Hidden: !1, Lead: !1 },
           Cooldown: 0.9,
-          Damage: 3,
+          Damage: 10,
         },
       },
       Golden: {
         Upgrades: [
           {
             Stats: {
-              Attributes: {},
-              Range: 14,
-              Cooldown: 0.7,
-              Extras: ["Golden Pistol Goon (50s Spawn Time)"],
-              Damage: 6,
+              Cooldown: 0.55,
+              Damage: 13,
             },
-            Image: 3032133716,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/a/a7/Stronger_Bullets.png/revision/latest/scale-to-width-down/200?cb=20240704140045",
             Title: "Lvl 1. Broke",
-            Cost: 500,
+            Cost: 1250,
           },
           {
             Stats: {
               Attributes: { DoublePistolGoons: !0 },
-              Range: 15,
-              Detections: { Hidden: !0, Flying: !0 },
-              Cooldown: 0.7,
-              Extras: ["Golden Pistol Goon: 1 → 2"],
-              Damage: 10,
+              Range: 19,
+              Detections: { Hidden: !0 },
+              Extras: ["Golden Pistol Goons: 1 → 2"],
+              Damage: 24,
             },
-            Image: 3444643559,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/9/92/CrookBoss2.png/revision/latest/scale-to-width-down/200?cb=20240704140051",
             Title: "Lvl. 2 Normie",
-            Cost: 1500,
+            Cost: 3400,
           },
           {
             Stats: {
               Attributes: {},
-              Range: 16,
+              Range: 22,
               Extras: ["Golden Tommy Goon (50s Spawn Time)"],
               Cooldown: 0.18,
-              Damage: 10,
             },
-            Image: 3838914605,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/d/d4/Crook_Boss_3_New.png/revision/latest/scale-to-width-down/200?cb=20240704140057",
             Title: "Lvl 3. Gamer",
-            Cost: 6e3,
+            Cost: 16500,
           },
           {
             Stats: {
               Attributes: {},
-              Range: 17.5,
               Extras: ["Upgraded Gold Tommy Goon"],
-              Cooldown: 0.1,
-              Damage: 20,
+              Cooldown: 0.12,
+              Damage: 40,
             },
-            Image: 3444644903,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/6/61/CrookBoss5.png/revision/latest/scale-to-width-down/200?cb=20240704140112",
             Title: "Lvl. 4 GOD",
-            Cost: 3e4,
+            Cost: 50000,
           },
         ],
         Defaults: {
-          Range: 14,
+          Range: 16.5,
           Attributes: { DoublePistolGoons: !1 },
           Limit: 5,
-          Price: 800,
-          Detections: { Flying: !1, Hidden: !1, Lead: !1 },
-          Cooldown: 0.9,
-          Damage: 4,
+          Price: 2000,
+          Detections: { Flying: !0, Hidden: !1, Lead: !1 },
+          Cooldown: 0.8,
+          Damage: 12,
         },
       },
       PVP: {
@@ -9062,7 +9050,7 @@ At level 4, Raise the Dead: Max Units - 1x Executioner Skeleton, 6 Skeleton Knig
           Damage: 2,
           Limit: 8,
           Note: `Aggressive Toxins ability has an initial cooldown of 30 seconds.
-          Damage scales based on number of enemies hit.`,
+Damage scales based on number of enemies hit.`,
         },
       },
     },
@@ -14138,7 +14126,7 @@ class BA {
         Value: (A) => A.BeeDamage * Math.floor(A.BeeDuration / A.TickRate),
       },
       ToxicGunner: {
-        For: ["Toxic Gunner"],
+        For: ["Toxic Gunner", "Saboteur"],
         Requires: ["PoisonDamage", "SlowdownTime", "TickRate"],
         Value: (A) => (A.PoisonDamage * A.SlowdownTime) / A.TickRate,
       },
