@@ -1,6 +1,6 @@
 {
   "poll": {
-    "endDate": "2026-08-21",
+    "endDate": "2026-06-21",
     "id": "NULL1132141",
     "title": "Testing of the Statistics Editor Rework",
     "description": "As you may have known, the current stats editor (the one you're on right now) has had its development halted. We're happy to announce that a public test for the new editor has started, try it out at <a href='https://test.tds-editor.com/'>https://test.tds-editor.com/</a> and tell us what you think in the #stat-editor channel on TDS Wiki Discord!"

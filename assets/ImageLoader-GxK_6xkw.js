@@ -1,1 +1,119 @@
-import{m as d}from"./index-CYh-k0co.js";class h{static cacheName="tdse-image-cache-v1";static debugMode=!1;static log(...e){this.debugMode&&console.log("[ImageLoader]",...e)}static isRobloxAssetId(e){return!e.startsWith("http")&&/^\d+$/.test(e)}static async fetchImage(e){const t=String(e);if(!t)return"";const c=this.isRobloxAssetId(t),s="caches"in window&&c,o=`image-${t}`;if(s)try{const i=await(await caches.open(this.cacheName)).match(o);if(i&&i.ok){this.log(`Image ${t} loaded from Cache API`);const r=await i.blob();return URL.createObjectURL(r)}}catch(a){console.warn("Cache API error:",a)}const l=await this.resolveImageUrl(t);if(!l)return"";try{const a=await fetch(l,{mode:"cors"});if(!a.ok)throw new Error(`Image fetch failed: ${a.status}`);if(s)try{await(await caches.open(this.cacheName)).put(o,a.clone()),this.log(`Image ${t} stored in Cache API`)}catch(r){console.error(`Failed to cache image ${t}:`,r)}const i=await a.blob();return URL.createObjectURL(i)}catch(a){return console.error(`Failed to fetch image ${t}:`,a),l}}static getFromCache(){return""}static async resolveImageUrl(e){let t;if(e.startsWith("File:")){const c=e.substring(5);t=this.convertFileToFandomUrl(c),this.log(`Converted File: syntax to URL: ${t}`)}else if(e.startsWith("https"))e.startsWith("https://static.wikia.nocookie.net/")?t=this.trimFandomUrl(e):t=e;else{const c=`https://assetdelivery.roblox.com/v2/assetId/${e}`;try{const o=await(await fetch(`https://api.tds-editor.com/?url=${encodeURIComponent(c)}`,{method:"GET",headers:{Origin:window.location.origin,"X-Requested-With":"XMLHttpRequest"}})).json();o?.locations?.[0]?.location?t=o.locations[0].location:t="./htmlassets/Unavailable.png"}catch(s){console.error(`Failed to fetch image ${e}:`,s),t=""}}return t}static convertFileToFandomUrl(e){return d(e,"https://static.wikia.nocookie.net/tower-defense-sim/images")}static trimFandomUrl(e){const t=e.match(/https:\/\/static\.wikia\.nocookie\.net\/.*?\.(png|jpg|jpeg|gif)/i);return t?t[0]:e}static async clearCacheEntry(e){const t=String(e);if(this.isRobloxAssetId(t)&&"caches"in window)try{await(await caches.open(this.cacheName)).delete(`image-${t}`)&&this.log(`Cached image ${t} deleted successfully`)}catch(c){console.error(`Failed to delete cached image ${t}:`,c)}}static async clearAllCache(){if("caches"in window)try{await caches.delete(this.cacheName)&&this.log("All cached images deleted successfully")}catch(e){console.error("Failed to clear Cache API:",e)}}static setDebugMode(e){this.debugMode=e}}localStorage.getItem("imageCacheDebug")==="true"&&h.setDebugMode(!0);document.addEventListener("settingsChanged",n=>{n.detail.setting==="imageCacheDebug"&&h.setDebugMode(n.detail.value)});export{h as I};
+import { m as d } from "./index-CYh-k0co.js";
+class h {
+  static cacheName = "tdse-image-cache-v1";
+  static debugMode = !1;
+  static log(...e) {
+    this.debugMode && console.log("[ImageLoader]", ...e);
+  }
+  static isRobloxAssetId(e) {
+    return !e.startsWith("http") && /^\d+$/.test(e);
+  }
+  static async fetchImage(e) {
+    const t = String(e);
+    if (!t) return "";
+    const c = this.isRobloxAssetId(t),
+      s = "caches" in window && c,
+      o = `image-${t}`;
+    if (s)
+      try {
+        const i = await (await caches.open(this.cacheName)).match(o);
+        if (i && i.ok) {
+          this.log(`Image ${t} loaded from Cache API`);
+          const r = await i.blob();
+          return URL.createObjectURL(r);
+        }
+      } catch (a) {
+        console.warn("Cache API error:", a);
+      }
+    const l = await this.resolveImageUrl(t);
+    if (!l) return "";
+    try {
+      const a = await fetch(l, { mode: "cors" });
+      if (!a.ok) throw new Error(`Image fetch failed: ${a.status}`);
+      if (s)
+        try {
+          (await (await caches.open(this.cacheName)).put(o, a.clone()),
+            this.log(`Image ${t} stored in Cache API`));
+        } catch (r) {
+          console.error(`Failed to cache image ${t}:`, r);
+        }
+      const i = await a.blob();
+      return URL.createObjectURL(i);
+    } catch (a) {
+      return (console.error(`Failed to fetch image ${t}:`, a), l);
+    }
+  }
+  static getFromCache() {
+    return "";
+  }
+  static async resolveImageUrl(e) {
+    let t;
+    if (e.startsWith("File:")) {
+      const c = e.substring(5);
+      ((t = this.convertFileToFandomUrl(c)),
+        this.log(`Converted File: syntax to URL: ${t}`));
+    } else if (e.startsWith("https"))
+      e.startsWith("https://static.wikia.nocookie.net/")
+        ? (t = this.trimFandomUrl(e))
+        : (t = e);
+    else {
+      const c = `https://assetdelivery.roblox.com/v2/assetId/${e}`;
+      try {
+        const o = await (
+          await fetch(
+            `https://api.tds-editor.com/?url=${encodeURIComponent(c)}`,
+            {
+              method: "GET",
+              headers: {
+                Origin: window.location.origin,
+                "X-Requested-With": "XMLHttpRequest",
+              },
+            },
+          )
+        ).json();
+        o?.locations?.[0]?.location
+          ? (t = o.locations[0].location)
+          : (t = "./htmlassets/Unavailable.png");
+      } catch (s) {
+        (console.error(`Failed to fetch image ${e}:`, s), (t = ""));
+      }
+    }
+    return t;
+  }
+  static convertFileToFandomUrl(e) {
+    return d(e, "https://static.wikia.nocookie.net/tower-defense-sim/images");
+  }
+  static trimFandomUrl(e) {
+    const t = e.match(
+      /https:\/\/static\.wikia\.nocookie\.net\/.*?\.(png|jpg|jpeg|gif)/i,
+    );
+    return t ? t[0] : e;
+  }
+  static async clearCacheEntry(e) {
+    const t = String(e);
+    if (this.isRobloxAssetId(t) && "caches" in window)
+      try {
+        (await (await caches.open(this.cacheName)).delete(`image-${t}`)) &&
+          this.log(`Cached image ${t} deleted successfully`);
+      } catch (c) {
+        console.error(`Failed to delete cached image ${t}:`, c);
+      }
+  }
+  static async clearAllCache() {
+    if ("caches" in window)
+      try {
+        (await caches.delete(this.cacheName)) &&
+          this.log("All cached images deleted successfully");
+      } catch (e) {
+        console.error("Failed to clear Cache API:", e);
+      }
+  }
+  static setDebugMode(e) {
+    this.debugMode = e;
+  }
+}
+localStorage.getItem("imageCacheDebug") === "true" && h.setDebugMode(!0);
+document.addEventListener("settingsChanged", (n) => {
+  n.detail.setting === "imageCacheDebug" && h.setDebugMode(n.detail.value);
+});
+export { h as I };
