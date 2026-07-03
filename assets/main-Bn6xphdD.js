@@ -9060,6 +9060,7 @@ At level 4, Raise the Dead: Max Units - 1x Executioner Skeleton, 6 Skeleton Knig
           Range: 11.5,
           Cooldown: 1.2,
           Damage: 2,
+          Limit: 8,
           Note: `Aggressive Toxins ability has an initial cooldown of 30 seconds.
           Damage scales based on number of enemies hit.`,
         },
@@ -14241,6 +14242,10 @@ class BA {
             (A.Ammo / A.Burst - 1) * A.BurstCooldown +
             A.ReloadTime),
       },
+      Saboteur: {
+        For: ['Saboteur'],
+        Value: (A) => ((A.Damage * A.MaxHits * A.ShotSize) / A.Cooldown) + (A.PoisonDamage / A.TickRate),
+      },
       Assassin: {
         For: ["Assassin"],
         Value: (A) =>
@@ -15693,6 +15698,7 @@ class aA {
       case "Slowdown":
       case "WhirlwindMultiplier":
       case "CooldownBoost":
+      case "DamageTakenBonus":
         return I.format(A) + "%";
       case "BuffLength":
       case "BurnTime":
@@ -15710,6 +15716,7 @@ class aA {
       case "KnockbackCooldown":
       case "Spawnrate":
       case "BuildTime":
+      case "NeuralyzeDuration":
       case "Cooldown":
       case "SlowdownTime":
       case "AftershockCooldown":
