@@ -6548,7 +6548,8 @@ Has a placement footprint of 2.25 studs (very large).`,
           Range: 6,
           Damage: 0,
           Note: `Lead can be damaged by splash damage and collision.
-Has a placement footprint of 2.25 studs (very large).`,
+Has a placement footprint of 2.25 studs (very large).
+Air-Drop ability has an initial cooldown of 15 seconds`,
         },
         Upgrades: [
           {
@@ -8990,6 +8991,78 @@ At level 4, Raise the Dead: Max Units - 1x Executioner Skeleton, 6 Skeleton Knig
             Cost: 3250,
           },
         ],
+      },
+    },
+    Saboteur: {
+      Default: {
+        Upgrades: [
+          {
+            Image: 5587697635,
+            Stats: {
+              Extras: [],
+              Attributes: { MaxHits: 2 },
+              Detections: { Hidden: !0 },
+            },
+            Title: "Scam Artist",
+            Cost: 500,
+          },
+          {
+            Image: 5587697884,
+            Stats: {
+              Extras: [],
+              Attributes: { BaseSpread: 3.5, Spread: 1.5, PoisonLength: 5, PoisonDamage: 2 },
+              Cooldown: 1,
+              Range: 13.5,
+              Damage: 4,
+            },
+            Title: "Brand New Rig",
+            Cost: 1475,
+          },
+          {
+            Image: 5587698104,
+            Stats: {
+              Extras: [],
+              Attributes: { PoisonDamage:4, PoisonLength: 6, TickRate: 0.6, ShotSize: 4, NeuralyzeDuration: 5, NeuralyzeGrenadeRadius: 3.5, DamageTakenBonus: 10},
+              Cooldown: 0.9,
+              Range: 14.5,
+              Damage: 7,
+            },
+            Title: "Black Market Tech",
+            Cost: 4850,
+          },
+          {
+            Image: 5587698246,
+            Stats: {
+              Extras: [],
+              Attributes: { MaxHits: 3, PoisonDamage: 7, PoisonLength: 7, TickRate: 0.4, Slowdown: 10, ShotSize: 6, BaseSpread: 4, Spread: 1, NeuralyzeDuration: 9, DamageTakenBonus: 15},
+              Cooldown: 0.65,
+              Range: 16,
+            },
+            Title: "The Vitriolic Withering",
+            Cost: 15115,
+          },
+        ],
+        Defaults: {
+          Detections: { Flying: !1, Hidden: !1, Lead: !0 },
+          Abilities: [
+            {
+              Name: "Aggressive Toxins",
+              Level: 3,
+              Icon: "https://static.wikia.nocookie.net/tower-defense-sim/images/b/ba/SaboteurAbility.png/revision/latest?cb=20260422191418",
+              Cooldown: 100,
+              Cost: 500,
+              Description:
+                "Throws a grenade at the selected area, applying Neuralyzed to them. This forces them to be targeted by towers while also boosting how much damage they receive.",
+            },
+          ],
+          Attributes: { ShotSize: 3, PoisonDamage: 1, TickRate: 0.9, PoisonLength: 3, Slowdown: 7.5, BaseSpread: 3, Spread: 2, MaxHits: 1, NeuralyzeDuration: 0, NeuralyzeGrenadeRadius: 0, DamageTakenBonus: 0, },
+          Price: 575,
+          Range: 11.5,
+          Cooldown: 1.2,
+          Damage: 2,
+          Note: `Aggressive Toxins ability has an initial cooldown of 30 seconds.
+          Damage scales based on number of enemies hit.`,
+        },
       },
     },
     Shotgunner: {
