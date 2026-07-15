@@ -2922,7 +2922,7 @@ const cA = {
             },
             Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/d/da/AccelLevel3Icon.png/revision/latest/scale-to-width-down/200?cb=20221222100940",
             Title: "Powerhouse Armor",
-            Cost: 4750,
+            Cost: 9999,
           },
           {
             Stats: {
@@ -2935,7 +2935,7 @@ const cA = {
             },
             Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/b/b4/AccelLevel4Icon.png/revision/latest/scale-to-width-down/200?cb=20221222101008",
             Title: "Supercharger",
-            Cost: 11250,
+            Cost: 27500,
           },
           {
             Stats: {
@@ -2948,7 +2948,7 @@ const cA = {
             },
             Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/1/12/AccelLevel5Icon.png/revision/latest/scale-to-width-down/200?cb=20221222101047",
             Title: "Vessel Of Infinite Destruction",
-            Cost: 36e3,
+            Cost: 50000,
           },
         ],
         Defaults: {
