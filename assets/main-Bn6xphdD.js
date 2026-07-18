@@ -13019,6 +13019,7 @@ class TA {
         ],
         Value: (A) => {
           c.log(`Calculating NetCost for Juggernaut ${A.Name}`);
+          const g = A.Name.includes("   "),
           const C = A.Name.trim(),
             B = parseInt(C.charAt(0)),
             Q = C.substring(1);
