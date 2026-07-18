@@ -13023,7 +13023,7 @@ class TA {
             B = parseInt(C.charAt(0)),
             Q = C.substring(1);
           c.log(`Path: ${Q}, Level: ${B}`);
-          const E = this.getTowerCostForLevel("Juggernaut", 3, I);
+          const E = this.getTowerCostForLevel("Juggernaut", 3, "Default");
           if (E === null)
             return (
               console.error(
