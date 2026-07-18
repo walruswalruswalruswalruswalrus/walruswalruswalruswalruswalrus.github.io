@@ -13038,7 +13038,7 @@ class TA {
           if ((c.log(`Cost of current path level (${A.Name}): ${i}`), B === 4))
             ((o += i), c.log(`Added level 4 path cost: ${i}`));
           else if (B === 5) {
-            const t = g ? `4${Q}   ` : `4${Q}  `,
+            const t = g ? `4${Q}   ` : `4${Q}    `,
               s = cA[t]?.Cost || 0;
             (s === 0 &&
               console.warn(
