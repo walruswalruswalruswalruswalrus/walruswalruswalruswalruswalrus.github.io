@@ -13027,11 +13027,11 @@ class TA {
           if (E === null)
             return (
               console.error(
-                `Could not determine base cost for Juggernaut ${I} up to level 3.`,
+                `Could not determine base cost for Juggernaut up to level 3.`,
               ),
               NaN
             );
-          c.log(`Using base cost (level 3, ${I}): ${E}`);
+          c.log(`Using base cost (level 3): ${E}`);
           let o = E;
           const i = A.Cost || 0;
           if ((c.log(`Cost of current path level (${A.Name}): ${i}`), B === 4))
