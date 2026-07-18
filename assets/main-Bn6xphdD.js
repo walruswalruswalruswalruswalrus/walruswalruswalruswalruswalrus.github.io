@@ -1643,6 +1643,102 @@ const cA = {
       PatrolRange: 19.5,
       Speed: 25,
     },
+    "4A    ": {
+      Damage: 65,
+      Range: 22,
+      Detections: { Hidden: !0, Flying: !0, Lead: !1 },
+      Cooldown: 0.15,
+      Cost: 35000,
+      Limit: 1,
+      RevTime: 1.2,
+      FortifyRadius: 10,
+      FortifyDebuffTimeReduction: 25,
+      BossMultiplier: 1,
+    },
+    "5A    ": {
+      Damage: 120,
+      Range: 26,
+      Detections: { Hidden: !0, Flying: !0, Lead: !1 },
+      Cooldown: 0.15,
+      Cost: 55000,
+      Limit: 1,
+      RevTime: 1.2,
+      FortifyRadius: 13,
+      FortifyDebuffTimeReduction: 25,
+      BossMultiplier: 1, 
+    },
+    "6A    ": {
+      Damage: 150,
+      Range: 26,
+      Detections: { Hidden: !0, Flying: !0, Lead: !1 },
+      Cooldown: 0.12,
+      Cost: 100000,
+      Limit: 1,
+      RevTime: 1,
+      FortifyRadius: 13,
+      FortifyDebuffTimeReduction: 30,
+      BossMultiplier: 1, 
+    },
+    "7A    ": {
+      Damage: 215,
+      Range: 26,
+      Detections: { Hidden: !0, Flying: !0, Lead: !1 },
+      Cooldown: 0.12,
+      Cost: 175000,
+      Limit: 1,
+      RevTime: 1,
+      FortifyRadius: 14,
+      FortifyDebuffTimeReduction: 50,
+      BossMultiplier: 1, 
+    },
+    "4B    ": {
+      Damage: 40,
+      Range: 22,
+      Detections: { Hidden: !0, Flying: !1, Lead: !0 },
+      Cooldown: 0.1,
+      Cost: 40000,
+      Limit: 1,
+      RevTime: 1.8,
+      FortifyRadius: 0,
+      FortifyDebuffTimeReduction: 0,
+      BossMultiplier: 1.4, 
+    },
+    "5B    ": {
+      Damage: 85,
+      Range: 26,
+      Detections: { Hidden: !0, Flying: !1, Lead: !0 },
+      Cooldown: 0.1,
+      Cost: 95000,
+      Limit: 1,
+      RevTime: 1.8,
+      FortifyRadius: 0,
+      FortifyDebuffTimeReduction: 0,
+      BossMultiplier: 1.4, 
+    },
+    "6B    ": {
+      Damage: 135,
+      Range: 28,
+      Detections: { Hidden: !0, Flying: !1, Lead: !0 },
+      Cooldown: 0.1,
+      Cost: 135000,
+      Limit: 1,
+      RevTime: 1.8,
+      FortifyRadius: 0,
+      FortifyDebuffTimeReduction: 0,
+      BossMultiplier: 1.4, 
+    },
+    "7B    ": {
+      Damage: 180,
+      Range: 28,
+      Detections: { Hidden: !0, Flying: !1, Lead: !0 },
+      Cooldown: 0.09,
+      Cost: 250000,
+      Limit: 1,
+      RevTime: 1.6,
+      FortifyRadius: 0,
+      FortifyDebuffTimeReduction: 0,
+      BossMultiplier: 1.4, 
+    },
     "Gunner APC": {
       Health: 250,
       Damage: 10,
@@ -11737,6 +11833,109 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
         ],
       },
     },
+    Juggernaut: {
+      Default: {
+        Defaults: {
+          Detections: { Flying: !1, Hidden: !1, Lead: !1 },
+          Range: 17.5,
+          Price: 8500,
+          Cooldown: 0.15,
+          Damage: 9,
+          Limit: 1,
+          Attributes: {
+            RevTime: 2,
+          },
+        },
+      },
+      Upgrades: [
+        {
+          Image: 0,
+          Title: "Combat Tactics",
+          Cost: 3000,
+          Stats: {
+            Cooldown: 0.12,
+          },
+        },
+        {
+          Image: 0,
+          Title: "32nd Spec-Ops",
+          Cost: 7000,
+          Stats: {
+            Range: 20,
+            Detections: { Hidden: !0 },
+            Damage: 14,
+            Attributes:{
+              RevTime: 1.8,
+            },
+          },
+        },
+        {
+          Image: 0,
+          Title: "Re-routed Funds",
+          Cost: 17200,
+          Stats: {
+            Range: 22,
+            Damage: 28,
+          },
+        },
+        {
+          Image: 0,
+          Stats: {
+            Attributes: { NoTable: !0, SideLevel: "4A    " },
+          },
+          Title: "Fortifier",
+        },
+        {
+          Image: 0,
+          Stats: {
+            Attributes: { NoTable: !0, SideLevel: "5A    " },
+          },
+          Title: "Defensive Maneuvers",
+        },
+        {
+          Image: 0,
+          Stats: {
+            Attributes: { NoTable: !0, SideLevel: "6A    " },
+          },
+          Title: "Flak Jacket",
+        },
+        {
+          Image: 0,
+          Stats: {
+            Attributes: { NoTable: !0, SideLevel: "7A    " },
+          },
+          Title: "Hammerhead",
+        },
+        {
+          Image: 0,
+          Stats: {
+            Attributes: { NoTable: !0, SideLevel: "4B    " },
+          },
+          Title: "Experimental Weaponry",
+        },
+        {
+          Image: 0,
+          Stats: {
+            Attributes: { NoTable: !0, SideLevel: "5B    " },
+          },
+          Title: "Bigger Guns",
+        },
+        {
+          Image: 0,
+          Stats: {
+            Attributes: { NoTable: !0, SideLevel: "6B    " },
+          },
+          Title: "Titanium Armor",
+        },
+        {
+          Image: 0,
+          Stats: {
+            Attributes: { NoTable: !0, SideLevel: "7B    " },
+          },
+          Title: "Thresher",
+        },
+      ],
+    },
   };
 class KA {
   constructor(A, g) {
@@ -12807,6 +13006,52 @@ class TA {
           return (c.log(`Final NetCost for ${A.Name}: ${o}`), o);
         },
       },
+      Jugg: {
+        For: [
+          "4A    ",
+          "5B    ",
+          "4A    ",
+          "5B    ",
+          "6A    ",
+          "6B    ",
+          "7A    ",
+          "7B    ",
+        ],
+        Value: (A) => {
+          c.log(`Calculating NetCost for Juggernaut ${A.Name}`);
+          const C = A.Name.trim(),
+            B = parseInt(C.charAt(0)),
+            Q = C.substring(1);
+          c.log(`Path: ${Q}, Level: ${B}`);
+          const E = this.getTowerCostForLevel("Juggernaut", 3, I);
+          if (E === null)
+            return (
+              console.error(
+                `Could not determine base cost for Juggernaut ${I} up to level 3.`,
+              ),
+              NaN
+            );
+          c.log(`Using base cost (level 3, ${I}): ${E}`);
+          let o = E;
+          const i = A.Cost || 0;
+          if ((c.log(`Cost of current path level (${A.Name}): ${i}`), B === 4))
+            ((o += i), c.log(`Added level 4 path cost: ${i}`));
+          else if (B === 5) {
+            const t = g ? `4${Q}   ` : `4${Q}  `,
+              s = cA[t]?.Cost || 0;
+            (s === 0 &&
+              console.warn(
+                `[WARN] Could not find cost for prerequisite path level: ${t}`,
+              ),
+              c.log(`Cost of prerequisite path level (${t}): ${s}`),
+              (o += s + i),
+              c.log(
+                `Added level 4 path cost (${s}) and level 5 path cost (${i})`,
+              ));
+          }
+          return (c.log(`Final NetCost for ${A.Name}: ${o}`), o);
+        },
+      },      
       Hacker: {
         For: ["5T", "5B", "5T ", "5B "],
         Value: (A) => {
@@ -13347,6 +13592,7 @@ const PA = {
     ],
   },
   Hacker: { Default: ["5T", "5B"], PVP: ["5T ", "5B "] },
+  Juggernaut: { Default: ["4A    ", "4B    ", "5A    ", "5B    ", "6A    ", "6B    ", "7A    ", "7B    "] },
   Medic: { Default: ["Ubercharge 3", "Ubercharge 4", "Ubercharge 5"] },
 };
 class v {
