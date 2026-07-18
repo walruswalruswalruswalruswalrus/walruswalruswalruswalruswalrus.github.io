@@ -3851,7 +3851,6 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
             Stats: {
               Attributes: { SpinDuration: 1 },
               Extras: ["Spin Time: 1.25s → 1s"],
-              Income: 45,
               Detections: { Hidden: !0 },
               Cooldown: 0.6,
               Range: 17.5,
@@ -4234,7 +4233,6 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
         Upgrades: [
           {
             Stats: {
-              MaxAmmo: 50,
               Range: 12,
               Extras: ["❄️Chill Slowness: 7.5% → 10%", "❄️ Max Slowness: 15% → 20%", "❄️ Debuff Duration: 2 → 3"],
               Attributes: { MaxSlow: 20, SlowdownPerHit: 10, SlowdownTime: 3 },
@@ -4246,7 +4244,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
           },
           {
             Stats: {
-              MaxAmmo: 80,
+              MaxAmmo: 50,
               Extras: [
                 "Max Ammo: 25 → 50",
                 "More Defense Melting",
@@ -4300,6 +4298,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
                 HitboxWidth: 2.25,
                 FreezeTime: 0.75,
               },
+              MaxAmmo: 70,
               Range: 15,
               Damage: 6,
             },
@@ -6157,9 +6156,6 @@ Has a placement footprint of 2.25 studs (very large).`,
                 "[Collapsible1]Duration: 7.5s",
                 "[Collapsible1]Cooldown: 60s",
               ],
-              Attributes: {
-                OverhealLimit: 10,
-              },
               Range: 15,
             },
             Title: "BIG BRAIN",
@@ -13038,7 +13034,7 @@ class TA {
           if ((c.log(`Cost of current path level (${A.Name}): ${i}`), B === 4))
             ((o += i), c.log(`Added level 4 path cost: ${i}`));
           else if (B === 5) {
-            const t = g ? `4${Q}   ` : `4${Q}    `,
+            const t = `4${Q}    `,
               s = cA[t]?.Cost || 0;
             (s === 0 &&
               console.warn(
