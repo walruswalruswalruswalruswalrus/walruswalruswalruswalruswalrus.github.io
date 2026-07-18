@@ -11846,7 +11846,6 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
             RevTime: 2,
           },
         },
-      },
       Upgrades: [
         {
           Image: 0,
@@ -11936,6 +11935,7 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
         },
       ],
     },
+      },
   };
 class KA {
   constructor(A, g) {
@@ -13593,7 +13593,7 @@ const PA = {
     ],
   },
   Hacker: { Default: ["5T", "5B"], PVP: ["5T ", "5B "] },
-  Juggernaut: { Default: ["4A    ", "4B    ", "5A    ", "5B    ", "6A    ", "6B    ", "7A    ", "7B    "] },
+  Juggernaut: { Default: ["4A    ", "5A    ", "6A    ", "7A    ", "4B    ", "5B    ", "6B    ", "7B    "] },
   Medic: { Default: ["Ubercharge 3", "Ubercharge 4", "Ubercharge 5"] },
 };
 class v {
