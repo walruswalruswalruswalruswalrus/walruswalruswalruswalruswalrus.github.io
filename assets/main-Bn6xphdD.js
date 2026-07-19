@@ -11945,6 +11945,7 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
               Detections: { Hidden: true },
             },
             Title: "Tactical Gear",
+            Cost: 325,
           },
           {
             Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/5/5f/Operator2.png/revision/latest/scale-to-width-down/200?cb=20260619163121",
@@ -11957,6 +11958,7 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
                 CoordinationRadius: 3.75,
                 CoordinationBuff: 10,
               },
+              Cost: 700,
               Detections: { Flying: true },
             },
             Title: "Convergent Forces",
@@ -11970,6 +11972,7 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
                 BurstCount: 9,
               },
             },
+            Cost: 1250,
             Title: "Cyber-Enforcer",
           },
           {
@@ -11981,6 +11984,7 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
                 SharedOptics: true,
               },
             },
+            Cost: 2575,
             Title: "Synchronized Vision",
           },
           {
@@ -11994,6 +11998,7 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
                 BurstCooldown: 0,
               },
             },
+            Cost: 3125,
             Title: "Threat Detection Sentinel",
           },
           {
@@ -12003,6 +12008,7 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
               Range: 17,
             },
             Title: "1000-THR E.M.",
+            Cost: 4250,
           },
         ],
       },
