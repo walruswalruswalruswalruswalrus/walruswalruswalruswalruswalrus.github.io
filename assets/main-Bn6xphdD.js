@@ -9764,6 +9764,7 @@ Has a placement footprint of 1 stud (small).`,
           Detections: { Hidden: !0, Flying: !1, Lead: !1},
           Limit: 7,
           Price: 500,
+          Cooldown: 4,
           Range: 7,
           Note: `All traps can damage hidden enemies, but this tower can never directly target hidden enemies.
 
