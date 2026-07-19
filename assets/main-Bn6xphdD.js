@@ -1720,7 +1720,7 @@ const cA = {
       Range: 28,
       Detections: { Hidden: !0, Flying: !1, Lead: !0 },
       Cooldown: 0.1,
-      Cost: 135000,
+      Cost: 120000,
       Limit: 1,
       RevTime: 1.8,
       FortifyRadius: 0,
@@ -13057,6 +13057,23 @@ class TA {
               ),
               c.log(`Cost of prerequisite path level (${t}): ${s}`),
               (o += s + i + bitchAss),
+              c.log(
+                `Added level 4 path cost (${s}) and level 5 path cost (${i})`,
+              )); 
+          }
+          else if (B === 7){
+            const t = `4${Q}    `,
+              s = cA[t]?.Cost || 0;
+            const fuckYou = `5${Q}    `,
+              bitchAss = cA[fuckYou]?.Cost || 0;
+            const stupidFucking = `6${Q}    `,
+              variableNames = cA[stupidFucking]?.Cost || 0;
+            (s === 0 &&
+              console.warn(
+                `[WARN] Could not find cost for prerequisite path level: ${t}`,
+              ),
+              c.log(`Cost of prerequisite path level (${t}): ${s}`),
+              (o += s + i + bitchAss + variableNames),
               c.log(
                 `Added level 4 path cost (${s}) and level 5 path cost (${i})`,
               )); 
