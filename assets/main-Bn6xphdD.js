@@ -11959,9 +11959,9 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
                 CoordinationRadius: 3.75,
                 CoordinationBuff: 10,
               },
-              Cost: 700,
               Detections: { Flying: true },
             },
+            Cost: 700,
             Title: "Convergent Forces",
           },
           {
