@@ -13046,6 +13046,21 @@ class TA {
                 `Added level 4 path cost (${s}) and level 5 path cost (${i})`,
               ));
           }
+          else if (B === 6){
+            const t = `4${Q}    `,
+              s = cA[t]?.Cost || 0;
+            const fuckYou = `5${Q}    `,
+              bitchAss = cA[fuckYou]?.Cost || 0;
+            (s === 0 &&
+              console.warn(
+                `[WARN] Could not find cost for prerequisite path level: ${t}`,
+              ),
+              c.log(`Cost of prerequisite path level (${t}): ${s}`),
+              (o += s + i + bitchAss),
+              c.log(
+                `Added level 4 path cost (${s}) and level 5 path cost (${i})`,
+              )); 
+          }
           return (c.log(`Final NetCost for ${A.Name}: ${o}`), o);
         },
       },      
