@@ -13005,8 +13005,8 @@ class TA {
       Jugg: {
         For: [
           "4A    ",
-          "5B    ",
-          "4A    ",
+          "4B    ",
+          "5A    ",
           "5B    ",
           "6A    ",
           "6B    ",
@@ -13015,7 +13015,7 @@ class TA {
         ],
         Value: (A) => {
           c.log(`Calculating NetCost for Juggernaut ${A.Name}`);
-          const g = A.Name.includes("   ");
+          const g = A.Name.includes("    ");
           const C = A.Name.trim(),
             B = parseInt(C.charAt(0)),
             Q = C.substring(1);
