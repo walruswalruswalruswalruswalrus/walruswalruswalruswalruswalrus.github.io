@@ -11918,7 +11918,95 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
         },
       ],
     },
+    },
+    Operator: {
+      Default: {
+        Defaults: {
+          Detections: { Flying: !1, Hidden: !1, Lead: !1 },
+          Range: 14,
+          Price: 300,
+          Cooldown: 0.12,
+          Damage: 1,
+          Limit: 20,
+          Attributes: {
+            BurstCount: 6,
+            BurstCooldown: 1.5,
+            Coordination: false,
+            CoordinationBuff: 0,
+            CoordinationRadius: 0,
+            SharedOptics: false,
+          },
+        },
+        Upgrades: [
+          {
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/e/e0/Operator1.png/revision/latest/scale-to-width-down/200?cb=20260619163119",
+            Stats: {
+              Damage: 2,
+              Detections: { Hidden: true },
+            },
+            Title: "Tactical Gear",
+          },
+          {
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/5/5f/Operator2.png/revision/latest/scale-to-width-down/200?cb=20260619163121",
+            Stats: {
+              Damage: 3,
+              Range: 15.5,
+              Attributes: {
+                BurstCooldown: 1,
+                Coordination: true,
+                CoordinationRadius: 3.75,
+                CoordinationBuff: 10,
+              },
+              Detections: { Flying: true },
+            },
+            Title: "Convergent Forces",
+          },
+          {
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/d/dc/Operator3.png/revision/latest/scale-to-width-down/200?cb=20260619163122",
+            Stats: {
+              Damage: 4,
+              Cooldown: 0.1,
+              Attributes: {
+                BurstCount: 9,
+              },
+            },
+            Title: "Cyber-Enforcer",
+          },
+          {
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/4/49/Operator4.png/revision/latest/scale-to-width-down/200?cb=20260619163124",
+            Stats: {
+              Damage: 5,
+              Attributes: {
+                CoordinationRadius: 5.5,
+                SharedOptics: true,
+              },
+            },
+            Title: "Synchronized Vision",
+          },
+          {
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/c/c6/Operator5.png/revision/latest/scale-to-width-down/200?cb=20260619163127",
+            Stats: {
+              Damage: 6,
+              Cooldown: 0.17,
+              Range: 16,
+              Attributes: {
+                BurstCount: 999,
+                BurstCooldown: 0,
+              },
+            },
+            Title: "Threat Detection Sentinel",
+          },
+          {
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/9/9d/Operator6.png/revision/latest/scale-to-width-down/200?cb=20260619163128",
+            Stats: {
+              Cooldown: 0.13,
+              Range: 17,
+            },
+            Title: "1000-THR E.M.",
+          },
+        ],
       },
+    },
   };
 class KA {
   constructor(A, g) {
@@ -13959,6 +14047,10 @@ class BA {
       Ranger: {
         For: ["Ranger"],
         Value: (A) => (A.Damage + A.ExplosionDamage * A.MaxHits) / A.Cooldown,
+      },
+      Operator: {
+        For: ["Operator"],
+        Value: (A) => (A.Damage * A.BurstCount) / (A.BurstCooldown + (A.Cooldown * A.BurstCount)),
       },
       Cowboy: {
         For: ["Cowboy"],
