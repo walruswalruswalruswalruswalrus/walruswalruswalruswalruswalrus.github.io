@@ -7236,7 +7236,7 @@ Has a placement footprint of 2.25 studs (very large).`,
             },
             Image: 15332520691,
             Title: "Skull Centrifuge",
-            Cost: 3950,
+            Cost: 11320,
           },
           {
             Stats: {
