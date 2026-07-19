@@ -11936,6 +11936,7 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
             CoordinationRadius: 0,
             SharedOptics: false,
           },
+          Note: "Has a placement footprint of 1.25 studs (below average).",
         },
         Upgrades: [
           {
