@@ -7640,7 +7640,7 @@ At level 4, Raise the Dead: Max Units - 1x Executioner Skeleton, 5x Skeleton Kni
               Cooldown: 0.175,
             },
             Title: "Enhanced Radar",
-            Cost: 1850,
+            Cost: 3000,
           },
           {
             Image: 98101516586169,
@@ -7664,7 +7664,6 @@ At level 4, Raise the Dead: Max Units - 1x Executioner Skeleton, 5x Skeleton Kni
                 RevTime: 0,
                 RocketSpeed: 20,
               },
-              Detections: { Flying: !0, Lead: !0 },
               Damage: 12,
             },
             Title: "Air to Ground Missiles",
@@ -14299,7 +14298,7 @@ class BA {
         },
       },
       TotalDPS: {
-        For: ["Commando", "Sledger", "War Machine", "Toxic Gunner", "Assassin"],
+        For: ["Commando", "Sledger", "War Machine", "Toxic Gunner", "Assassin", "Pursuit"],
         Value: (A) => A.NetCost / A.TotalDPS,
       },
     },
