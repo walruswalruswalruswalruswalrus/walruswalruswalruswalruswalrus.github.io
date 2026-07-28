@@ -4401,7 +4401,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
           Attributes: {
             Velocity: 30,
             ExplosionRadius: 4.5,
-            AimTime: 1,
+            AimTime: 0.8,
             MustAim: !0,
           },
           Price: 875,
@@ -4444,7 +4444,7 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
             },
             Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/c/cd/Demoman_Upgrade_2_New.png/revision/latest/scale-to-width-down/200?cb=20240704142632",
             Title: "Loch-n-Load",
-            Cost: 1650,
+            Cost: 2650,
           },
           {
             Stats: {
@@ -11330,6 +11330,7 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
           Price: 2000,
           Cooldown: 2,
           Damage: 15,
+          Limit: 2,
           Attributes: {
             MaxHits: 3,
             ChainRange: 12,
