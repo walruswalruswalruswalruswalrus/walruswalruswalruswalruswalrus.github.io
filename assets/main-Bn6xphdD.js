@@ -8535,15 +8535,15 @@ At level 4, Raise the Dead: Max Units - 1x Executioner Skeleton, 5x Skeleton Kni
               Damage: 34,
             },
             Title: "Golden Deagle",
-            Cost: 2250,
+            Cost: 2400,
           },
           {
             Image: 3279537687,
             Stats: {
               Cooldown: 0.6,
             },
-            Title: "Double Tap",
-            Cost: 3400,
+            Title: "Twin Sovereigns",
+            Cost: 3600,
           },
         ],
         Defaults: {
