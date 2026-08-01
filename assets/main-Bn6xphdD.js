@@ -12911,6 +12911,16 @@ class TA {
         },
       },
     },
+    BossDPS: {
+      Default: {
+        Requires: ["Damage", "Cooldown"],
+        Exclude: [],
+        Value: (A) => {
+          const g = (A.Damage * A.BossMultiplier) / A.Cooldown;
+          return g;
+        },
+      },
+    },
     TotalElapsedDamage: {
       Default: {
         Requires: ["BurnDamage", "BurnTime", "TickRate"],
@@ -13302,6 +13312,16 @@ class TA {
         },
       },
     },
+    BossCostEfficiency: {
+      Default: {
+        Requires: ["NetCost", "DPS"],
+        For: ["4B    ", "5B    ", "6B    ", "7B    "],
+        Value: (A) => {
+          const g = A.NetCost / (A.DPS * A.BossMultiplier);
+          return isFinite(g) ? g : NaN;
+        },
+      },    
+    },
     MaxCostEfficiency: {
       Biologist: {
         For: [
@@ -13403,6 +13423,7 @@ class TA {
     (this.#A("TotalElapsedDamage", A),
       this.#A("MissileDPS", A),
       this.#A("DPS", A),
+      this.#A("BossDPS", A),
       this.#A("TotalDPS", A),
       this.#A("AggregateDPS", A),
       this.#A("HealPS", A),
@@ -13414,6 +13435,7 @@ class TA {
       this.#A("ExplosionDamage", A),
       this.#A("NetCost", A),
       this.#A("CostEfficiency", A),
+      this.#A("BossCostEfficiency", A),
       this.#A("MaxCostEfficiency", A));
   }
 }
