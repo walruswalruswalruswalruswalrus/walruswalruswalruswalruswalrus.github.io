@@ -12914,6 +12914,7 @@ class TA {
     BossDPS: {
       Default: {
         Requires: ["Damage", "Cooldown"],
+        For: ["4B    ", "5B    ", "6B    ", "7B    "],
         Exclude: [],
         Value: (A) => {
           const g = (A.Damage * A.BossMultiplier) / A.Cooldown;
