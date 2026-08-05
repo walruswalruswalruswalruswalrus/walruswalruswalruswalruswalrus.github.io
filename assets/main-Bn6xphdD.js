@@ -8709,7 +8709,7 @@ Damage scales based on number of enemies hit.`,
             Stats: {
               Extras: ["Shot Size: 8 → 10", "Spread: 45 → 40"],
               Attributes: { Spread: 15, ShotSize: 10 },
-              Detections: { Flying: !1 },
+              Detections: { Flying: !0 },
               Cooldown: 0.85,
               Range: 9.5,
             },
