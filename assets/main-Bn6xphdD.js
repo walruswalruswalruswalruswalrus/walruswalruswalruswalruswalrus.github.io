@@ -6605,7 +6605,7 @@ Air-Drop ability has an initial cooldown of 15 seconds`,
         Defaults: {
           Detections: { Flying: !1, Hidden: !1, Lead: !1 },
           Price: 600,
-          Range: 13,
+          Range: 14,
           Cooldown: 0.225,
           Damage: 1,
         },
