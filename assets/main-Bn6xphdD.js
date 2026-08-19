@@ -13911,7 +13911,7 @@ const PA = {
   Juggernaut: { Default: ["4A    ", "5A    ", "6A    ", "7A    ", "4B    ", "5B    ", "6B    ", "7B    "] },
   Medic: { Default: ["Ubercharge 3", "Ubercharge 4", "Ubercharge 5"] },
   Kingpin: {
-    "Top Path": ["Lackey 0", "Lackey 1", "Lackey 2", "Money Runner 0", "Money Runner 1", "Money Runner 2", "Money Runner 3", "Money Runner 4"],
+    "Top Path": ["Lackey 0", "Lackey 1", "Lackey 2", "Money Runner 0", "Money Runner 1", "Money Runner 2", "Money Runner 3"],
   }
 };
 class v {
@@ -15783,6 +15783,7 @@ class aA {
       case "IncomeEfficiency":
       case "IncomePerSecond":
       case "TotalIncomePerSecond":
+      case "BountyCap":
         return `$${I.format(+(+A).toFixed(2))}`;
       case "MaxDefenseMelt":
       case "DefenseMelt":
@@ -15802,6 +15803,7 @@ class aA {
       case "WhirlwindMultiplier":
       case "CooldownBoost":
       case "DamageTakenBonus":
+      case "BountyPercentage":
         return I.format(A) + "%";
       case "BuffLength":
       case "BurnTime":
@@ -15837,6 +15839,8 @@ class aA {
       case "UnitSendCooldown":
       case "MissileTargeting":
       case "ShieldRechargeSpeed":
+      case "LackeySpawnrate":
+      case "MoneyRunnerSpawnrate":
       case "TowerSelectionCooldown":
       case "TimeBetweenMissiles":
       case "KnockbackDebounce":
