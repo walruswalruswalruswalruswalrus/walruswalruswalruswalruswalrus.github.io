@@ -4445,14 +4445,14 @@ To change its ability cooldown, scroll down in the upgrades viewer.`,
               Attributes: {LackeySpawnrate: 25, MoneyRunnerSpawnrate: 25, BountyPercentage: 100, BountyCap: 50000},
             },
             Title: "LV. 999 BOSS",
-            Cost: 16500,
+            Cost: 38500,
           },
         ],
         Defaults: {
           Detections: { Flying: !1, Hidden: !1, Lead: !1 },
           Range: 17.5,
           Price: 3600,
-          Attributes: { UnitQueues: 1, LackeySpawnrate: 37.5, MoneyRunnerSpawnrate: 40 },
+          Attributes: { UnitQueues: 1, LackeySpawnrate: 37.5, MoneyRunnerSpawnrate: 40, BountyPercentage: 0, BountyCap: 0 },
           Cooldown: 1.1,
           Damage: 24,
           Limit: 4,
@@ -11528,7 +11528,7 @@ Through splash damage, flying enemies may be hit indirectly if another detectabl
     Tesla: {
       Default: {
         Defaults: {
-          Detections: { Flying: !0, Hidden: !1, Lead: !1 },
+          Detections: { Flying: !0, Hidden: !1, Lead: !0 },
           Range: 17,
           Price: 2000,
           Cooldown: 2,
