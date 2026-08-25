@@ -14389,7 +14389,13 @@ class BA {
       Glad: {
         For: ["Gladiator"],
         Requires: ["Damage", "Cooldown", "BurnDamage"],
-        Value: (A) => A.Damage / A.Cooldown + A.BurnDamage / A.BurnTickRate,
+        Value: (A) => {
+          let burnDPS = A.BurnDamage / A.BurnTickRate;
+
+          if (isNaN(burnDPS) || !isFinite(burnDPS)) burnDPS = 0;
+          
+          return A.Damage / A.Cooldown + burnDPS;
+        },
       },
       AmmoTower: {
         For: ["Gatling Gun"],
