@@ -6110,71 +6110,86 @@ Drop the Beat ability has an initial cooldown of 10 seconds.`,
       Default: {
         Upgrades: [
           {
-            Image: 3356186535,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/a/a7/GladiatorUpgrade1.png/revision/latest/scale-to-width-down/200?cb=20260821161936",
             Stats: {
-              Cooldown: 0.75,
+              Cooldown: 0.8,
               Damage: 7,
             },
-            Title: "Warrior Armor",
-            Cost: 450,
+            Title: "Arena Conditioning",
+            Cost: 375,
           },
           {
-            Image: 141745478,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/a/a2/GladiatorUpgrade2.png/revision/latest/scale-to-width-down/200?cb=20260821161956",
             Stats: {
               Damage: 17,
             },
-            Title: "Dangersense",
+            Title: "Warrior's Call",
             Cost: 1250,
           },
           {
-            Image: 4118882122,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/f/f3/GladiatorUpgrade3.png/revision/latest/scale-to-width-down/200?cb=20260821162018",
             Stats: {
               Extras: ["Warrior's Call"],
-              Attributes: { MaxHits: 5 },
-              Cooldown: 1,
+              Attributes: { 
+                MaxHits: 5,
+                BurnDamage: 2,
+                BurnDuration: 1.2,
+                BurnTickRate: 0.3,
+                BurnCooldown: 4,
+              },
+              Cooldown: 0.7,
               Range: 6,
-              Damage: 37,
+              Damage: 27,
             },
-            Title: "Extra Protection",
-            Cost: 2000,
+            Title: "Champion's Flame",
+            Cost: 2125,
           },
           {
-            Image: 16620737,
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/8/8a/GladiatorUpgrade4.png/revision/latest/scale-to-width-down/200?cb=20260821162036",
             Stats: {
               Extras: [],
-              Attributes: { MaxHits: 7 },
+              Attributes: { 
+                MaxHits: 7,
+                BurnDamage: 4,
+                BurnCooldown: 3,
+              },
+              Damage: 57,
+            },
+            Title: "Centurion",
+            Cost: 6200,
+          },
+          {
+            Image: "https://static.wikia.nocookie.net/tower-defense-sim/images/1/1d/GladiatorUpgrade5.png/revision/latest/scale-to-width-down/200?cb=20260821162053",
+            Stats: {
+              Extras: [],
+              Attributes: { 
+                MaxHits: 10,
+                BurnCooldown: 2,
+                BurnDuration: 1.5,
+                BurnTickRate: 0.15,
+                BurnDamage: 7,
+              },
+              Cooldown: 0.55,
+              Range: 6.5,
               Damage: 77,
             },
-            Title: "Illumina",
-            Cost: 6000,
-          },
-          {
-            Image: 16868189,
-            Stats: {
-              Extras: [],
-              Attributes: { MaxHits: 10 },
-              Detections: { Flying: !1, Hidden: !0, Lead: !1 },
-              Cooldown: 1.35,
-              Range: 6.5,
-              Damage: 177,
-            },
-            Title: "Darkheart Swordsman",
-            Cost: 13900,
+            Title: "King of the Arena",
+            Cost: 14900,
           },
         ],
         Defaults: {
           Detections: { Flying: !1, Hidden: !0, Lead: !1 },
-          Attributes: { ParryCooldown: 1.25, MaxHits: 2, ParryLength: 1.25 },
+          Attributes: { BurnDamage: 0, BurnTickRate: 0, BurnDuration: 0, BurnCooldown: 0, MaxHits: 2, ParryLength: 0.75 },
           Abilities: [
             {
-              Name: "Warrior's Call",
+              Name: "War Cry",
               Price: 0,
-              Level: 3,
+              Level: 2,
               Icon: 4118882122,
               Cooldown: 30,
               Cost: 0,
               Description:
-                "Decreases swingrate by 65%. When the ability is activated, the Gladiator cannot attack enemies for a few seconds. Lasts for 15 seconds.",
+                "Decreases swingrate by 65% through the Firerate Buff while also removing any Fatigue Debuff or Scared Debuff on the tower. When activated, the Gladiator cannot attack enemies for a few seconds. Lasts for 15 seconds.",
             },
           ],
           Price: 525,
@@ -14368,8 +14383,13 @@ class BA {
       },
       BurnTower: {
         For: ["Pyromancer"],
-        Requires: ["Damage", "Cooldown", "BurnDamage", "TickRate"],
+        Requires: ["Damage", "Cooldown", "BurnDamage"],
         Value: (A) => A.Damage / A.Cooldown + A.BurnDamage / A.TickRate,
+      },
+      Glad: {
+        For: ["Gladiator"],
+        Requires: ["Damage", "Cooldown", "BurnDamage"],
+        Value: (A) => A.Damage / A.Cooldown + A.BurnDamage / A.BurnTickRate,
       },
       AmmoTower: {
         For: ["Gatling Gun"],
@@ -15833,6 +15853,9 @@ class aA {
       case "BeeDuration":
       case "ParryCooldown":
       case "ParryLength":
+      case "BurnTickRate":
+      case "BurnDuration":
+      case "BurnCooldown":
       case "LaserTime":
       case "AmmoDischargeTime":
       case "HologramLifetime":
