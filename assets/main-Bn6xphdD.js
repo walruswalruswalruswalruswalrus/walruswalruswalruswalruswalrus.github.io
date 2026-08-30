@@ -13007,6 +13007,7 @@ class TA {
         Requires: ["Damage", "Cooldown"],
         Exclude: [],
         Value: (A) => {
+          if (Cooldown == 0) return 0;
           const g = A.Damage / A.Cooldown;
           return g;
         },
@@ -13060,7 +13061,7 @@ class TA {
         For: ["Spike 0", "Spike 1", "Spike 2", "Spike 3", "Spike 4", "Spike 5"],
         Value: (A) => A.Health / A.Cooldown,
       },
-      Landmind: {
+      Landmine: {
         For: ["Landmine 2", "Landmine 3", "Landmine 4", "Landmine 5"],
         Value: (A) => {
           const g = A.Damage / A.Cooldown,
@@ -13151,17 +13152,6 @@ class TA {
             I = 60;
           if (A.Spawnrate <= 0.1) return 1 / 0;
           for (; I > 0; ) ((g += A.DPS * I), (I -= A.Spawnrate));
-          return g / 60;
-        },
-      },
-      Explosions: {
-        For: ["Gift Bomber", "Ripped Elf"],
-        Requires: ["MissileDPS", "Spawnrate"],
-        Value: (A) => {
-          let g = 0,
-            I = 60;
-          if (A.Spawnrate <= 0.1) return 1 / 0;
-          for (; I > 0; ) ((g += A.MissileDPS * I), (I -= A.Spawnrate));
           return g / 60;
         },
       },
@@ -13396,10 +13386,6 @@ class TA {
         Requires: ["ExplosionDamage", "Cooldown"],
         Value: (A) =>
           A.Cooldown === 0 ? 0 : A.ExplosionDamage / A.TimeBetweenMissiles,
-      },
-      Elfs: {
-        For: ["Gift Bomber", "Ripped Elf"],
-        Value: (A) => A.ExplosionDamage / A.Cooldown,
       },
       Pursuit: {
         For: [
