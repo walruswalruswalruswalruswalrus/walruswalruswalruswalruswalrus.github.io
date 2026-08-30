@@ -13007,7 +13007,7 @@ class TA {
         Requires: ["Damage", "Cooldown"],
         Exclude: [],
         Value: (A) => {
-          if (Cooldown == 0) return 0;
+          if (A.Cooldown == 0) return 0;
           const g = A.Damage / A.Cooldown;
           return g;
         },
