@@ -2593,7 +2593,7 @@ const cA = {
       Health: 16,
       Damage: 0,
       Range: 1.5,
-      Detections: { Flying: !0, Hidden: !0, Lead: !1 },
+      Detections: { Flying: !1, Hidden: !0, Lead: !1 },
       Burst: 0,
       BurstCooldown: 0,
       Cooldown: 0,
