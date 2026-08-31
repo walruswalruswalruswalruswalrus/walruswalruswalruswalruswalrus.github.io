@@ -14704,7 +14704,10 @@ class BA {
     SmiteDPS: {
       Default: {
         For: ["Tesla"],
-        Value: (A) => A.SmiteDamage / (A.SmiteMeter * A.Cooldown),
+        Value: (A) => {
+          if (A.SmiteMeter == 0 || isNaN(A.SmiteMeter)) return 0;
+          return A.SmiteDamage / (A.SmiteMeter * A.Cooldown);
+        }
       },
     },
     ExplosionDPS: {
