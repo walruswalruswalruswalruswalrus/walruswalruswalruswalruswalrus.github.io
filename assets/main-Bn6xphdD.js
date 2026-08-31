@@ -15116,7 +15116,7 @@ class BA {
       this.#A("AmmoDischargeTime", A),
       this.#A("MissileDPS", A),
       this.#A("DPS", A),
-      this.#A("SmiteDPS"),
+      this.#A("SmiteDPS", A),
       this.#A("BurnDPS", A),
       this.#A("PoisonDPS", A),
       this.#A("ExplosionDPS", A),
