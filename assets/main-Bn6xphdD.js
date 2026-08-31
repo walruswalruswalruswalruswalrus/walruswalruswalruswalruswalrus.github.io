@@ -14564,7 +14564,7 @@ class BA {
         },
       },
       TotalDPS: {
-        For: ["Commando", "Sledger", "War Machine", "Toxic Gunner", "Assassin", "Pursuit"],
+        For: ["Commando", "Sledger", "War Machine", "Toxic Gunner", "Assassin", "Pursuit", "Tesla"],
         Value: (A) => A.NetCost / A.TotalDPS,
       },
     },
@@ -14699,6 +14699,12 @@ class BA {
           const I = this.unitManager.unitData[g];
           return I.attributes.BurnDamage / I.attributes.TickRate;
         },
+      },
+    },
+    SmiteDPS: {
+      Default: {
+        For: ["Tesla"],
+        Value: (A) => A.SmiteDamage / (A.SmiteMeter * A.Cooldown),
       },
     },
     ExplosionDPS: {
@@ -14961,6 +14967,10 @@ class BA {
       },
       ToxicGunner: { For: ["Toxic Gunner"], Value: (A) => A.DPS + A.PoisonDPS },
       Assassin: { For: ["Assassin"], Value: (A) => A.DPS + A.KnifeDPS },
+      Tesla: {
+        For: ["Tesla"],
+        Value: (A) => A.DPS + A.SmiteDPS,
+      },
     },
     Cooldown: {
       Type: "Override",
@@ -15106,6 +15116,7 @@ class BA {
       this.#A("AmmoDischargeTime", A),
       this.#A("MissileDPS", A),
       this.#A("DPS", A),
+      this.#A("SmiteDPS"),
       this.#A("BurnDPS", A),
       this.#A("PoisonDPS", A),
       this.#A("ExplosionDPS", A),
